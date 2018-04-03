@@ -1,0 +1,15 @@
+{
+	"templates": {
+		"component": {
+			"path": "./.remmy/component",
+			"dest": "./src/shared/components"
+		},
+
+		"scene": {
+			"path": "./.remmy/scene",
+			"dest": "./src/shared/components/scenes"
+		}
+	},
+
+	"variables": {}
+}

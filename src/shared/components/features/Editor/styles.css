@@ -1,0 +1,12 @@
+.Editor {
+	height: 100%;
+	width: 100%;
+}
+
+.runButton {
+	position: absolute;
+	top: 55;
+	background: blue;
+	color: white;
+	/* color: rgb(255, 140, 0); */
+}

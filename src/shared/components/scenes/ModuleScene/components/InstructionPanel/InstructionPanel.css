@@ -1,0 +1,9 @@
+.InstructionPanel {
+	width: 480px;
+	height: 100%;
+	background: var(--black);
+	box-shadow: 2px 0px 16px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	z-index: 10;
+	padding: 24px;
+}

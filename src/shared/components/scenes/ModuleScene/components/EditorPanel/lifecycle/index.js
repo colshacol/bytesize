@@ -1,0 +1,1 @@
+export { componentWillMount } from './componentWillMount'
