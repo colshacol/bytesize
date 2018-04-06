@@ -1,11 +1,6 @@
 @import '~codemirror/lib/codemirror.css';
 @import '~codemirror/theme/material.css';
 
-/* .CodeMirror,
-.CodeMirror-lines,
-.CodeMirror-linenumbers,
-.CodeMirror-gutters */
-
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -19,6 +14,21 @@ body,
 
 #root {
 	font-feature-settings: 'liga' 1;
+}
+
+/* .CodeMirror-vscrollbar::-webkit-scrollbar {
+	background-color: rgba(0,0,0,0.15);
+	width: 100%;
+}
+
+ */
+
+.CodeMirror-vscrollbar::-webkit-scrollbar {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
 }
 
 #cool-widget {

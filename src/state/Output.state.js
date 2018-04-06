@@ -1,6 +1,8 @@
 import { types } from 'mobx-state-tree'
+import uuid from 'uuid/v4'
 
 const Log = types.model({
+	uid: types.optional(types.string, () => uuid()),
 	type: types.string,
 	value: types.string
 })
@@ -11,15 +13,17 @@ const model = {
 
 const actions = self => ({
 	addLog(log) {
-		console.log('addLog:', { log })
-		self.logs.push(log)
+		self.logs.push({
+			type: 'STDOUT',
+			value: log
+		})
 	},
 
-	addInfoLog(value) {
-		return {
-			type: 'BUILT_IN',
-			value
-		}
+	addInfoLog(log) {
+		self.logs.push({
+			type: 'INFO',
+			value: log
+		})
 	}
 })
 

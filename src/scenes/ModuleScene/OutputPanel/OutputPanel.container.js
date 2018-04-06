@@ -25,10 +25,7 @@ export class Container extends React.Component {
 			const data = JSON.parse(event.data)
 
 			if (data.stdout) {
-				this.props.$editor.output.addLog({
-					type: 'STDOUT',
-					value: data.stdout
-				})
+				this.props.$editor.output.addLog(data.stdout)
 			}
 		})
 	}
@@ -45,8 +42,8 @@ export class Container extends React.Component {
 	// }
 
 	run = event => {
-		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
 		this.props.$editor.output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
+		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
 	}
 
 	scrollController = ({ stayScrolled, scrollBottom }) => {

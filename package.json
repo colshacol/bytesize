@@ -111,6 +111,7 @@
 		"react-router-dom": "^4.2.2",
 		"react-split-pane": "^0.1.77",
 		"react-stay-scrolled": "^2.1.1",
+		"uuid": "^3.2.1",
 		"vm2": "^3.5.2"
 	}
 }

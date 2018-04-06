@@ -8,7 +8,8 @@ import { theme } from './theme'
 import './OutputPanel.styles.css'
 
 const isBuiltIn = log => {
-	return typeof log === 'object' && log.type === 'BUILT_IN'
+	console.log({ log })
+	return typeof log === 'object' && log.type === 'INFO'
 }
 
 export const Render = self => {
@@ -23,10 +24,12 @@ export const Render = self => {
 					<For each="log" of={self.props.$editor.output.logs} index="index">
 						<Choose>
 							<When condition={isBuiltIn(log)}>
-								<p styleName="builtIn-log">{log.value}</p>
+								<p key={log.uid} styleName="builtIn-log">
+									{log.value}
+								</p>
 							</When>
 							<Otherwise>
-								<Inspector theme={theme} data={log} />
+								<Inspector key={log.uid} theme={theme} data={log.value} />
 							</Otherwise>
 						</Choose>
 					</For>

@@ -4,7 +4,7 @@ export const theme = {
 	BASE_LINE_HEIGHT: '1.9',
 
 	// Background color matches TopBar.
-	BASE_BACKGROUND_COLOR: '#1b181f',
+	BASE_BACKGROUND_COLOR: 'rgba(0,0,0,0)',
 	// "Base font color."
 	BASE_COLOR: 'rgba(255, 255, 255, 0.7)',
 	// rgb(255, 239, 110)
