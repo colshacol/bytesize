@@ -1,1 +1,0 @@
-export { doFoo } from './doFoo'

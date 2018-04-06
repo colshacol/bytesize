@@ -1,0 +1,18 @@
+:root {
+	/* --black: #18161b; */
+	/* --black: #1a1a20; */
+	/* --black: #180e22; */
+	--black: #191726;
+	--otherBlack: #131116;
+	--gray: #1e1e1e;
+	--purple0: #612bd3;
+}
+
+:root {
+	/* --bgColor: #1d1922; */
+	--bgColor: linear-gradient(-150deg, rgb(47, 41, 68), rgb(24, 27, 43));
+	--bgColorReverse: linear-gradient(150deg, rgb(41, 44, 68), rgb(24, 27, 43));
+	--darkBlue0: #181b2b;
+	--darkBlue1: #272c42;
+	--shadow0: 0px 0px 8px 0px rgba(24, 27, 43, 1);
+}

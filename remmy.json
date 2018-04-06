@@ -2,12 +2,12 @@
 	"templates": {
 		"component": {
 			"path": "./.remmy/component",
-			"dest": "./src/shared/components"
+			"dest": "./src/components"
 		},
 
 		"scene": {
 			"path": "./.remmy/scene",
-			"dest": "./src/shared/components/scenes"
+			"dest": "./src/scenes"
 		}
 	},
 

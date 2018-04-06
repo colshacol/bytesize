@@ -1,10 +1,12 @@
 const moduleResolverOptions = {
 	root: ['./src'],
 	alias: {
-		'#components': './src/shared/components',
-		'#utilities': './src/shared/utilities',
-		'#scenes': './src/shared/components/scenes',
-		'#styles': './src/shared/styles'
+		'#components': './src/components',
+		'#utilities': './src/utilities',
+		'#scenes': './src/scenes',
+		'#styles': './src/styles',
+		'#features': './src/features',
+		'#state': './src/state'
 	}
 }
 

@@ -1,0 +1,5 @@
+# Editor
+
+```ts
+interface Edtitor {}
+```
