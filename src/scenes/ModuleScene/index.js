@@ -1,1 +1,1 @@
-export { Container as ModuleScene } from './ModuleScene.container'
+export { ModuleScene } from './ModuleScene'

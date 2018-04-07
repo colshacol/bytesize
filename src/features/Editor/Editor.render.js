@@ -23,7 +23,6 @@ export const Render = (self: SelfT) => {
 					self.props.$editor.setContents(contents)
 				}}
 			/>
-			<h2>{self.props.$editor.characterCount}</h2>
 		</div>
 	)
 }

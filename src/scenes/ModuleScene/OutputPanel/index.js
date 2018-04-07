@@ -1,1 +1,1 @@
-export { Container as OutputPanel } from './OutputPanel.container'
+export { OutputPanel } from './OutputPanel'

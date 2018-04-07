@@ -8,7 +8,5 @@ export const message = socket => async data => {
 		await sandbox.execute(JSON.parse(data).code, socket)
 	} catch (error) {
 		console.log('[sandbox] error:', error)
-	} finally {
-		console.log('complete---')
 	}
 }

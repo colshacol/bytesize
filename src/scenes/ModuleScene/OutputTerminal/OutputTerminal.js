@@ -1,18 +1,25 @@
 import * as React from 'react'
 import moment from 'moment'
 import { inject, observer } from 'mobx-react'
+import StayScrolled from 'react-stay-scrolled'
+import { Controlled as CodeMirror } from 'react-codemirror2'
 
-import { Render } from './OutputPanel.render'
+import { EDITOR_OPTIONS } from './consts'
+import { theme } from './theme'
+import './styles.css'
 
 const stateTreeSelector = tree => {
+	const $editor = tree.state.editor
+
 	return {
-		$editor: tree.state.editor
+		$editor,
+		$output: $editor.output
 	}
 }
 
 @inject(stateTreeSelector)
 @observer
-export class Container extends React.Component {
+export class OutputTerminal extends React.Component {
 	componentWillMount() {
 		this.scrollBox = React.createRef()
 		this.socket = new WebSocket('ws://localhost:8765/run')
@@ -25,7 +32,7 @@ export class Container extends React.Component {
 			const data = JSON.parse(event.data)
 
 			if (data.stdout) {
-				this.props.$editor.output.addLog(data.stdout)
+				this.props.$output.addLog(data.stdout)
 			}
 		})
 	}
@@ -41,7 +48,9 @@ export class Container extends React.Component {
 	}
 
 	execute = event => {
-		this.props.$editor.output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
+		// TODO: output.addExecutionLog
+		console.log('yolo')
+		this.props.$output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
 		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
 	}
 
@@ -50,5 +59,20 @@ export class Container extends React.Component {
 		this.scrollBottom = scrollBottom
 	}
 
-	render = () => Render(this)
+	render() {
+		return (
+			<div styleName="OutputTerminal" ref={this.scrollBox}>
+				<CodeMirror
+					value={this.props.$output.textValue}
+					className="bytesize-CodeMirror-shell"
+					options={EDITOR_OPTIONS}
+					autoCursor
+					autoFocus
+				/>
+				<button styleName="runButton" onClick={this.execute}>
+					Run Code
+				</button>
+			</div>
+		)
+	}
 }

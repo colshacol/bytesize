@@ -25,8 +25,31 @@ export const createSandbox = socket => {
 		})
 	})
 
+	vm.on('console.info', (...args) => {
+		args.forEach(arg => {
+			socket.send(JSON.stringify({ stdout: arg }))
+		})
+	})
+
+	vm.on('console.error', (...args) => {
+		args.forEach(arg => {
+			socket.send(JSON.stringify({ stdout: arg }))
+		})
+	})
+
+	vm.on('console.trace', (...args) => {
+		args.forEach(arg => {
+			socket.send(JSON.stringify({ stdout: arg }))
+		})
+	})
+
+	vm.on('console.dir', (...args) => {
+		args.forEach(arg => {
+			socket.send(JSON.stringify({ stdout: arg }))
+		})
+	})
+
 	vm.on('uncaughtException', err => {
-		console.error('Asynchronous error caught.', err)
 		socket.send(JSON.stringify({ stderr: err }))
 	})
 

@@ -15,7 +15,7 @@ const actions = self => ({
 	addLog(log) {
 		self.logs.push({
 			type: 'STDOUT',
-			value: log
+			value: JSON.stringify(log, null, 2)
 		})
 	},
 
@@ -30,6 +30,14 @@ const actions = self => ({
 const views = self => ({
 	get logCount() {
 		return self.logs.length
+	},
+
+	get textValue() {
+		console.log(self.logs)
+		return self.logs.reduce((final, log) => {
+			final += `${log.value}\n`
+			return final
+		}, '')
 	}
 })
 

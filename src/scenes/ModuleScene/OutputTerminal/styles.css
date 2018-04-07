@@ -1,0 +1,42 @@
+.OutputTerminal {
+	width: 100%;
+	height: 100%;
+	background: var(--black);
+	color: #fff;
+	font-size: 16px;
+	font-family: 'Operator Mono Book';
+	z-index: 11;
+	position: absolute;
+	height: 100%;
+	box-shadow: 0px -2px 16px rgba(0, 0, 0, 0.2);
+}
+
+.OutputTerminal::-webkit-scrollbar {
+	background-color: rgba(0, 0, 0, 0.15);
+}
+
+.OutputTerminal::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.OutputTerminal > [role='treeitem'] {
+	margin: 12px 0;
+	padding: 4px 8px;
+}
+
+.runButton {
+	position: fixed;
+	bottom: 16px;
+	right: 32px;
+	border: none;
+	outline: none;
+	background: #e6154b;
+	color: #fff;
+	padding: 8px 16px;
+	cursor: pointer;
+	font-family: 'Open Sans';
+	font-style: italic;
+	text-transform: uppercase;
+	font-size: 14px;
+	z-index: 10;
+}
