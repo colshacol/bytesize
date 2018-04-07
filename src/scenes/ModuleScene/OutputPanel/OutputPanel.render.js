@@ -8,12 +8,11 @@ import { theme } from './theme'
 import './OutputPanel.styles.css'
 
 const isBuiltIn = log => {
-	console.log({ log })
 	return typeof log === 'object' && log.type === 'INFO'
 }
 
 export const Render = self => {
-	console.log({ self })
+	console.log({ self }, self.props.$editor.output)
 	return (
 		<div styleName="OutputPanel" ref={self.scrollBox}>
 			<Choose>
@@ -35,7 +34,7 @@ export const Render = self => {
 					</For>
 				</Otherwise>
 			</Choose>
-			<button styleName="runButton" onClick={self.run}>
+			<button styleName="runButton" onClick={self.execute}>
 				Run Code
 			</button>
 		</div>

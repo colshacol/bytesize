@@ -40,7 +40,7 @@ export class Container extends React.Component {
 		this.scrollBox.current.scrollTop = 9999
 	}
 
-	run = event => {
+	execute = event => {
 		this.props.$editor.output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
 		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
 	}
