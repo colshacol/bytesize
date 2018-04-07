@@ -1,5 +1,6 @@
 .OutputPanel {
 	width: 100%;
+	height: 100%;
 	padding: 24px;
 	background: var(--black);
 	/* background: var(--black); */
@@ -14,11 +15,11 @@
 }
 
 .OutputPanel::-webkit-scrollbar {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.15);
 }
 
 .OutputPanel::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.75);
 }
 
 .OutputPanel > [role='treeitem'] {
@@ -37,9 +38,9 @@
 }
 
 .runButton {
-	position: absolute;
+	position: fixed;
 	bottom: 16px;
-	right: 24px;
+	right: 32px;
 	border: none;
 	outline: none;
 	background: #e6154b;

@@ -34,12 +34,11 @@ export class Container extends React.Component {
 		this.socket.close()
 	}
 
-	// componentDidUpdate(oldProps) {
-	// 	// TODO: Add condition to maintain scroll position if the user
-	// 	// has manually scrolled from the bottom.
-	// 	prevProps.output.length < this.props.output.length &&
-	// 		(this.scrollBox.current.scrollTop = 9999)
-	// }
+	componentDidUpdate(oldProps) {
+		// TODO: Add condition to maintain scroll position if the user
+		// has manually scrolled from the bottom.
+		this.scrollBox.current.scrollTop = 9999
+	}
 
 	run = event => {
 		this.props.$editor.output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
