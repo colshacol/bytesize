@@ -13,7 +13,6 @@ const model = {
 
 const actions = self => ({
 	addLog(log) {
-		console.log('adding info log', { log })
 		self.logs.push({
 			type: 'STDOUT',
 			value: log

@@ -1,20 +1,21 @@
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const ws = require('express-ws')
+import express from 'express'
+import cors from 'cors'
+import bodyParser from 'body-parser'
+import webSockets from 'express-ws'
 
-const { applySockets } = require('./ws/applySockets')
-const { run } = require('./run')
+import { sockets } from '#sockets'
 
 const app = express()
-const server = ws(app)
+const server = webSockets(app)
+const PORT = 8765
 
 app.use(bodyParser.json())
 app.use(cors())
 
-applySockets(app)
+app.ws('/run', sockets.routes.run)
 
-app.listen(8765, () => {
-	// TODO: foobar
-	console.log('\n\nrunning:  http://localhost:8765')
-})
+const handleListening = () => {
+	console.log(`\n\nrunning:  http://localhost:${PORT}\n\n`)
+}
+
+app.listen(PORT, handleListening)

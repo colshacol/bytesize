@@ -7,7 +7,7 @@
 	"author": "Colton Colcleasure <colshacol@gmail.com>",
 	"license": "MIT",
 	"scripts": {
-		"server": "nodemon server",
+		"server": "nodemon -r @babel/register -r module-alias/register server",
 		"clientServer": "webpack-dev-server --config ./webpack/dev.js",
 		"precommit": "pretty-quick --staged",
 		"test": "jest"
@@ -94,6 +94,7 @@
 		"mobx-react-devtools": "^5.0.1",
 		"mobx-router": "^0.0.8",
 		"mobx-state-tree": "^2.0.2",
+		"module-alias": "^2.0.6",
 		"moment": "^2.22.0",
 		"node-fetch": "^2.1.2",
 		"psymon": "^1.0.2",
@@ -114,5 +115,10 @@
 		"react-stay-scrolled": "^2.1.1",
 		"uuid": "^3.2.1",
 		"vm2": "^3.5.2"
+	},
+	"_moduleAliases": {
+		"#root": ".",
+		"#sockets": "server/sockets",
+		"#sandbox": "server/sandbox"
 	}
 }
