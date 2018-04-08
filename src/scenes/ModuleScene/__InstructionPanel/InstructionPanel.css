@@ -1,12 +1,10 @@
 .InstructionPanel {
-	background: #202236;
+	background: white;
 	height: 100%;
 	width: 100%;
 	z-index: 20;
 	display: flex;
 	flex-direction: column;
-	color: white;
-	/* border-top: 1px solid #32335a; */
 }
 
 .top {
@@ -15,9 +13,9 @@
 	/* background: linear-gradient(167deg,  #50dcd3, #5c5cb6); */
 	/* linear-gradient(167deg, #50dcd3, #7f89d0) */
 	/* background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%); */
-	/* background-image: linear-gradient(135deg, #ce9ffc 10%, #7367f0 100%); */
-	/* box-shadow: 0px 0px 16px 0px rgba(24, 27, 43, 0.25); */
-	/* color: white; */
+	background-image: linear-gradient(135deg, #ce9ffc 10%, #7367f0 100%);
+	box-shadow: 0px 0px 16px 0px rgba(24, 27, 43, 0.25);
+	color: white;
 }
 
 .top h1 {
@@ -31,25 +29,16 @@
 
 /* TODO: Make specific to terminal */
 .body::-webkit-scrollbar {
-	background-color: #202236;
+	background-color: #f3f3f3;
 }
 
 .body::-webkit-scrollbar-thumb {
-	background-color: #2b2b4c;
-	position: absolute;
-	right: 5px;
-	margin-right: 2px;
-	border-right: 7px solid #202236;
+	background-color: #dddddd;
 }
 
 .markdown {
 	/* background:  */
-	color: white;
 }
-
-/* .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
-	color: white;
-} */
 
 .markdown hr {
 	height: 6px;
@@ -95,11 +84,9 @@
 
 .markdown code,
 .markdown pre {
-	font-family: 'Fira Mono', monospace !important;
-	line-height: 1.7;
-	background: #2b2b4c;
+	font-family: 'Overpass Mono', monospace !important;
+	background: #f2f2f2e8;
 	padding: 2px 8px;
-	color: #898eda;
 }
 
 .markdown pre {

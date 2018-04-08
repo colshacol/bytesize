@@ -1,0 +1,25 @@
+.TagBox {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 4px 0;
+}
+
+.Tag {
+	/* background: var(--purple0); */
+	background: white;
+	border-radius: 10px;
+	padding: 7px 12px 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 16px;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.Tag small {
+	text-transform: uppercase;
+	font-size: 11px;
+	color: #7468f0;
+	font-family: 'Overpass Mono', monospace !important;
+	text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+}

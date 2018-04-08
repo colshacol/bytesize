@@ -3,8 +3,9 @@
 	height: 48px;
 	color: #fff;
 	z-index: 11;
-	background: linear-gradient(-45deg, #313358, #202236);
-	box-shadow: var(--shadow0);
+	/* background: linear-gradient(-45deg, #313358, #202236); */
+	background: #202236;
+	border-bottom: 1px solid #32335a;
 }
 
 .left {

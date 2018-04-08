@@ -17,7 +17,11 @@ export class ModuleScene extends React.Component {
 		return (
 			<div styleName="ModuleScene">
 				<div styleName="body">
-					<PanelGroup direction="row" panelWidths={ROW_PANEL_SETTINGS}>
+					<PanelGroup
+						direction="row"
+						borderColor={'#2a2a47'}
+						panelWidths={ROW_PANEL_SETTINGS}
+					>
 						<InstructionPanel />
 						<div className="ModuleScene-rightPanelGroup">
 							<PanelGroup
