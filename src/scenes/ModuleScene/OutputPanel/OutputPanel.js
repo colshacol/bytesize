@@ -4,8 +4,19 @@ import { inject, observer } from 'mobx-react'
 import StayScrolled from 'react-stay-scrolled'
 import Inspector from 'react-inspector'
 
+import PlayButton from '#assets/svgs/play-0.svg'
+import OptionsButton from '#assets/svgs/more-0.svg'
 import { theme } from './theme'
 import './styles.css'
+
+const parseMessage = log => {
+	if (['boolean', 'number', 'null', 'object', 'array'].includes(log.dataType)) {
+		console.log(log.message)
+		return JSON.parse(log.message)
+	} else {
+		return log.message
+	}
+}
 
 const stateTreeSelector = tree => {
 	return {
@@ -26,10 +37,7 @@ export class OutputPanel extends React.Component {
 
 		this.socket.addEventListener('message', event => {
 			const data = JSON.parse(event.data)
-
-			if (data.stdout) {
-				this.props.$editor.output.addLog(data.stdout)
-			}
+			this.props.$editor.output.addLog(data)
 		})
 	}
 
@@ -56,7 +64,9 @@ export class OutputPanel extends React.Component {
 
 	render() {
 		return (
-			<div styleName="OutputPanel" ref={this.scrollBox}>
+			<div styleName="OutputPanel" ref={this.scrollBox} data-bytesize-output-panel>
+				<OptionsButton styleName="optionsButton" />
+				<PlayButton styleName="playButton" onClick={this.execute} />
 				<Choose>
 					<When condition={!this.props.$editor.output.logCount}>
 						<p styleName="pre-text">Output will be chillin' here.</p>
@@ -64,21 +74,18 @@ export class OutputPanel extends React.Component {
 					<Otherwise>
 						<For each="log" of={this.props.$editor.output.logs} index="index">
 							<Choose>
-								<When condition={log.type === 'INFO'}>
+								<When condition={log.logType === 'INFO'}>
 									<p key={log.uid} styleName="builtIn-log">
-										{log.value}
+										{log.message}
 									</p>
 								</When>
 								<Otherwise>
-									<Inspector key={log.uid} theme={theme} data={log.value} />
+									<Inspector key={log.uid} theme={theme} data={parseMessage(log)} />
 								</Otherwise>
 							</Choose>
 						</For>
 					</Otherwise>
 				</Choose>
-				<button styleName="runButton" onClick={this.execute}>
-					Run Code
-				</button>
 			</div>
 		)
 	}

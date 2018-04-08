@@ -1,1 +1,1 @@
-export { Container as App } from './App.container'
+export { App } from './App'

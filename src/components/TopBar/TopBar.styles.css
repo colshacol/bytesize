@@ -1,14 +1,9 @@
 .TopBar {
 	width: 100vw;
 	height: 48px;
-	display: flex;
-	align-items: center;
-	/* background: #131116; */
 	color: #fff;
 	z-index: 11;
-	/* box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.2); */
 	background: var(--black);
-	/* width: 100%; */
 	box-shadow: var(--shadow0);
 }
 
@@ -36,10 +31,10 @@
 
 .inner {
 	height: 100%;
+	display: flex;
+	align-items: center;
 	padding: 0 24px;
-	/* background: linear-gradient(175deg, rgba(213, 114, 252, 0.5), rgba(255,255,255,0)); */
 	width: 100%;
 	z-index: 4;
 	position: relative;
-	opacity: 0.25;
 }

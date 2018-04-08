@@ -50,7 +50,7 @@ export class OutputTerminal extends React.Component {
 	execute = event => {
 		// TODO: output.addExecutionLog
 		console.log('yolo')
-		this.props.$output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
+		this.props.$output.addInfoLog(`# executing @ ${moment().format('h:mm:ss')}`)
 		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
 	}
 

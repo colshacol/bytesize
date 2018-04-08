@@ -3,8 +3,11 @@ import uuid from 'uuid/v4'
 
 const Log = types.model({
 	uid: types.optional(types.string, () => uuid()),
-	type: types.string,
-	value: types.string
+	// type: types.string,
+	// messages: types.array(Message),
+	logType: types.string,
+	dataType: types.string,
+	message: types.string
 })
 
 const model = {
@@ -13,16 +16,20 @@ const model = {
 
 const actions = self => ({
 	addLog(log) {
-		self.logs.push({
-			type: 'STDOUT',
-			value: JSON.stringify(log, null, 2)
+		log.messages.forEach(message => {
+			self.logs.push({
+				logType: log.type,
+				dataType: message.type,
+				message: message.value
+			})
 		})
 	},
 
 	addInfoLog(log) {
 		self.logs.push({
-			type: 'INFO',
-			value: log
+			logType: 'INFO',
+			dataType: 'string',
+			message: log
 		})
 	}
 })

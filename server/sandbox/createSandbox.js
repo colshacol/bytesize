@@ -19,33 +19,49 @@ export const createSandbox = socket => {
 		}
 	})
 
+	const typeOf = target => {
+		if (Array.isArray(target)) {
+			return 'array'
+		} else if (String(target) === 'null') {
+			return 'null'
+		} else if (String(target) === 'undefined') {
+			return 'undefined'
+		} else {
+			return typeof target
+		}
+	}
+
+	const valueObject = arg => {
+		const type = typeOf(arg)
+		return {
+			type,
+			value: type === 'undefined' ? 'undefined' : JSON.stringify(arg)
+		}
+	}
+
 	vm.on('console.log', (...args) => {
-		args.forEach(arg => {
-			socket.send(JSON.stringify({ stdout: arg }))
-		})
+		const messages = args.map(valueObject)
+		socket.send(JSON.stringify({ type: 'STDOUT', messages }))
 	})
 
 	vm.on('console.info', (...args) => {
-		args.forEach(arg => {
-			socket.send(JSON.stringify({ stdout: arg }))
-		})
+		const messages = args.map(valueObject)
+		socket.send(JSON.stringify({ type: 'STDOUT', messages }))
 	})
 
 	vm.on('console.error', (...args) => {
-		args.forEach(arg => {
-			socket.send(JSON.stringify({ stdout: arg }))
-		})
+		const messages = args.map(valueObject)
+		socket.send(JSON.stringify({ type: 'STDERR', messages }))
 	})
 
 	vm.on('console.trace', (...args) => {
-		args.forEach(arg => {
-			socket.send(JSON.stringify({ stdout: arg }))
-		})
+		const messages = args.map(valueObject)
+		socket.send(JSON.stringify({ type: 'TRACE', messages }))
 	})
 
 	vm.on('console.dir', (...args) => {
 		args.forEach(arg => {
-			socket.send(JSON.stringify({ stdout: arg }))
+			socket.send(JSON.stringify({ type: 'STDOUT', value: args }))
 		})
 	})
 

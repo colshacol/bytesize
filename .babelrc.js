@@ -40,7 +40,8 @@ module.exports = api => {
 						'#scenes': './src/scenes',
 						'#styles': './src/styles',
 						'#features': './src/features',
-						'#state': './src/state'
+						'#state': './src/state',
+						'#assets': './src/assets'
 					}
 				}
 			],
