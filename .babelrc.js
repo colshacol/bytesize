@@ -1,22 +1,3 @@
-const moduleResolverOptions = {
-	root: ['./src'],
-	alias: {
-		'#components': './src/shared/components',
-		'#utilities': './src/shared/utilities',
-		'#scenes': './src/shared/components/scenes',
-		'#styles': './src/shared/styles'
-	}
-}
-
-const cssModulesOptions = {
-	generateScopedName: '_[name]-[local]',
-	context: '.${PWD}/src'
-}
-
-const classPropertiesOptions = {
-	loose: true
-}
-
 module.exports = api => {
 	api.cache(true)
 
@@ -25,7 +6,12 @@ module.exports = api => {
 		plugins: [
 			'react-hot-loader/babel',
 			'@babel/plugin-proposal-decorators',
-			['@babel/plugin-proposal-class-properties', classPropertiesOptions],
+			[
+				'@babel/plugin-proposal-class-properties',
+				{
+					loose: true
+				}
+			],
 			'@babel/plugin-proposal-optional-chaining',
 			'@babel/plugin-proposal-pipeline-operator',
 			'@babel/plugin-proposal-function-bind',
@@ -44,13 +30,28 @@ module.exports = api => {
 			'@babel/plugin-proposal-nullish-coalescing-operator',
 			'@babel/plugin-proposal-logical-assignment-operators',
 			'babel-plugin-jsx-control-statements',
-			['babel-plugin-module-resolver', moduleResolverOptions],
-			['babel-plugin-react-css-modules', cssModulesOptions],
-			// ["babel-plugin-transform-inline-environment-variables", {
-			// 	"include": [
-			// 		"NODE_ENV"
-			// 	]
-			// }],
+			[
+				'babel-plugin-module-resolver',
+				{
+					root: ['./src'],
+					alias: {
+						'#components': './src/components',
+						'#utilities': './src/utilities',
+						'#scenes': './src/scenes',
+						'#styles': './src/styles',
+						'#features': './src/features',
+						'#state': './src/state',
+						'#assets': './src/assets'
+					}
+				}
+			],
+			[
+				'babel-plugin-react-css-modules',
+				{
+					generateScopedName: '_[name]-[local]',
+					context: '.${PWD}/src'
+				}
+			],
 			'babel-plugin-dev-expression',
 			[
 				'babel-plugin-flow-runtime',

@@ -33,8 +33,30 @@ module.exports = {
 				]
 			},
 			{
+				test: /\.(css)$/,
+				include: /(potionsTheme|node_modules)/,
+				use: [
+					{
+						loader: 'style-loader',
+						options: {}
+					},
+					{
+						loader: 'css-loader'
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'stylus-loader'
+					}
+				]
+			},
+			{
 				test: /\.(css|styl)$/,
-				exclude: /(node_modules)/,
+				exclude: /(potionsTheme|node_modules)/,
 				use: [
 					{
 						loader: 'style-loader',
@@ -56,9 +78,6 @@ module.exports = {
 					},
 					{
 						loader: 'stylus-loader'
-						// options: {
-						// import: [path.resolve(__dirname, 'client/styles/utils/index.styl')]
-						// }
 					}
 				]
 			},
