@@ -23,20 +23,3 @@
 	margin: 12px 0;
 	padding: 4px 8px;
 }
-
-.runButton {
-	position: fixed;
-	bottom: 16px;
-	right: 32px;
-	border: none;
-	outline: none;
-	background: #e6154b;
-	color: #fff;
-	padding: 8px 16px;
-	cursor: pointer;
-	font-family: 'Open Sans';
-	font-style: italic;
-	text-transform: uppercase;
-	font-size: 14px;
-	z-index: 10;
-}

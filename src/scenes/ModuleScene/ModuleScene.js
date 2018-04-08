@@ -22,7 +22,7 @@ export class ModuleScene extends React.Component {
 						<div className="ModuleScene-rightPanelGroup">
 							<PanelGroup
 								direction="column"
-								borderColor={'#b173eb'}
+								borderColor={'#272a49'}
 								panelWidths={PANEL_SETTINGS}
 							>
 								<Editor storeEditor={self.storeEditor} />

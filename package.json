@@ -106,6 +106,7 @@
 		"react-easy-state": "^5.0.0",
 		"react-hot-loader": "^4.0.0",
 		"react-inspector": "^2.2.2",
+		"react-markdown": "^3.3.0",
 		"react-monaco-editor": "^0.14.1",
 		"react-motion": "^0.5.2",
 		"react-panelgroup": "^1.0.5",
