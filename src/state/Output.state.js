@@ -44,13 +44,21 @@ const actions = self => ({
 		self.logs.push({
 			logType: 'INFO',
 			dataType: 'string',
-			message: `[${moment().format('h:mm:ss')}] ececuting`
+			message: `[${moment().format('h:mm:ss')}] executing`
+		})
+	},
+
+	addSocketNotConnectedLog() {
+		self.logs.push({
+			logType: 'WARNING',
+			dataType: 'string',
+			message: `[${moment().format('h:mm:ss')}] socket not connected`
 		})
 	},
 
 	addSocketDisconnectLog() {
 		self.logs.push({
-			logType: 'INFO',
+			logType: 'WARNING',
 			dataType: 'string',
 			message: `[${moment().format('h:mm:ss')}] socket disconnected`
 		})

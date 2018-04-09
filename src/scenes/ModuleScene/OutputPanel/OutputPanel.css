@@ -1,12 +1,10 @@
 .OutputPanel {
 	width: 100%;
 	height: 100%;
-	padding: 24px;
 	background: #1d1f31;
-	/* background: var(--black); */
 	color: #fff;
-	font-size: 16px;
-	font-family: 'Operator Mono Book';
+	font-size: 14px;
+	font-family: 'Fira Mono';
 	overflow-y: scroll;
 	z-index: 11;
 	height: 100%;
@@ -28,13 +26,6 @@
 
 .pre-text {
 	opacity: 0.5;
-}
-
-.builtIn-log {
-	font-size: 13px;
-	font-style: italic;
-	color: #1ceca7;
-	margin-bottom: 8px;
 }
 
 /* FIX: Button background bleed. */
@@ -88,12 +79,4 @@
 	cursor: not-allowed;
 	margin: 0 8px;
 	opacity: 0.7;
-}
-
-.logType-ERROR {
-	padding: 8px;
-	background: #191a2a;
-	color: #f86291;
-	line-height: 1.4;
-	font-size: 13px;
 }

@@ -1,6 +1,6 @@
 export const theme = {
 	BASE_FONT_FAMILY: 'Fira Code, monospace',
-	BASE_FONT_SIZE: '22px',
+	BASE_FONT_SIZE: '14px',
 	BASE_LINE_HEIGHT: '1.9',
 
 	// Background color matches TopBar.
@@ -13,9 +13,9 @@ export const theme = {
 
 	OBJECT_VALUE_NULL_COLOR: 'rgb(222, 127, 127)',
 	OBJECT_VALUE_UNDEFINED_COLOR: 'rgb(127, 127, 127)',
-	OBJECT_VALUE_REGEXP_COLOR: 'rgb(184, 100, 255)',
-	OBJECT_VALUE_STRING_COLOR: 'rgb(184, 100, 255)',
-	OBJECT_VALUE_SYMBOL_COLOR: 'rgb(184, 100, 255)',
+	OBJECT_VALUE_REGEXP_COLOR: '#19fac5',
+	OBJECT_VALUE_STRING_COLOR: '#19fac5',
+	OBJECT_VALUE_SYMBOL_COLOR: '#19fac5',
 	OBJECT_VALUE_NUMBER_COLOR: 'rgb(134, 255, 128)',
 	OBJECT_VALUE_BOOLEAN_COLOR: 'rgb(51, 213, 243)',
 	OBJECT_VALUE_FUNCTION_KEYWORD_COLOR: 'rgb(242, 85, 217)',
@@ -53,7 +53,7 @@ export const errorTheme = {
 	BASE_LINE_HEIGHT: '1.9',
 
 	// Background color matches TopBar.
-	BASE_BACKGROUND_COLOR: '#191a2a',
+	BASE_BACKGROUND_COLOR: '#1c1325',
 	// "Base font color."
 	BASE_COLOR: 'rgba(255, 255, 255, 0.7)',
 	// rgb(255, 239, 110)

@@ -7,20 +7,20 @@ import Inspector from 'react-inspector'
 import { createSocket } from './socket'
 import PlayButton from '#assets/svgs/play-0.svg'
 import OptionsButton from '#assets/svgs/more-0.svg'
+// import PlayButton from '#assets/svgs/play-0.svg'
+import ErrorIcon from '#assets/svgs/alert-0.svg'
+import WarningIcon from '#assets/svgs/alert-1.svg'
+import NormalIcon from '#assets/svgs/alert-2.svg'
+import { OutputBlock } from './OutputBlock'
+
 import { theme, errorTheme } from './theme'
 import './OutputPanel.css'
 
-const parseMessage = log => {
-	console.log({ log })
-	if (log.logType === 'ERROR') {
-		console.log('ER(E(RE(R#(R(#R(#R(#(R#(R', JSON.parse(log.message))
-		return JSON.parse(log.message).stack
-	} else if (['boolean', 'number', 'null', 'object', 'array'].includes(log.dataType)) {
-		console.log(log.message)
-		return JSON.parse(log.message)
-	} else {
-		return log.message
-	}
+import { ObjectRootLabel } from 'react-inspector'
+import { ObjectLabel } from 'react-inspector'
+
+export const OutputError = props => {
+	return <ObjectRootLabel name={props.name} data={props.data} />
 }
 
 const stateTreeSelector = tree => {
@@ -59,22 +59,7 @@ export class OutputPanel extends React.Component {
 					</When>
 					<Otherwise>
 						<For each="log" of={this.props.$output.logs} index="index">
-							<Choose>
-								<When condition={log.logType === 'INFO'}>
-									<p key={log.uid} styleName="builtIn-log">
-										{log.message}
-									</p>
-								</When>
-								<When condition={log.logType === 'ERROR'}>
-									{/* <Inspector expandLevel={0} sortObjectKeys key={log.uid} theme={errorTheme} data={parseMessage(log)} /> */}
-									<p key={log.uid} styleName="logType-ERROR">
-										{parseMessage(log)}
-									</p>
-								</When>
-								<Otherwise>
-									<Inspector key={log.uid} theme={theme} data={parseMessage(log)} />
-								</Otherwise>
-							</Choose>
+							<OutputBlock log={log} />
 						</For>
 					</Otherwise>
 				</Choose>

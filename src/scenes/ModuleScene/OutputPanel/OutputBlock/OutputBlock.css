@@ -1,0 +1,44 @@
+.OutputBlock {
+	padding: 8px 16px;
+	display: flex;
+	align-items: center;
+	margin: 0px 0;
+	letter-spacing: 0.5px;
+}
+
+.OutputBlock:first-of-type {
+	/* margin-top: 8px; */
+}
+
+.logContainer {
+}
+
+.INFO {
+	font-style: italic;
+	/* color: #76f0dd; */
+	color: white;
+	letter-spacing: 0.5px;
+}
+
+.ERROR {
+	padding: 8px 16px;
+	color: #f86291;
+	line-height: 1.4;
+	letter-spacing: 0.5px;
+	background: #1c1325;
+}
+
+.STDOUT {
+}
+
+.WARNING {
+	/* background: #232513; */
+}
+
+.LogIcon {
+	min-width: 12px;
+	min-height: 12px;
+	max-width: 12px;
+	max-height: 12px;
+	margin-right: 8px;
+}

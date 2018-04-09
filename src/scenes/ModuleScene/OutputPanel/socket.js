@@ -28,7 +28,7 @@ export const createSocket = self => {
 					socket = new WebSocket('ws://localhost:8765/run')
 					socket.send(JSON.stringify({ code: self.props.$editor.contents }))
 				} catch (error) {
-					self.props.$output.addSocketDisconnectLog()
+					self.props.$output.addSocketNotConnectedLog()
 					self.props.$output.addErrorLog(JSON.stringify(error))
 				}
 			} else {
