@@ -1,1 +1,3 @@
-export StateTree from './Main.state'
+import StateTree from './Main'
+
+export { StateTree }

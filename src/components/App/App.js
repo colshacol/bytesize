@@ -6,7 +6,7 @@ import { ModuleScene } from '#scenes/ModuleScene'
 import { TopBar } from '#components/TopBar'
 import { StateTree } from '#state'
 
-import './styles.css'
+import './App.css'
 
 export class App extends React.Component {
 	render() {

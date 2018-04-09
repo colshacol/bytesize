@@ -9,4 +9,4 @@ import '#styles/potionsTheme/potionsTheme.css'
 // FIX: match-highlighter
 // FIX: simplescrollbars
 
-export { Container as Editor } from './Editor.container'
+export { Editor } from './Editor'

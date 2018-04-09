@@ -6344,6 +6344,10 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
+mst-middlewares@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/mst-middlewares/-/mst-middlewares-2.0.3.tgz#f36350f53d3cd3b4b8dd181460ec5594bd363d09"
+
 multicast-dns-service-types@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/multicast-dns-service-types/-/multicast-dns-service-types-1.1.0.tgz#899f11d9686e5e05cb91b35d5f0e63b773cfc901"

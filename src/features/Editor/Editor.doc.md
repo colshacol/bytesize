@@ -1,5 +1,0 @@
-# Editor
-
-```ts
-interface Edtitor {}
-```

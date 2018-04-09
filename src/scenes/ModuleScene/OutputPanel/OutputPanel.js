@@ -57,7 +57,7 @@ export class OutputPanel extends React.Component {
 					<When condition={!this.props.$output.logCount}>
 						<OutputBlock
 							log={{
-								logType: 'INFO',
+								type: 'INFO',
 								message: '# output will appear here',
 								uid: '4y9fjuaeu3q9'
 							}}

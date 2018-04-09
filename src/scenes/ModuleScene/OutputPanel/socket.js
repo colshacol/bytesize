@@ -10,9 +10,24 @@ export const createSocket = self => {
 		console.log('socket "/run": disconnected')
 	})
 
+	let timeout = null
+	const cache = []
+
+	const handleLog = log => {
+		timeout && (clearTimeout(timeout), console.log('clearing timeout'))
+		cache.push(log)
+
+		return new Promise((resolve, reject) => {
+			timeout = setTimeout(() => {
+				console.log('done with timeout')
+				resolve(cache)
+			}, 350)
+		})
+	}
+
 	socket.addEventListener('message', event => {
 		const data = JSON.parse(event.data)
-		self.props.$output.addLog(data)
+		handleLog(data).then(cache => self.props.$output.updateLogs(cache))
 	})
 
 	return {

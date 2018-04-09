@@ -20,7 +20,6 @@ export const EDITOR_OPTIONS = {
 }
 
 export const CodeRenderer = props => {
-	console.log('\n\n', { props }, '\n\n')
 	return (
 		<div>
 			<CodeMirror
