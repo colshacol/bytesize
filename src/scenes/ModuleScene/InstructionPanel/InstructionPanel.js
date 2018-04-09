@@ -38,7 +38,10 @@ export class InstructionPanel extends React.Component {
 
 	render() {
 		return (
-			<div styleName={`InstructionPanel ${this.state.theme}`}>
+			<div
+				styleName={`InstructionPanel ${this.state.theme}`}
+				className={`bytesize-${this.state.theme}-theme`}
+			>
 				<OptionsMenu open={this.isMenuOpen} />
 				<LightBulbIcon theme={this.state.theme} toggleMenu={this.toggleTheme} />
 				<section styleName="top">
