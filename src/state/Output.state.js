@@ -1,10 +1,9 @@
 import { types } from 'mobx-state-tree'
 import uuid from 'uuid/v4'
+import moment from 'moment'
 
 const Log = types.model({
 	uid: types.optional(types.string, () => uuid()),
-	// type: types.string,
-	// messages: types.array(Message),
 	logType: types.string,
 	dataType: types.string,
 	message: types.string
@@ -30,6 +29,38 @@ const actions = self => ({
 			logType: 'INFO',
 			dataType: 'string',
 			message: log
+		})
+	},
+
+	addErrorLog(error) {
+		self.logs.push({
+			logType: 'ERROR',
+			dataType: 'object',
+			message: error
+		})
+	},
+
+	addExecutionLog() {
+		self.logs.push({
+			logType: 'INFO',
+			dataType: 'string',
+			message: `[${moment().format('h:mm:ss')}] ececuting`
+		})
+	},
+
+	addSocketDisconnectLog() {
+		self.logs.push({
+			logType: 'INFO',
+			dataType: 'string',
+			message: `[${moment().format('h:mm:ss')}] socket disconnected`
+		})
+	},
+
+	addCustomLog(type, message) {
+		self.logs.push({
+			logType: type,
+			dataType: 'string',
+			message
 		})
 	}
 })

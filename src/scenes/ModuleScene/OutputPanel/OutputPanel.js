@@ -4,13 +4,18 @@ import { inject, observer } from 'mobx-react'
 import StayScrolled from 'react-stay-scrolled'
 import Inspector from 'react-inspector'
 
+import { createSocket } from './socket'
 import PlayButton from '#assets/svgs/play-0.svg'
 import OptionsButton from '#assets/svgs/more-0.svg'
-import { theme } from './theme'
+import { theme, errorTheme } from './theme'
 import './OutputPanel.css'
 
 const parseMessage = log => {
-	if (['boolean', 'number', 'null', 'object', 'array'].includes(log.dataType)) {
+	console.log({ log })
+	if (log.logType === 'ERROR') {
+		console.log('ER(E(RE(R#(R(#R(#R(#(R#(R', JSON.parse(log.message))
+		return JSON.parse(log.message).stack
+	} else if (['boolean', 'number', 'null', 'object', 'array'].includes(log.dataType)) {
 		console.log(log.message)
 		return JSON.parse(log.message)
 	} else {
@@ -20,7 +25,8 @@ const parseMessage = log => {
 
 const stateTreeSelector = tree => {
 	return {
-		$editor: tree.state.editor
+		$editor: tree.state.editor,
+		$output: tree.state.editor.output
 	}
 }
 
@@ -29,16 +35,7 @@ const stateTreeSelector = tree => {
 export class OutputPanel extends React.Component {
 	componentWillMount() {
 		this.scrollBox = React.createRef()
-		this.socket = new WebSocket('ws://localhost:8765/run')
-
-		this.socket.addEventListener('open', event => {
-			console.log('ws: connected')
-		})
-
-		this.socket.addEventListener('message', event => {
-			const data = JSON.parse(event.data)
-			this.props.$editor.output.addLog(data)
-		})
+		this.socket = createSocket(this)
 	}
 
 	componentWillUnmount() {
@@ -51,32 +48,27 @@ export class OutputPanel extends React.Component {
 		this.scrollBox.current.scrollTop = 9999
 	}
 
-	execute = event => {
-		// TODO: output.addExecutionLog
-		this.props.$editor.output.addInfoLog(`$ executing @ ${moment().format('h:mm:ss')}`)
-		this.socket.send(JSON.stringify({ code: this.props.$editor.contents }))
-	}
-
-	scrollController = ({ stayScrolled, scrollBottom }) => {
-		this.stayScrolled = stayScrolled
-		this.scrollBottom = scrollBottom
-	}
-
 	render() {
 		return (
 			<div styleName="OutputPanel" ref={this.scrollBox} data-bytesize-output-panel>
 				<OptionsButton styleName="optionsButton" />
-				<PlayButton styleName="playButton" onClick={this.execute} />
+				<PlayButton styleName="playButton" onClick={this.socket.execute} />
 				<Choose>
-					<When condition={!this.props.$editor.output.logCount}>
+					<When condition={!this.props.$output.logCount}>
 						<p styleName="pre-text">Output will be chillin' here.</p>
 					</When>
 					<Otherwise>
-						<For each="log" of={this.props.$editor.output.logs} index="index">
+						<For each="log" of={this.props.$output.logs} index="index">
 							<Choose>
 								<When condition={log.logType === 'INFO'}>
 									<p key={log.uid} styleName="builtIn-log">
 										{log.message}
+									</p>
+								</When>
+								<When condition={log.logType === 'ERROR'}>
+									{/* <Inspector expandLevel={0} sortObjectKeys key={log.uid} theme={errorTheme} data={parseMessage(log)} /> */}
+									<p key={log.uid} styleName="logType-ERROR">
+										{parseMessage(log)}
 									</p>
 								</When>
 								<Otherwise>

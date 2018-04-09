@@ -34,6 +34,7 @@
 	font-size: 13px;
 	font-style: italic;
 	color: #1ceca7;
+	margin-bottom: 8px;
 }
 
 /* FIX: Button background bleed. */
@@ -87,4 +88,12 @@
 	cursor: not-allowed;
 	margin: 0 8px;
 	opacity: 0.7;
+}
+
+.logType-ERROR {
+	padding: 8px;
+	background: #191a2a;
+	color: #f86291;
+	line-height: 1.4;
+	font-size: 13px;
 }
