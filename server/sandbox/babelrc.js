@@ -17,6 +17,7 @@ export const babelrc = {
 		'@babel/plugin-proposal-unicode-property-regex',
 		'@babel/plugin-proposal-nullish-coalescing-operator',
 		'@babel/plugin-proposal-logical-assignment-operators',
+		require('./loopControl'),
 		[
 			'@babel/plugin-proposal-class-properties',
 			{

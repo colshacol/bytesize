@@ -20,7 +20,8 @@
 	letter-spacing: 0.5px;
 }
 
-.ERROR {
+.ERROR,
+.STDERR {
 	padding: 8px 16px;
 	color: #f86291;
 	line-height: 1.4;

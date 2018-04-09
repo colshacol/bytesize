@@ -33,6 +33,8 @@ const LogIcon = props => {
 	switch (props.log.logType) {
 		case 'ERROR':
 			return <ErrorIcon styleName="LogIcon" />
+		case 'STDERR':
+			return <ErrorIcon styleName="LogIcon" />
 		case 'WARNING':
 			return <WarningIcon styleName="LogIcon" />
 		default:
