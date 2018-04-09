@@ -5,8 +5,7 @@ import moment from 'moment'
 const Log = types.model({
 	uid: types.optional(types.string, () => uuid()),
 	logType: types.string,
-	dataType: types.string,
-	message: types.string
+	message: types.frozen
 })
 
 const model = {
@@ -18,8 +17,7 @@ const actions = self => ({
 		log.messages.forEach(message => {
 			self.logs.push({
 				logType: log.type,
-				dataType: message.type,
-				message: message.value
+				message: message
 			})
 		})
 	},
@@ -27,7 +25,6 @@ const actions = self => ({
 	addInfoLog(log) {
 		self.logs.push({
 			logType: 'INFO',
-			dataType: 'string',
 			message: log
 		})
 	},
@@ -35,7 +32,6 @@ const actions = self => ({
 	addErrorLog(error) {
 		self.logs.push({
 			logType: 'ERROR',
-			dataType: 'object',
 			message: error
 		})
 	},
@@ -43,7 +39,6 @@ const actions = self => ({
 	addExecutionLog() {
 		self.logs.push({
 			logType: 'INFO',
-			dataType: 'string',
 			message: `[${moment().format('h:mm:ss')}] executing`
 		})
 	},
@@ -51,7 +46,6 @@ const actions = self => ({
 	addSocketNotConnectedLog() {
 		self.logs.push({
 			logType: 'WARNING',
-			dataType: 'string',
 			message: `[${moment().format('h:mm:ss')}] socket not connected`
 		})
 	},
@@ -59,7 +53,6 @@ const actions = self => ({
 	addSocketDisconnectLog() {
 		self.logs.push({
 			logType: 'WARNING',
-			dataType: 'string',
 			message: `[${moment().format('h:mm:ss')}] socket disconnected`
 		})
 	},
@@ -67,7 +60,6 @@ const actions = self => ({
 	addCustomLog(type, message) {
 		self.logs.push({
 			logType: type,
-			dataType: 'string',
 			message
 		})
 	}

@@ -55,11 +55,18 @@ export class OutputPanel extends React.Component {
 				<PlayButton styleName="playButton" onClick={this.socket.execute} />
 				<Choose>
 					<When condition={!this.props.$output.logCount}>
-						<p styleName="pre-text">Output will be chillin' here.</p>
+						<OutputBlock
+							log={{
+								logType: 'INFO',
+								message: '# output will appear here',
+								uid: '4y9fjuaeu3q9'
+							}}
+							key={'4y9fjuaeu3q9'}
+						/>
 					</When>
 					<Otherwise>
 						<For each="log" of={this.props.$output.logs} index="index">
-							<OutputBlock log={log} />
+							<OutputBlock log={log} key={log.uid} />
 						</For>
 					</Otherwise>
 				</Choose>

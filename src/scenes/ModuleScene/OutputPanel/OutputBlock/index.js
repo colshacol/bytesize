@@ -63,7 +63,7 @@ export const OutputBlock = props => {
 					<Inspector
 						key={props.log.uid}
 						theme={getLogTheme(props.log)}
-						data={parseMessage(props.log)}
+						data={props.log.message}
 					/>
 				</Otherwise>
 			</Choose>

@@ -18,12 +18,7 @@ export const message = socket => async data => {
 		socket.send(
 			JSON.stringify({
 				type: 'STDERR',
-				messages: [
-					{
-						type: 'string',
-						value: ERRORS.get(error.toString())
-					}
-				]
+				messages: [ERRORS.get(error.toString())]
 			})
 		)
 	}

@@ -31,32 +31,20 @@ export const createSandbox = socket => {
 		}
 	}
 
-	const valueObject = arg => {
-		const type = typeOf(arg)
-		return {
-			type,
-			value: type === 'undefined' ? 'undefined' : JSON.stringify(arg)
-		}
-	}
-
 	vm.on('console.log', (...args) => {
-		const messages = args.map(valueObject)
-		socket.send(JSON.stringify({ type: 'STDOUT', messages }))
+		socket.send(JSON.stringify({ type: 'STDOUT', messages: args }))
 	})
 
 	vm.on('console.info', (...args) => {
-		const messages = args.map(valueObject)
-		socket.send(JSON.stringify({ type: 'STDOUT', messages }))
+		socket.send(JSON.stringify({ type: 'STDOUT', messages: args }))
 	})
 
 	vm.on('console.error', (...args) => {
-		const messages = args.map(valueObject)
-		socket.send(JSON.stringify({ type: 'STDERR', messages }))
+		socket.send(JSON.stringify({ type: 'STDERR', messages: args }))
 	})
 
 	vm.on('console.trace', (...args) => {
-		const messages = args.map(valueObject)
-		socket.send(JSON.stringify({ type: 'TRACE', messages }))
+		socket.send(JSON.stringify({ type: 'TRACE', messages: args }))
 	})
 
 	vm.on('console.dir', (...args) => {
@@ -66,7 +54,6 @@ export const createSandbox = socket => {
 	})
 
 	vm.on('uncaughtException', err => {
-		const messages = valueObject(err)
 		console.log({ messages, t: typeof err })
 		socket.send(
 			JSON.stringify({
