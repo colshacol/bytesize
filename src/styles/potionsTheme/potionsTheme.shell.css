@@ -36,7 +36,7 @@ body,
 }
 
 .CodeMirror {
-	background: linear-gradient(215deg, #3b3c64, #202236);
+	background: linear-gradient(215deg, #3b3c64, #1d1f31);
 	background-size: 100%;
 	padding: 0px 0;
 	font-family: 'Overpass Mono', monospace !important;

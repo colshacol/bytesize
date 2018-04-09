@@ -1,12 +1,35 @@
 .InstructionPanel {
-	background: #202236;
 	height: 100%;
 	width: 100%;
 	z-index: 20;
 	display: flex;
 	flex-direction: column;
+}
+
+.darkBulb {
+	max-width: 24px;
+	max-height: 24px;
+	position: absolute;
+	top: 16px;
+	right: 24px;
+}
+
+.lightBulb {
+	max-width: 24px;
+	max-height: 24px;
+	position: absolute;
+	top: 16px;
+	right: 24px;
+}
+
+.dark {
+	background: #1d1f31;
 	color: white;
-	/* border-top: 1px solid #32335a; */
+}
+
+.light {
+	background: white;
+	color: #1d1f31;
 }
 
 .top {
@@ -30,28 +53,43 @@
 }
 
 /* TODO: Make specific to terminal */
-.body::-webkit-scrollbar {
-	background-color: #202236;
+.dark .body::-webkit-scrollbar {
+	background-color: #1d1f31;
 }
 
-.body::-webkit-scrollbar-thumb {
+.light .body::-webkit-scrollbar {
+	background-color: white;
+}
+
+.dark .body::-webkit-scrollbar-thumb {
 	background-color: #2b2b4c;
 	position: absolute;
 	right: 5px;
 	margin-right: 2px;
-	border-right: 7px solid #202236;
+	border-right: 7px solid #1d1f31;
 }
 
-.markdown {
-	/* background:  */
+.light .body::-webkit-scrollbar-thumb {
+	background-color: #ebeff3;
+	position: absolute;
+	right: 5px;
+	margin-right: 2px;
+	border-right: 7px solid #ffffff;
+}
+
+.dark .markdown {
 	color: white;
+}
+
+.light .markdown {
+	color: #1d1f31;
 }
 
 /* .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
 	color: white;
 } */
 
-.markdown hr {
+.dark .markdown hr {
 	height: 6px;
 	padding: 0;
 	margin: 24px 0;
@@ -59,50 +97,108 @@
 	border: 0;
 }
 
-.markdown h2 {
+.light .markdown hr {
+	height: 6px;
+	padding: 0;
+	margin: 24px 0;
+	background-color: #e1e4e8;
+	border: 0;
+}
+
+.dark .markdown h2 {
 	padding-bottom: 7px;
 	margin: 24px 0 16px;
 	border-bottom: 1px solid #eaecef;
 }
 
-.markdown blockquote {
+.dark .markdown blockquote {
 	margin: 16px 0;
 	padding: 0 7px;
 	color: #6a737d;
 	border-left: 6px solid #dfe2e5;
 }
 
-.markdown blockquote p {
+.dark .markdown blockquote p {
 	margin-left: 8px;
 }
 
-.markdown h3 {
+.dark .markdown h3 {
 	margin: 16px 0 24px;
 }
 
-.markdown p {
+.dark .markdown p {
 	line-height: 1.4;
 	margin-bottom: 24px;
 }
 
-.markdown ul {
+.dark .markdown ul {
 	margin: 16px 0 24px;
 }
 
-.markdown ul li {
+.dark .markdown ul li {
 	margin-bottom: 8px;
 }
 
-.markdown code,
-.markdown pre {
+.dark .markdown code,
+.dark .markdown pre {
 	font-family: 'Fira Mono', monospace !important;
 	line-height: 1.7;
 	background: #2b2b4c;
 	padding: 2px 8px;
-	color: #898eda;
+	color: white;
 }
 
-.markdown pre {
+.dark .markdown pre {
+	padding: 8px;
+	margin: 16px 0 24px;
+}
+
+/* light */
+
+.light .markdown h2 {
+	padding-bottom: 7px;
+	margin: 24px 0 16px;
+	border-bottom: 1px solid #eaecef;
+}
+
+.light .markdown blockquote {
+	margin: 16px 0;
+	padding: 0 7px;
+	color: #6a737d;
+	border-left: 6px solid #dfe2e5;
+}
+
+.light .markdown blockquote p {
+	margin-left: 8px;
+}
+
+.light .markdown h3 {
+	margin: 16px 0 24px;
+}
+
+.light .markdown p {
+	line-height: 1.4;
+	margin-bottom: 24px;
+}
+
+.light .markdown ul {
+	margin: 16px 0 24px;
+}
+
+.light .markdown ul li {
+	margin-bottom: 8px;
+}
+
+.light .markdown code,
+.light .markdown pre {
+	font-family: 'Fira Mono', monospace !important;
+	line-height: 1.7;
+	background: #ebeff3;
+	padding: 2px 8px;
+	color: black;
+}
+
+.light .markdown pre {
 	padding: 8px;
 	margin: 16px 0 24px;
 }

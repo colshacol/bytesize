@@ -90,11 +90,11 @@ body,
 }
 
 .cm-s-shit .CodeMirror-selected {
-	background: #2022363b;
+	background: #1d1f313b;
 }
 
 .cm-s-shit .CodeMirror-activeline-gutter {
-	background: #2022363b;
+	background: #1d1f313b;
 }
 
 .CodeMirror-linenumbers {
@@ -142,7 +142,7 @@ body,
 	/* background: linear-gradient(45deg, rgba(32, 34, 54, 0), rgba(32, 34, 54, 0.25)); */
 	/* margin: -1px; */
 	/* box-shadow: 0 0 8px rgba(0,0,0,0.025); */
-	background: #2022363b;
+	background: #1d1f313b;
 }
 
 /* e.g. px, em */

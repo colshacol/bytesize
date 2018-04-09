@@ -7,7 +7,7 @@ import Inspector from 'react-inspector'
 import PlayButton from '#assets/svgs/play-0.svg'
 import OptionsButton from '#assets/svgs/more-0.svg'
 import { theme } from './theme'
-import './styles.css'
+import './OutputPanel.css'
 
 const parseMessage = log => {
 	if (['boolean', 'number', 'null', 'object', 'array'].includes(log.dataType)) {
