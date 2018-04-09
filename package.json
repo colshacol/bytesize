@@ -97,6 +97,7 @@
 		"mobx-state-tree": "^2.0.2",
 		"module-alias": "^2.0.6",
 		"moment": "^2.22.0",
+		"mongojs": "^2.5.0",
 		"mst-middlewares": "^2.0.3",
 		"node-fetch": "^2.1.2",
 		"psymon": "^1.0.2",
@@ -123,6 +124,7 @@
 	"_moduleAliases": {
 		"#root": ".",
 		"#sockets": "server/sockets",
-		"#sandbox": "server/sandbox"
+		"#sandbox": "server/sandbox",
+		"#database": "server/database"
 	}
 }

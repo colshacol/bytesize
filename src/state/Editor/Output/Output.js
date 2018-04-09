@@ -15,6 +15,10 @@ const model = {
 }
 
 const actions = self => ({
+	clearLogs() {
+		self.logs.forEach(log => self.logs.pop())
+	},
+
 	afterCreate() {
 		autorun(() => {
 			if (self.logs.length > 35) {

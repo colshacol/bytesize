@@ -3,6 +3,7 @@ import { Provider } from 'mobx-react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 import { ModuleScene } from '#scenes/ModuleScene'
+import { HomeScene } from '#scenes/HomeScene'
 import { TopBar } from '#components/TopBar'
 import { StateTree } from '#state'
 
@@ -16,7 +17,8 @@ export class App extends React.Component {
 					<TopBar />
 					<Router>
 						<>
-							<Route exact path="/" component={ModuleScene} />
+							<Route exact path="/modules/:userName/:id" component={ModuleScene} />
+							<Route exact path="/" component={HomeScene} />
 						</>
 					</Router>
 				</div>

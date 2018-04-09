@@ -12,6 +12,7 @@ import './styles.css'
 const stateTreeSelector = tree => {
 	console.log({ tree })
 	return {
+		$stateTree: tree.state,
 		$editor: tree.state.editor
 	}
 }
@@ -19,6 +20,14 @@ const stateTreeSelector = tree => {
 @inject(stateTreeSelector)
 @observer
 export class ModuleScene extends React.Component {
+	componentWillMount() {
+		console.log(this.props)
+		this.props.$stateTree.fetchModule(
+			this.props.match.params.userName,
+			this.props.match.params.id
+		)
+	}
+
 	render() {
 		return (
 			<div styleName="ModuleScene">
@@ -28,7 +37,7 @@ export class ModuleScene extends React.Component {
 						borderColor={'#2a2a47'}
 						panelWidths={ROW_PANEL_SETTINGS}
 					>
-						<InstructionPanel />
+						<InstructionPanel source={this.props.$editor.instructions} />
 						<div className="ModuleScene-rightPanelGroup">
 							<PanelGroup
 								direction="column"

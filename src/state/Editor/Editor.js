@@ -4,13 +4,19 @@ import { OutputState } from './Output'
 import { INFINITE_LOOP_DEFAULT_CONTENTS } from './consts'
 
 const model = {
-	contents: types.optional(types.string, INFINITE_LOOP_DEFAULT_CONTENTS),
-	output: types.optional(OutputState, {})
+	contents: types.optional(types.string, '// placeholder'),
+	output: types.optional(OutputState, {}),
+	instructions: types.optional(types.string, '# no instructions')
 }
 
 const actions = self => ({
 	setContents(contents) {
+		console.log('setting', { contents })
 		self.contents = contents
+	},
+
+	setInstructions(instructions) {
+		self.instructions = instructions
 	}
 })
 

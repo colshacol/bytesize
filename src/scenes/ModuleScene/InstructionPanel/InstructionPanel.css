@@ -191,6 +191,7 @@
 
 .markdown code,
 .markdown pre {
+	overflow: hidden;
 	/* background: #ebeff3; */
 	/* padding: 2px 8px; */
 	/* color: black; */
@@ -215,7 +216,7 @@
 .dark .markdown code {
 	font-family: 'Fira Mono', monospace !important;
 	line-height: 1.6;
-	font-size: 13px;
+	font-size: 12px;
 	/* background: #2b2b4c; */
 	background: #3a3b68;
 	padding: 2px 8px;

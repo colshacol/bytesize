@@ -1,5 +1,7 @@
 import * as React from 'react'
 import Markdown from 'react-markdown'
+import { observer } from 'mobx-react'
+import { observable, action, computed } from 'mobx'
 
 import { OptionsMenu } from './OptionsMenu'
 import { TagBox } from './TagBox'
@@ -7,7 +9,7 @@ import { MOCK_TAGS, MOCK_SOURCE } from './consts'
 import LightBulb from '#assets/svgs/light-0.svg'
 import DarkBulb from '#assets/svgs/light-1.svg'
 import './InstructionPanel.css'
-import { CodeRenderer } from './codeRenderer'
+import { CodeRenderer } from './CodeRenderer'
 
 const LightBulbIcon = props => {
 	if (props.theme === 'light') {
@@ -19,39 +21,41 @@ const LightBulbIcon = props => {
 
 const theme = 'light'
 
+@observer
 export class InstructionPanel extends React.Component {
-	state = {
-		theme: 'light',
-		menu: 'closed'
-	}
+	@observable theme = 'light'
+	@observable menu = 'closed'
 
+	@computed
 	get isMenuOpen() {
-		return this.state.menu === 'open'
+		return this.menu === 'open'
 	}
 
+	@action
 	toggleMenu = () => {
-		this.setState({ menu: this.state.menu === 'open' ? 'closed' : 'open' })
+		this.menu = this.menu === 'open' ? 'closed' : 'open'
 	}
 
+	@action
 	toggleTheme = () => {
-		this.setState({ theme: this.state.theme === 'light' ? 'dark' : 'light' })
+		this.theme = this.theme === 'open' ? 'closed' : 'open'
 	}
 
 	render() {
 		return (
 			<div
-				styleName={`InstructionPanel ${this.state.theme}`}
-				className={`bytesize-${this.state.theme}-theme`}
+				styleName={`InstructionPanel ${this.theme}`}
+				className={`bytesize-${this.theme}-theme`}
 			>
 				<OptionsMenu open={this.isMenuOpen} />
-				<LightBulbIcon theme={this.state.theme} toggleMenu={this.toggleTheme} />
+				<LightBulbIcon theme={this.theme} toggleMenu={this.toggleTheme} />
 				<section styleName="top">
 					<h1>Introduction to promises.</h1>
 					<TagBox tags={MOCK_TAGS} />
 				</section>
 				<section styleName="body">
 					<Markdown
-						source={MOCK_SOURCE}
+						source={this.props.source}
 						styleName="markdown"
 						renderers={{
 							code: CodeRenderer

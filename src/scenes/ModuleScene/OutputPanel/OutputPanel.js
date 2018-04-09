@@ -34,11 +34,13 @@ const stateTreeSelector = tree => {
 @observer
 export class OutputPanel extends React.Component {
 	componentWillMount() {
+		this.props.$output.clearLogs()
 		this.scrollBox = React.createRef()
 		this.socket = createSocket(this)
 	}
 
 	componentWillUnmount() {
+		this.props.$output.clearLogs()
 		this.socket.close()
 	}
 
