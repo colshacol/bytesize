@@ -139,19 +139,19 @@
 	margin-bottom: 8px;
 }
 
-.dark .markdown code,
+/* .dark .markdown code,
 .dark .markdown pre {
 	font-family: 'Fira Mono', monospace !important;
 	line-height: 1.7;
 	background: #2b2b4c;
 	padding: 2px 8px;
 	color: white;
-}
+} */
 
-.dark .markdown pre {
+/* .dark .markdown pre {
 	padding: 8px;
 	margin: 16px 0 24px;
-}
+} */
 
 /* light */
 
@@ -189,16 +189,37 @@
 	margin-bottom: 8px;
 }
 
-.light .markdown code,
-.light .markdown pre {
+.markdown code,
+.markdown pre {
+	/* background: #ebeff3; */
+	/* padding: 2px 8px; */
+	/* color: black; */
+}
+
+.light .markdown code {
 	font-family: 'Fira Mono', monospace !important;
 	line-height: 1.7;
-	background: #ebeff3;
+	/* background: #2b2b4c; */
+	background: #dedede;
 	padding: 2px 8px;
-	color: black;
+	color: #2b2b4c;
+}
+
+.markdown :global .bytesize-CodeMirror {
+	margin-bottom: 24px;
+}
+
+.dark .markdown code {
+	font-family: 'Fira Mono', monospace !important;
+	line-height: 1.6;
+	font-size: 13px;
+	/* background: #2b2b4c; */
+	background: #3a3b68;
+	padding: 2px 8px;
+	color: white;
 }
 
 .light .markdown pre {
-	padding: 8px;
-	margin: 16px 0 24px;
+	/* padding: 8px; */
+	/* margin: 16px 0 24px; */
 }

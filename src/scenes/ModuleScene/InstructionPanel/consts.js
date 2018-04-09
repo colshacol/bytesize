@@ -14,7 +14,7 @@ I created Remmy.
 \`remmy.json\` should live in your project's root directory. It details the names
 of your templates, the paths to each template directory, the destination path
 for the cloned instance, and also variables to use in template compilation.
-\`\`\`
+\`\`\`json
 {
   "templates": {
     "templateName": {
@@ -62,7 +62,7 @@ like a variable with the name supplied to it.
 
 Here is an example file.
 
-\`\`\`
+\`\`\`javascript
 // $NAME.js
 import React from 'react'
 import css from './styles/index.$CSS'

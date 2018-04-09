@@ -7,6 +7,7 @@ import { MOCK_TAGS, MOCK_SOURCE } from './consts'
 import LightBulb from '#assets/svgs/light-0.svg'
 import DarkBulb from '#assets/svgs/light-1.svg'
 import './InstructionPanel.css'
+import { CodeRenderer } from './codeRenderer'
 
 const LightBulbIcon = props => {
 	if (props.theme === 'light') {
@@ -49,7 +50,13 @@ export class InstructionPanel extends React.Component {
 					<TagBox tags={MOCK_TAGS} />
 				</section>
 				<section styleName="body">
-					<Markdown source={MOCK_SOURCE} styleName="markdown" />
+					<Markdown
+						source={MOCK_SOURCE}
+						styleName="markdown"
+						renderers={{
+							code: CodeRenderer
+						}}
+					/>
 				</section>
 			</div>
 		)

@@ -1,11 +1,3 @@
-export const OPTIONS = {
-	selectOnLineNumbers: true,
-	automaticLayout: true,
-	minimap: {
-		enabled: false
-	}
-}
-
 export const EDITOR_OPTIONS = {
 	autoCloseBrackets: true,
 	cursorScrollMargin: 48,
