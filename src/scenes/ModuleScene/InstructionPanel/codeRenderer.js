@@ -24,7 +24,7 @@ export const CodeRenderer = props => {
 		<div>
 			<CodeMirror
 				value={props.value}
-				className="bytesize-CodeMirror"
+				className="bytesize-CodeMirror ofh"
 				options={EDITOR_OPTIONS}
 				autoCursor
 				autoFocus

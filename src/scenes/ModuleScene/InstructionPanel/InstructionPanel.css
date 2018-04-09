@@ -209,6 +209,9 @@
 	margin-bottom: 24px;
 }
 
+.markdown :global .CodeMirror-scroll {
+	overflow: hidden;
+}
 .dark .markdown code {
 	font-family: 'Fira Mono', monospace !important;
 	line-height: 1.6;

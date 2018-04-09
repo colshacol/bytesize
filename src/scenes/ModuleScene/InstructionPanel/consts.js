@@ -33,7 +33,6 @@ for the cloned instance, and also variables to use in template compilation.
     "$JS": "jsx"
   }
 }
-
 \`\`\`
 
 ### Create your template directories.
@@ -42,7 +41,7 @@ can be deep, as long as they are not \_infinitely\_ deep. Anywhere in your files
 file names, or directory names that \`remmy\` encounters \`$NAME\`, it will replace it
 like a variable with the name supplied to it.
 
-\`\`\`
+\`\`\`markdown
 |- remmy/
 |---- comp/
 |-------- $NAME.js

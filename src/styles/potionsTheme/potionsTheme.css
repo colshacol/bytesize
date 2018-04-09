@@ -183,6 +183,11 @@ body,
 	/* text-shadow: 0px 1px 16px rgba(38, 247, 230, 0.25); */
 }
 
+.ofh .cm-s-shit.CodeMirror {
+	overflow: hidden;
+	height: 100%;
+}
+
 /* e.g. // comments */
 .cm-s-shit .cm-comment {
 	color: #5b4e8b;
