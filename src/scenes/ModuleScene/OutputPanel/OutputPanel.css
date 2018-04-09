@@ -68,7 +68,7 @@
 	z-index: 101;
 	border-radius: 50%;
 	position: absolute;
-	right: 32px;
+	right: 16px;
 	top: -60px;
 	cursor: pointer;
 	margin: 0 8px;
@@ -81,8 +81,8 @@
 	z-index: 101;
 	border-radius: 50%;
 	position: absolute;
-	right: 95px;
-	top: -44px;
+	right: 75px;
+	top: -45px;
 	/* cursor: pointer; */
 	cursor: not-allowed;
 	margin: 0 8px;
