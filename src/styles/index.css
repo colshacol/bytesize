@@ -24,5 +24,5 @@ body {
 	max-height: 100vh;
 	display: flex;
 	flex-direction: column;
-	font-family: Open Sans;
+	font-family: 'Raleway', 'Open Sans', sans-serif;
 }

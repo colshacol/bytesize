@@ -1,17 +1,13 @@
-// TODO: Require this shit elsewhere.
-require('@babel/polyfill')
-require('regenerator-runtime')
-
 import * as React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 
 import { AppContainer } from 'react-hot-loader'
 import { App } from '#components/App'
 
 import './styles/index.css'
 
-const render = Component => {
-	ReactDOM.render(
+const _render = Component => {
+	render(
 		<AppContainer>
 			<Component />
 		</AppContainer>,
@@ -23,9 +19,9 @@ const render = Component => {
 if (__DEV__) {
 	if (module.hot) {
 		module.hot.accept('./components/App/index.js', () => {
-			render(require('./components/App/index.js').App)
+			_render(require('./components/App/index.js').App)
 		})
 	}
 }
 
-render(App)
+_render(App)

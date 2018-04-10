@@ -3,7 +3,6 @@ import Markdown from 'react-markdown'
 import { observer } from 'mobx-react'
 import { observable, action, computed } from 'mobx'
 
-import { OptionsMenu } from './OptionsMenu'
 import { TagBox } from './TagBox'
 import { MOCK_TAGS, MOCK_SOURCE } from './consts'
 import LightBulb from '#assets/svgs/light-0.svg'
@@ -12,14 +11,12 @@ import './InstructionPanel.css'
 import { CodeRenderer } from './CodeRenderer'
 
 const LightBulbIcon = props => {
-	if (props.theme === 'light') {
-		return <DarkBulb onClick={props.toggleMenu} styleName="darkBulb" />
-	}
-
-	return <LightBulb onClick={props.toggleMenu} styleName="lightBulb" />
+	return props.theme === 'light' ? (
+		<DarkBulb onClick={props.toggleTheme} styleName="darkBulb" />
+	) : (
+		<LightBulb onClick={props.toggleTheme} styleName="lightBulb" />
+	)
 }
-
-const theme = 'light'
 
 @observer
 export class InstructionPanel extends React.Component {
@@ -38,7 +35,7 @@ export class InstructionPanel extends React.Component {
 
 	@action
 	toggleTheme = () => {
-		this.theme = this.theme === 'open' ? 'closed' : 'open'
+		this.theme = this.theme === 'light' ? 'dark' : 'light'
 	}
 
 	render() {
@@ -47,8 +44,7 @@ export class InstructionPanel extends React.Component {
 				styleName={`InstructionPanel ${this.theme}`}
 				className={`bytesize-${this.theme}-theme`}
 			>
-				<OptionsMenu open={this.isMenuOpen} />
-				<LightBulbIcon theme={this.theme} toggleMenu={this.toggleTheme} />
+				<LightBulbIcon theme={this.theme} toggleTheme={this.toggleTheme} />
 				<section styleName="top">
 					<h1>Introduction to promises.</h1>
 					<TagBox tags={MOCK_TAGS} />

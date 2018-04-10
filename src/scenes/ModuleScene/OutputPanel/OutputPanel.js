@@ -1,23 +1,14 @@
 import * as React from 'react'
-import moment from 'moment'
 import { inject, observer } from 'mobx-react'
-import StayScrolled from 'react-stay-scrolled'
-import Inspector from 'react-inspector'
 
 import { createSocket } from './socket'
 import PlayButton from '#assets/svgs/play-0.svg'
 import OptionsButton from '#assets/svgs/more-0.svg'
-// import PlayButton from '#assets/svgs/play-0.svg'
-import ErrorIcon from '#assets/svgs/alert-0.svg'
-import WarningIcon from '#assets/svgs/alert-1.svg'
-import NormalIcon from '#assets/svgs/alert-2.svg'
 import { OutputBlock } from './OutputBlock'
 
-import { theme, errorTheme } from './theme'
 import './OutputPanel.css'
 
 import { ObjectRootLabel } from 'react-inspector'
-import { ObjectLabel } from 'react-inspector'
 
 export const OutputError = props => {
 	return <ObjectRootLabel name={props.name} data={props.data} />

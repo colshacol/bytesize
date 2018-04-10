@@ -10,7 +10,7 @@ const model = {
 
 const actions = self => ({
 	fetchModule: flow(function*(userName, id) {
-		const response = yield fetch('http://localhost:8765/api/v0/module/' + userName + '/' + id)
+		const response = yield fetch('$SERVER_ADDRESS$$API_PATH$/module/' + userName + '/' + id)
 		const data = yield response.json()
 
 		console.log({ data })

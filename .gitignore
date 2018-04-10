@@ -3,3 +3,4 @@ node_modules/
 dumb/
 yarn-error.log
 .DS_STORE
+.env

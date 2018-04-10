@@ -8,7 +8,12 @@
 	"license": "MIT",
 	"scripts": {
 		"server": "nodemon -r @babel/register -r module-alias/register server",
-		"clientServer": "webpack-dev-server --config ./webpack/dev.js",
+		"startClient": "webpack-dev-server --mode development --config ./webpack/dev.js",
+		"buildProd":
+			"webpack --mode production --optimize-minimize true --config ./webpack/dev.js && npm run server",
+		"build": "webpack --mode production --config ./webpack/dev.js",
+		"start": "npm run server",
+		"startDev": "npm run startClient & npm start",
 		"precommit": "pretty-quick --staged",
 		"test": "jest"
 	},
@@ -32,7 +37,7 @@
 		"@babel/plugin-proposal-pipeline-operator": "^7.0.0-beta.41",
 		"@babel/plugin-proposal-throw-expressions": "^7.0.0-beta.41",
 		"@babel/plugin-proposal-unicode-property-regex": "^7.0.0-beta.41",
-		"@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.41",
+		"@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.44",
 		"@babel/plugin-syntax-import-meta": "^7.0.0-beta.41",
 		"@babel/polyfill": "^7.0.0-beta.41",
 		"@babel/preset-env": "^7.0.0-beta.41",
@@ -86,7 +91,9 @@
 		"capture-console": "^1.0.1",
 		"codemirror": "^5.36.0",
 		"cors": "^2.8.4",
+		"dotenv": "^5.0.1",
 		"express": "^4.16.3",
+		"express-static": "^1.2.5",
 		"express-ws": "^3.0.0",
 		"intercept-stdout": "^0.1.2",
 		"jsdom": "^11.7.0",
@@ -110,6 +117,7 @@
 		"react-easy-state": "^5.0.0",
 		"react-hot-loader": "^4.0.0",
 		"react-inspector": "^2.2.2",
+		"react-loadable": "^5.3.1",
 		"react-markdown": "^3.3.0",
 		"react-monaco-editor": "^0.14.1",
 		"react-motion": "^0.5.2",
@@ -118,8 +126,12 @@
 		"react-router-dom": "^4.2.2",
 		"react-split-pane": "^0.1.77",
 		"react-stay-scrolled": "^2.1.1",
+		"serve-static": "^1.13.2",
+		"string-replace-loader": "^2.1.1",
 		"uuid": "^3.2.1",
-		"vm2": "^3.5.2"
+		"vm2": "^3.5.2",
+		"webpack-bundle-analyzer": "^2.11.1",
+		"ws": "^5.1.1"
 	},
 	"_moduleAliases": {
 		"#root": ".",

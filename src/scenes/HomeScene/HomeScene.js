@@ -9,7 +9,7 @@ export class HomeScene extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:8765/api/v0/user/colshacol')
+		fetch('$SERVER_ADDRESS$$API_PATH$/user/colshacol')
 			.then(data => data.json())
 			.then(json => {
 				this.setState({ data: json })

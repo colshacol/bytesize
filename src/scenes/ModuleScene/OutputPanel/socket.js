@@ -1,5 +1,5 @@
 export const createSocket = self => {
-	let socket = new WebSocket('ws://localhost:8765/run')
+	let socket = new WebSocket('$SOCKET_ADDRESS$/run')
 
 	socket.addEventListener('open', event => {
 		console.log('socket "/run": connected')
@@ -40,7 +40,7 @@ export const createSocket = self => {
 
 			if (socket.readyState === 3) {
 				try {
-					socket = new WebSocket('ws://localhost:8765/run')
+					socket = new WebSocket('$SOCKET_ADDRESS$/run')
 					socket.send(JSON.stringify({ code: self.props.$editor.contents }))
 				} catch (error) {
 					self.props.$output.addSocketNotConnectedLog()

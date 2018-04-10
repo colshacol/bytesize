@@ -1,46 +1,31 @@
+require('dotenv').config()
+
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import webSockets from 'express-ws'
 import { database } from '#database'
 import { sockets } from '#sockets'
+import { api } from './api'
+const path = require('path')
 
 const app = express()
 const server = webSockets(app)
-const PORT = 8765
+const router = express.Router()
+const PORT = process.env.DEV_PORT
+const staticDir = `${__dirname}/../dist`
 
 app.use(bodyParser.json())
 app.use(cors())
 
 app.ws('/run', sockets.routes.run)
 
-app.get('/api/v0/user/:userName', (request, response) => {
-	database.users.find({ userName: request.params.userName }, (err, data) => {
-		response.send(data[0])
-	})
-})
+app.use(express.static(__dirname + '/../dist'))
 
-app.get('/api/v0/module/:userName/:id', (request, response) => {
-	database.users.find({ userName: request.params.userName }, (err, data) => {
-		console.log(request.params, { data }, data[0].modules)
-		response.send({
-			module: data[0].modules.find(m => {
-				console.log({ m }, m.uid, request.params.id)
-				return m.uid == request.params.id
-			})
-		})
-	})
-})
-
-// app.get('/api/v0/module/:id', (request, response) => {
-// 	database.modules.find({ userName: request.params.userName }, (err, data) => {
-// 		console.log(data)
-// 		response.send({ data: data[0] })
-// 	})
-// })
+app.use('/api', api)
 
 const handleListening = () => {
-	console.log(`\n\nrunning:  http://localhost:${PORT}\n\n`)
+	console.log(`\n\nrunning:  http://127.0.0.1:${PORT}\n\n`)
 }
 
 app.listen(PORT, handleListening)
