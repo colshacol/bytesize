@@ -9,16 +9,28 @@ const model = {
 	instructions: types.optional(types.string, '# no instructions')
 }
 
-const actions = self => ({
-	setContents(contents) {
-		console.log('setting', { contents })
-		self.contents = contents
-	},
+const actions = self => {
+	const history = []
 
-	setInstructions(instructions) {
-		self.instructions = instructions
+	return {
+		setContents(contents) {
+			history.push[self.contents]
+			self.contents = contents
+		},
+
+		undoSetContents() {
+			self.setContents(history[history.length - 1])
+		},
+
+		redoSetContents() {
+			self.setContents()
+		},
+
+		setInstructions(instructions) {
+			self.instructions = instructions
+		}
 	}
-})
+}
 
 const views = self => ({
 	get characterCount() {

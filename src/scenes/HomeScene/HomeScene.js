@@ -13,7 +13,7 @@ export class HomeScene extends React.Component {
 			.then(data => data.json())
 			.then(json => {
 				this.setState({ data: json })
-				console.log('got json:', json)
+				// console.log('got json:', json)
 			})
 	}
 

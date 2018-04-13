@@ -80,3 +80,17 @@
 	margin: 0 8px;
 	opacity: 0.7;
 }
+
+.magicWand {
+	width: 32px;
+	height: 32px;
+	background: #7468f0;
+	z-index: 101;
+	border-radius: 50%;
+	position: absolute;
+	padding: 8px;
+	right: 122px;
+	top: -45px;
+	cursor: pointer;
+	margin: 0 8px;
+}

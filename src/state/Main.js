@@ -13,7 +13,7 @@ const actions = self => ({
 		const response = yield fetch('$SERVER_ADDRESS$$API_PATH$/module/' + userName + '/' + id)
 		const data = yield response.json()
 
-		console.log({ data })
+		// console.log({ data })
 		self.editor.setContents(data.module.editorContent)
 		self.editor.setInstructions(data.module.lessonContent)
 	})

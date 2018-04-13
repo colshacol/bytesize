@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 
 import { createSocket } from './socket'
 import PlayButton from '#assets/svgs/play-0.svg'
+import MagicWand from '#assets/svgs/magic-0.svg'
 import OptionsButton from '#assets/svgs/more-0.svg'
 import { OutputBlock } from './OutputBlock'
 
@@ -44,6 +45,7 @@ export class OutputPanel extends React.Component {
 	render() {
 		return (
 			<div styleName="OutputPanel" ref={this.scrollBox} data-bytesize-output-panel>
+				<MagicWand styleName="magicWand" onClick={this.props.format} />
 				<OptionsButton styleName="optionsButton" />
 				<PlayButton styleName="playButton" onClick={this.socket.execute} />
 				<Choose>

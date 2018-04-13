@@ -1,3 +1,4 @@
+import regeneratorRuntime from 'regenerator-runtime'
 import * as React from 'react'
 import PanelGroup from 'react-panelgroup'
 import { inject, observer } from 'mobx-react'
@@ -5,12 +6,13 @@ import { inject, observer } from 'mobx-react'
 import { Editor } from '#features/Editor'
 import { InstructionPanel } from './InstructionPanel'
 import { OutputPanel } from './OutputPanel'
+import { gorgeous } from '#utilities/gorgeous'
 
 import { PANEL_SETTINGS, ROW_PANEL_SETTINGS } from './consts'
-import './styles.css'
+import './ModuleScene.css'
 
 const stateTreeSelector = tree => {
-	console.log({ tree })
+	// console.log({ tree })
 	return {
 		$stateTree: tree.state,
 		$editor: tree.state.editor
@@ -21,11 +23,16 @@ const stateTreeSelector = tree => {
 @observer
 export class ModuleScene extends React.Component {
 	componentWillMount() {
-		console.log(this.props)
+		// console.log(this.props)
 		this.props.$stateTree.fetchModule(
 			this.props.match.params.userName,
 			this.props.match.params.id
 		)
+	}
+
+	formatCode = async () => {
+		const prettyCode = await gorgeous(this.props.$editor.contents)
+		this.props.$editor.setContents(prettyCode)
 	}
 
 	render() {
@@ -46,11 +53,12 @@ export class ModuleScene extends React.Component {
 							>
 								<Editor
 									contents={this.props.$editor.contents}
+									undo={this.props.$editor.undoSetContents}
 									onChange={(editor, data, contents) => {
 										this.props.$editor.setContents(contents)
 									}}
 								/>
-								<OutputPanel ref={this.OutputPanel} />
+								<OutputPanel ref={this.OutputPanel} format={this.formatCode} />
 							</PanelGroup>
 						</div>
 					</PanelGroup>
