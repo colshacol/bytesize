@@ -1,0 +1,9 @@
+:global [data-dark-theme] {
+	background: #202231;
+	color: #ffffff;
+}
+
+:global [data-white-theme] {
+	background: #ffffff;
+	color: #202231;
+}

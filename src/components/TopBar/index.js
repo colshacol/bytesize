@@ -1,1 +1,1 @@
-export { Container as TopBar } from './TopBar.container'
+export { TopBar } from './TopBar'

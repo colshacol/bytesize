@@ -8,7 +8,8 @@
 	/* background: var(--purple0); */
 	background: white;
 	border-radius: 10px;
-	padding: 5px 12px 5px;
+	padding: 2px 12px 0;
+	height: 24px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -21,6 +22,7 @@
 	font-size: 11px;
 	font-family: 'Overpass Mono', monospace !important;
 	text-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+	line-height: 0.7 !important;
 }
 
 :global .bytesize-dark-theme {

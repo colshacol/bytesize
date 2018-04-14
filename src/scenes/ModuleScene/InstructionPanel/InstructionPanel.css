@@ -23,7 +23,8 @@
 }
 
 .dark {
-	background: #1d1f31;
+	/* background: #1d1f31; */
+	background: #202231;
 	color: white;
 }
 

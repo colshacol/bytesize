@@ -7,8 +7,9 @@ import { TagBox } from './TagBox'
 import { MOCK_TAGS, MOCK_SOURCE } from './consts'
 import LightBulb from '#assets/svgs/light-0.svg'
 import DarkBulb from '#assets/svgs/light-1.svg'
-import './InstructionPanel.css'
 import { CodeRenderer } from './CodeRenderer'
+import { LessonEditor } from './LessonEditor'
+import './InstructionPanel.css'
 
 const LightBulbIcon = props => {
 	return props.theme === 'light' ? (
@@ -22,6 +23,7 @@ const LightBulbIcon = props => {
 export class InstructionPanel extends React.Component {
 	@observable theme = 'light'
 	@observable menu = 'closed'
+	@observable editing = false
 
 	@computed
 	get isMenuOpen() {
@@ -50,13 +52,20 @@ export class InstructionPanel extends React.Component {
 					<TagBox tags={MOCK_TAGS} />
 				</section>
 				<section styleName="body">
-					<Markdown
-						source={this.props.source}
-						styleName="markdown"
-						renderers={{
-							code: CodeRenderer
-						}}
-					/>
+					<Choose>
+						<When condition={this.editing}>
+							<Markdown
+								source={this.props.source}
+								styleName="markdown"
+								renderers={{
+									code: CodeRenderer
+								}}
+							/>
+						</When>
+						<Otherwise>
+							<LessonEditor />
+						</Otherwise>
+					</Choose>
 				</section>
 			</div>
 		)

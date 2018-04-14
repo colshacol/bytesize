@@ -42,11 +42,13 @@ body,
 }
 
 .CodeMirror {
-	background: radial-gradient(circle at 50% -70%, #57589e40, transparent 65%),
-		linear-gradient(200deg, #3b3c6b -10%, #292947);
+	/* background: radial-gradient(circle at 50% -70%, #57589e40, transparent 65%), */
+	/* linear-gradient(200deg, #3b3c6b -10%, #292947); */
 	/* background: linear-gradient(200deg, #3B3C6B -10%, #292947); */
 	background-size: 100%;
 	padding: 0px 0;
+	/* background: #32335a; */
+	background: #292d45;
 	/* font-family: 'Overpass Mono', monospace !important; */
 	/* font-family: 'Inconsolata', monospace !important; */
 	/* font-family: 'Source Code Pro', monospace !important; */
@@ -135,7 +137,8 @@ body,
 }
 
 .cm-s-shit .CodeMirror-cursor {
-	border-color: #49499c;
+	/* border-color: #49499c; */
+	border-color: #02ebec;
 }
 
 .cm-s-shit .CodeMirror-activeline-background {

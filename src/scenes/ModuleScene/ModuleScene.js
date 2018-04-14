@@ -2,6 +2,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 import * as React from 'react'
 import PanelGroup from 'react-panelgroup'
 import { inject, observer } from 'mobx-react'
+import MarkdownInput from '@opuscapita/react-markdown'
 
 import { Editor } from '#features/Editor'
 import { InstructionPanel } from './InstructionPanel'
@@ -12,7 +13,6 @@ import { PANEL_SETTINGS, ROW_PANEL_SETTINGS } from './consts'
 import './ModuleScene.css'
 
 const stateTreeSelector = tree => {
-	// console.log({ tree })
 	return {
 		$stateTree: tree.state,
 		$editor: tree.state.editor
@@ -41,14 +41,14 @@ export class ModuleScene extends React.Component {
 				<div styleName="body">
 					<PanelGroup
 						direction="row"
-						borderColor={'#2a2a47'}
+						borderColor={'transparent'}
 						panelWidths={ROW_PANEL_SETTINGS}
 					>
 						<InstructionPanel source={this.props.$editor.instructions} />
 						<div className="ModuleScene-rightPanelGroup">
 							<PanelGroup
 								direction="column"
-								borderColor={'#272a49'}
+								borderColor={'transparent'}
 								panelWidths={PANEL_SETTINGS}
 							>
 								<Editor
