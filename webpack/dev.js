@@ -1,4 +1,5 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+	.BundleAnalyzerPlugin
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
@@ -89,7 +90,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(css)$/,
+				test: /\.(css|styl)$/,
 				include: /(potionsTheme|node_modules)/,
 				use: [
 					{
@@ -106,7 +107,12 @@ module.exports = {
 						}
 					},
 					{
-						loader: 'stylus-loader'
+						loader: 'stylus-loader',
+						options: {
+							import: [
+								path.resolve(__dirname, '../src/styles/mixins/index.styl')
+							]
+						}
 					}
 				]
 			},
@@ -133,7 +139,12 @@ module.exports = {
 						}
 					},
 					{
-						loader: 'stylus-loader'
+						loader: 'stylus-loader',
+						options: {
+							import: [
+								path.resolve(__dirname, '../src/styles/mixins/index.styl')
+							]
+						}
 					}
 				]
 			},

@@ -23,13 +23,13 @@ export const LessonEditor = createComponent(self => {
 	return () => {
 		return (
 			<div styleName="LessonEditor">
-				<ReactMde
+				{/* <ReactMde
 					onChange={setContents}
 					editorState={data.contents}
 					generateMarkdownPreview={markdown =>
 						Promise.resolve(converter.makeHtml(markdown))
 					}
-				/>
+				/> */}
 			</div>
 		)
 	}

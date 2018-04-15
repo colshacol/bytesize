@@ -49,11 +49,11 @@ module.exports = api => {
 				'babel-plugin-react-css-modules',
 				{
 					generateScopedName: '_[name]-[local]',
+					handleMissingStyleName: 'warn',
 					context: '.${PWD}/src'
 				}
 			],
 			'babel-plugin-dev-expression',
-			// require('./loopControl'),
 			[
 				'babel-plugin-flow-runtime',
 				{

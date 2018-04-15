@@ -24,7 +24,7 @@ export const TopBar = createComponent(self => {
 		<div styleName="TopBar">
 			<div styleName="inner">
 				<div onClick={toggleTitle} styleName="left" data-white-theme>
-					<p>{data.title}</p>
+					<p styleName="logo">{data.title}</p>
 				</div>
 				<div styleName="right" data-dark-theme>
 					<p>...</p>
