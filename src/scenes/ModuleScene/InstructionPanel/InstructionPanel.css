@@ -124,6 +124,10 @@
 	margin-bottom: 8px;
 }
 
+.markdown {
+	padding: 24px;
+}
+
 /* .dark .markdown code,
 .dark .markdown pre {
 	font-family: 'Fira Mono', monospace !important;

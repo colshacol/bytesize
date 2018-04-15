@@ -14,8 +14,10 @@ const model = {
 const actions = self => {
 	return {
 		toggleEditing() {
-			self.editing = !self.editing
-			!self.editing && (self.previewing = false)
+			const editing = !self.editing
+
+			self.editing = editing
+			editing && (self.previewing = false)
 		},
 
 		togglePreviewing() {
@@ -24,10 +26,14 @@ const actions = self => {
 		},
 
 		setContents(contents) {
-			self.editedContents = contents.markdown
+			self.editing
+				? (self.editedContents = contents.markdown)
+				: (self.contents = contents.markdown)
 		},
 
 		saveContents() {
+			self.editing = false
+			self.contents = self.editedContents
 			console.log('SAVED')
 		}
 	}

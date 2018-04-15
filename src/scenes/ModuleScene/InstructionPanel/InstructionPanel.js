@@ -26,9 +26,9 @@ export class InstructionPanel extends React.Component {
 				<StateInjector selector={stateSelector}>
 					{state => (
 						<Choose>
-							<When condition={false}>
+							<When condition={!state.lesson.editing}>
 								<Markdown
-									source={state.contents}
+									source={state.lesson.contents}
 									styleName="markdown"
 									renderers={{
 										code: CodeRenderer

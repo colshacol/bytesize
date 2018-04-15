@@ -41,7 +41,7 @@ export const LessonEditor = createComponent(self => {
 			<div styleName={`LessonEditor ${styleName(self.props)}`}>
 				<Choose>
 					<When condition={lesson.previewing}>
-						<MD markdown={lesson.contents} />
+						<MD markdown={lesson.editedContents} />
 					</When>
 					<Otherwise>
 						<ReactMde
@@ -58,7 +58,9 @@ export const LessonEditor = createComponent(self => {
 					<span onClick={lesson.togglePreviewing}>
 						<i className="fas fa-eye fa-lg" />
 					</span>
-					<i className="fas fa-save fa-lg" />
+					<span onClick={lesson.saveContents}>
+						<i className="fas fa-save fa-lg" />
+					</span>
 				</div>
 			</div>
 		)

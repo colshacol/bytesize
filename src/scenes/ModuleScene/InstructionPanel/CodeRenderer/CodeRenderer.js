@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import { Observer } from 'mobx-react'
-// import './Editor.styles.css'
 
 type SelfT = {
 	props: {}
