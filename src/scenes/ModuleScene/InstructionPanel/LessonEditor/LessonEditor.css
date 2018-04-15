@@ -1,3 +1,46 @@
 .LessonEditor {
 	Size: 100% 100%;
 }
+
+.LessonEditor :global .react-mde {
+	width: 100%;
+	height: calc(100% - 32px);
+	border: none;
+}
+
+.LessonEditor :global .mde-preview {
+	display: none;
+}
+
+.LessonEditor :global .mde-text {
+	height: calc(100% - 10px);
+	border: none;
+}
+
+.LessonEditor :global .mde-text .public-DraftEditor-content {
+	max-height: 100% !important;
+	/* NOTE: To get it even with the given height and shit. */
+	height: 100%;
+}
+.LessonEditor :global .vertical-layout {
+	display: flex;
+	flex-direction: column;
+}
+
+.editing :global .mde-text {
+	border: none;
+}
+
+.previewing :global .mde-text {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.LessonEditor :global .DraftEditor-editorContainer,
+.LessonEditor :global .DraftEditor-root,
+.LessonEditor :global .vertical-layout {
+	/* NOTE: To get it even with the given height and shit. */
+	height: 100%;
+}

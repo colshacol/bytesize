@@ -88,6 +88,8 @@
 	},
 	"dependencies": {
 		"@babel/types": "^7.0.0-beta.44",
+		"@fortawesome/fontawesome": "^1.1.5",
+		"@fortawesome/react-fontawesome": "^0.0.18",
 		"@opuscapita/react-markdown": "^2.1.0",
 		"@reactions/component": "^2.0.2",
 		"body-parser": "^1.18.2",

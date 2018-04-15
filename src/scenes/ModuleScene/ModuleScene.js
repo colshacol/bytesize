@@ -38,7 +38,10 @@ export class ModuleScene extends React.Component {
 	render() {
 		return (
 			<div styleName="ModuleScene">
-				<InstructionPanel source={this.props.$editor.instructions} />
+				<InstructionPanel
+					source={this.props.$editor.instructions}
+					setInstructions={this.props.$editor.setInstructions}
+				/>
 				<div styleName="right">
 					<PanelGroup
 						direction="column"

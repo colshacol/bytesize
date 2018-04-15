@@ -6,7 +6,8 @@ import { App } from '#components/App'
 
 import './styles/normalize.css'
 import './styles/index.css'
-import './styles/potionsTheme/react-mde.css'
+// import './styles/potionsTheme/react-mde.css'
+import 'react-mde/lib/styles/css/react-mde-all.css'
 
 const _render = Component => {
 	render(

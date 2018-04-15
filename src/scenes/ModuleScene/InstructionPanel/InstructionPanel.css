@@ -5,22 +5,6 @@
 	flex-direction: column;
 }
 
-.darkBulb {
-	max-width: 24px;
-	max-height: 24px;
-	position: absolute;
-	top: 16px;
-	right: 24px;
-}
-
-.lightBulb {
-	max-width: 24px;
-	max-height: 24px;
-	position: absolute;
-	top: 16px;
-	right: 24px;
-}
-
 .dark {
 	/* background: #1d1f31; */
 	background: #202231;
@@ -48,8 +32,9 @@
 }
 
 .body {
-	padding: 16px 24px;
+	padding: 16px 0;
 	overflow-y: scroll;
+	width: 100%;
 }
 
 /* TODO: Make specific to terminal */
@@ -226,4 +211,37 @@
 .light .markdown pre {
 	/* padding: 8px; */
 	/* margin: 16px 0 24px; */
+}
+
+
+.lessonEditorControls {
+	padding: 0 12px;
+	Size: 100% 80px;
+	/* background: #181A25; */
+	Flex: row space-around center;
+}
+
+.topActions {
+	Size: 100% 50%;
+	background: #F1F1F1;
+	color: #181A25;
+	Flex: row center center;
+}
+
+.action {
+	width: 100%;	
+	Flex: row center center;
+	Font: button;	
+}
+
+.bottomActions {
+	Size: 100% 50%;
+	background: tomato;
+	Flex: row center center;
+}
+
+.saveAction {
+	color: white;
+	background: tomato;
+	Font: button;	
 }

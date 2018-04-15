@@ -9,6 +9,8 @@ import LightBulb from '#assets/svgs/light-0.svg'
 import DarkBulb from '#assets/svgs/light-1.svg'
 import { CodeRenderer } from './CodeRenderer'
 import { LessonEditor } from './LessonEditor'
+import { StateInjector } from '#utilities/StateInjector'
+
 import './InstructionPanel.css'
 
 const LightBulbIcon = props => {
@@ -19,6 +21,12 @@ const LightBulbIcon = props => {
 	)
 }
 
+const stateSelector = tree => {
+	return {
+		lesson: tree.state.lesson
+	}
+}
+
 @observer
 export class InstructionPanel extends React.Component {
 	render() {
@@ -27,26 +35,29 @@ export class InstructionPanel extends React.Component {
 				styleName={`InstructionPanel light`}
 				className={`bytesize-light-theme`}
 			>
-				<section styleName="top">
-					<h1>Introduction to promises.</h1>
-					<TagBox tags={MOCK_TAGS} />
-				</section>
-				<section styleName="body">
-					<Choose>
-						<When condition={this.editing}>
-							<Markdown
-								source={this.props.source}
-								styleName="markdown"
-								renderers={{
-									code: CodeRenderer
-								}}
-							/>
-						</When>
-						<Otherwise>
-							<LessonEditor />
-						</Otherwise>
-					</Choose>
-				</section>
+				<StateInjector selector={stateSelector}>
+					{state => (
+						<Choose>
+							<When condition={false}>
+								<Markdown
+									source={state.contents}
+									styleName="markdown"
+									renderers={{
+										code: CodeRenderer
+									}}
+								/>
+							</When>
+							<Otherwise>
+								<LessonEditor lesson={state.lesson} />
+								<div styleName="lessonEditorControls">
+									<i className="fas fa-ban fa-lg" />
+									<i className="fas fa-eye fa-lg" />
+									<i className="fas fa-save fa-lg" />
+								</div>
+							</Otherwise>
+						</Choose>
+					)}
+				</StateInjector>
 			</div>
 		)
 	}
