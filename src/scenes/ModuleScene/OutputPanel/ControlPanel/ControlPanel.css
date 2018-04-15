@@ -1,0 +1,21 @@
+.ControlPanel {
+	width: 100%;
+	background: rgba(0,0,0,0.25);
+	z-index: 99;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	flex-shrink: 0;
+	font-family: 'Raleway', 'Open Sans', sans-serif;
+}
+
+.Control {
+	border-left: 1px solid rgba(255,255,255,0.05);
+	background: 1px solid rgba(0,0,0,0.1);
+	padding: 0 16px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+
+}

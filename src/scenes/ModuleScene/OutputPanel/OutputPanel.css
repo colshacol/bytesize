@@ -6,21 +6,23 @@
 	color: #fff;
 	font-size: 14px;
 	font-family: 'Fira Mono';
-	overflow-y: scroll;
+	overflow-y: hidden;
 	z-index: 11;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
 	/* box-shadow: 0px -2px 24px -4px rgba(0, 0, 0, 0.1); */
 }
 
-.OutputPanel::-webkit-scrollbar {
+.output::-webkit-scrollbar {
 	background-color: rgba(0, 0, 0, 0.15);
 }
 
-.OutputPanel::-webkit-scrollbar-thumb {
+.output::-webkit-scrollbar-thumb {
 	background-color: rgba(0, 0, 0, 0.75);
 }
 
-.OutputPanel > [role='treeitem'] {
+.output > [role='treeitem'] {
 	margin: 12px 0;
 	padding: 4px 8px;
 }
@@ -29,69 +31,10 @@
 	opacity: 0.5;
 }
 
-/* FIX: Button background bleed. */
-
-.runButton {
-	position: fixed;
-	bottom: 16px;
-	right: 32px;
-	border: none;
-	outline: none;
-	background: #e6154b;
-	color: #fff;
-	padding: 8px 16px;
-	cursor: pointer;
-	font-family: 'Open Sans';
-	font-style: italic;
-	text-transform: uppercase;
-	font-size: 14px;
-}
-
 :global .panelGroup > .panelWrapper:last-of-type {
 	z-index: 9;
-	/* box-shadow: 0px -2px 16px rgba(0,0,0,0.2); */
 }
 
-/* FIX: Button background bleed. */
-
-.playButton {
-	width: 48px;
-	height: 48px;
-	background: white;
-	z-index: 101;
-	border-radius: 50%;
-	position: absolute;
-	right: 16px;
-	top: -60px;
-	cursor: pointer;
-	margin: 0 8px;
-}
-
-.optionsButton {
-	width: 32px;
-	height: 32px;
-	background: white;
-	z-index: 101;
-	border-radius: 50%;
-	position: absolute;
-	right: 75px;
-	top: -45px;
-	/* cursor: pointer; */
-	cursor: not-allowed;
-	margin: 0 8px;
-	opacity: 0.7;
-}
-
-.magicWand {
-	width: 32px;
-	height: 32px;
-	background: #7468f0;
-	z-index: 101;
-	border-radius: 50%;
-	position: absolute;
-	padding: 8px;
-	right: 122px;
-	top: -45px;
-	cursor: pointer;
-	margin: 0 8px;
+.output {
+	overflow-y: scroll;
 }

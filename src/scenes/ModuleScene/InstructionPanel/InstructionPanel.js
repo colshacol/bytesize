@@ -21,32 +21,12 @@ const LightBulbIcon = props => {
 
 @observer
 export class InstructionPanel extends React.Component {
-	@observable theme = 'light'
-	@observable menu = 'closed'
-	@observable editing = false
-
-	@computed
-	get isMenuOpen() {
-		return this.menu === 'open'
-	}
-
-	@action
-	toggleMenu = () => {
-		this.menu = this.menu === 'open' ? 'closed' : 'open'
-	}
-
-	@action
-	toggleTheme = () => {
-		this.theme = this.theme === 'light' ? 'dark' : 'light'
-	}
-
 	render() {
 		return (
 			<div
-				styleName={`InstructionPanel ${this.theme}`}
-				className={`bytesize-${this.theme}-theme`}
+				styleName={`InstructionPanel light`}
+				className={`bytesize-light-theme`}
 			>
-				<LightBulbIcon theme={this.theme} toggleTheme={this.toggleTheme} />
 				<section styleName="top">
 					<h1>Introduction to promises.</h1>
 					<TagBox tags={MOCK_TAGS} />

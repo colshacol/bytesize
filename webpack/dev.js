@@ -5,6 +5,8 @@ const webpack = require('webpack')
 const path = require('path')
 require('dotenv').config()
 
+console.log(path.resolve(__dirname, '../src/styles/mixins/index.styl'))
+
 module.exports = {
 	devtool: 'source-map',
 	mode: 'development',
@@ -110,7 +112,7 @@ module.exports = {
 						loader: 'stylus-loader',
 						options: {
 							import: [
-								path.resolve(__dirname, '../src/styles/mixins/index.styl')
+								// path.resolve(__dirname, '../src/styles/mixins/index.styl')
 							]
 						}
 					}

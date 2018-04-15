@@ -1,4 +1,4 @@
 module.exports = {
 	sourceMap: 'inline',
-	plugins: [require('autoprefixer')()]
+	plugins: [require('autoprefixer')({})]
 }

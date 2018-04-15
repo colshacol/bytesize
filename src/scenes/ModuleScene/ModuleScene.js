@@ -38,29 +38,21 @@ export class ModuleScene extends React.Component {
 	render() {
 		return (
 			<div styleName="ModuleScene">
-				<div styleName="body">
+				<InstructionPanel source={this.props.$editor.instructions} />
+				<div styleName="right">
 					<PanelGroup
-						direction="row"
+						direction="column"
 						borderColor={'transparent'}
-						panelWidths={ROW_PANEL_SETTINGS}
+						panelWidths={PANEL_SETTINGS}
 					>
-						<InstructionPanel source={this.props.$editor.instructions} />
-						<div className="ModuleScene-rightPanelGroup">
-							<PanelGroup
-								direction="column"
-								borderColor={'transparent'}
-								panelWidths={PANEL_SETTINGS}
-							>
-								<Editor
-									contents={this.props.$editor.contents}
-									undo={this.props.$editor.undoSetContents}
-									onChange={(editor, data, contents) => {
-										this.props.$editor.setContents(contents)
-									}}
-								/>
-								<OutputPanel ref={this.OutputPanel} format={this.formatCode} />
-							</PanelGroup>
-						</div>
+						<Editor
+							contents={this.props.$editor.contents}
+							undo={this.props.$editor.undoSetContents}
+							onChange={(editor, data, contents) => {
+								this.props.$editor.setContents(contents)
+							}}
+						/>
+						<OutputPanel ref={this.OutputPanel} format={this.formatCode} />
 					</PanelGroup>
 				</div>
 			</div>
