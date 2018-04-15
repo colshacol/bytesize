@@ -214,34 +214,3 @@
 }
 
 
-.lessonEditorControls {
-	padding: 0 12px;
-	Size: 100% 80px;
-	/* background: #181A25; */
-	Flex: row space-around center;
-}
-
-.topActions {
-	Size: 100% 50%;
-	background: #F1F1F1;
-	color: #181A25;
-	Flex: row center center;
-}
-
-.action {
-	width: 100%;	
-	Flex: row center center;
-	Font: button;	
-}
-
-.bottomActions {
-	Size: 100% 50%;
-	background: tomato;
-	Flex: row center center;
-}
-
-.saveAction {
-	color: white;
-	background: tomato;
-	Font: button;	
-}

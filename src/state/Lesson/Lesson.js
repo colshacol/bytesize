@@ -7,38 +7,40 @@ const model = {
 	uid: types.optional(types.string, () => uuid()),
 	editing: types.optional(types.boolean, true),
 	previewing: types.optional(types.boolean, false),
-	editedContents: types.optional(types.string, () => '#hooooo'),
-	contents: types.optional(types.string, () => '#hello')
+	editedContents: types.optional(types.string, () => '# hello'),
+	contents: types.optional(types.string, () => '# hello')
 }
 
 const actions = self => {
-	let editorState = {
-		markdown: '',
-		html: ''
-	}
-
 	return {
 		toggleEditing() {
 			self.editing = !self.editing
 			!self.editing && (self.previewing = false)
 		},
 
-		s() {
-			return editorState
-		},
-
 		togglePreviewing() {
+			console.log('toggling preview', self.previewing)
 			self.previewing = !self.previewing
 		},
 
 		setContents(contents) {
-			console.log('setting contents', contents)
-			editorState = contents
-			self.contents = contents.markdown
+			self.editedContents = contents.markdown
 		},
 
 		saveContents() {
 			console.log('SAVED')
+		}
+	}
+}
+
+const views = self => {
+	return {
+		get markdown() {
+			if (self.editing) {
+				return self.editedContents
+			}
+
+			return self.contents
 		}
 	}
 }

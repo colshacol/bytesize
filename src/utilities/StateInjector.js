@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react'
 export class StateInjector extends React.Component {
 	render() {
 		const Injector = inject(this.props.selector)(observer(this.props.children))
-		Injector.displayName = 'INJECTOR_MANGGG'
+		Injector.displayName = 'StateInjector'
 		return <Injector {...this.props} />
 	}
 }
