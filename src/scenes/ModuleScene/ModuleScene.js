@@ -1,4 +1,3 @@
-import regeneratorRuntime from 'regenerator-runtime'
 import * as React from 'react'
 import PanelGroup from 'react-panelgroup'
 import { inject, observer } from 'mobx-react'

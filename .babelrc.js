@@ -31,6 +31,15 @@ module.exports = api => {
 			'@babel/plugin-proposal-logical-assignment-operators',
 			'babel-plugin-jsx-control-statements',
 			[
+				'@babel/plugin-transform-runtime',
+				{
+					helpers: false,
+					polyfill: false,
+					regenerator: true,
+					moduleName: 'babel-runtime'
+				}
+			],
+			[
 				'babel-plugin-module-resolver',
 				{
 					root: ['./src'],

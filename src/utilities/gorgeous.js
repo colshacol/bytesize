@@ -1,5 +1,3 @@
-import regeneratorRuntime from 'regenerator-runtime'
-
 export const gorgeous = async code => {
 	const response = await fetch('https://gorgeous-jvkoayanir.now.sh/', {
 		headers: new Headers({

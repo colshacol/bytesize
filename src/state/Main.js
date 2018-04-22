@@ -1,6 +1,5 @@
 import { types, flow } from 'mobx-state-tree'
 import makeInspectable from 'mobx-devtools-mst'
-import regeneratorRuntime from 'regenerator-runtime'
 
 import { EditorState } from './Editor'
 import { LessonState } from './Lesson'
