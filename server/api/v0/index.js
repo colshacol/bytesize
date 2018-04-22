@@ -1,6 +1,8 @@
 import express from 'express'
-import prettier from 'prettier'
 import { database } from '#database'
+import { prettier } from './prettier'
+// import passport from 'passport'
+// import * as auth from './auth'
 
 const router = express.Router()
 
@@ -20,33 +22,8 @@ router.get('/module/:userName/:id', (req, res, next) => {
 	})
 })
 
-export const DEFAULT_CONFIG = {
-	parser: 'babylon',
-	tabWidth: 2,
-	trailingComma: 'none',
-	printWidth: 80,
-	singleQuote: true,
-	semi: true,
-	arrowParens: 'always',
-	jsxBracketSameLine: false,
-	bracketSpacing: true,
-	useTabs: true
-}
+// router.post('/auth/login', passport.authenticate('local'), auth.login)
 
-export const mergedConfig = (config = {}) => {
-	return {
-		...DEFAULT_CONFIG,
-		...config
-	}
-}
-
-router.post('/prettier', async (req, res, next) => {
-	const { code, config } = req.body
-
-	res.json({
-		code: prettier.format(code, mergedConfig(config)),
-		error: null
-	})
-})
+router.get('/prettier', prettier)
 
 export { router }

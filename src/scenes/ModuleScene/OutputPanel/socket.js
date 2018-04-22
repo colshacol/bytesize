@@ -19,7 +19,7 @@ export const createSocket = self => {
 
 		return new Promise((resolve, reject) => {
 			timeout = setTimeout(() => {
-				console.log('done with timeout')
+				// console.log('done with timeout')
 				resolve(cache)
 			}, 350)
 		})

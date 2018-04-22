@@ -34,7 +34,7 @@ const actions = self => {
 		saveContents() {
 			self.editing = false
 			self.contents = self.editedContents
-			console.log('SAVED')
+			// console.log('SAVED')
 		}
 	}
 }

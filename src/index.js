@@ -30,21 +30,3 @@ if (__DEV__) {
 }
 
 _render(App)
-
-/*
-
-
-	let url = `https://gorgeous-jvkoayanir.now.sh/`
-	let res = await fetch(url, {
-  	headers: new Headers({
-    	'Content-Type': 'application/json'
-    }),
-    body: JSON.stringify({
-    	code: 'const\n\tfoo=\n\n\n\ndogshit => { console.log(\n\n"hello"\n\n) }',
-      config: null
-    }),
-    method: 'POST',
-    cors: 'no-cors'
-	})
-	
-	*/

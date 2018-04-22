@@ -36,7 +36,7 @@ export const LessonEditor = createComponent(self => {
 	}
 
 	return () => {
-		console.log({ lesson, self, Markdown })
+		// console.log({ lesson, self, Markdown })
 		return (
 			<div styleName={`LessonEditor ${styleName(self.props)}`}>
 				<Choose>

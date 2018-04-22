@@ -54,7 +54,7 @@ export const createSandbox = socket => {
 	})
 
 	vm.on('uncaughtException', err => {
-		console.log({ messages, t: typeof err })
+		// console.log({ messages, t: typeof err })
 		socket.send(
 			JSON.stringify({
 				type: 'STDERR',

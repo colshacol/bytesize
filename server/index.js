@@ -15,12 +15,11 @@ const router = express.Router()
 const PORT = process.env.DEV_PORT
 const staticDir = `${__dirname}/../dist`
 
+app.use(express.static(__dirname + '/../dist'))
 app.use(bodyParser.json())
 app.use(cors())
 
 app.ws('/run', sockets.routes.run)
-
-app.use(express.static(__dirname + '/../dist'))
 
 app.use('/api', api)
 

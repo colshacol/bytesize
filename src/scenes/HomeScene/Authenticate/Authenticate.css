@@ -1,0 +1,43 @@
+.Authenticate {
+	height: 80%;
+	Flex: column center flex-start;
+	padding-left: 24px;
+}
+
+h1 {
+	margin-bottom: 16px;
+}
+
+.input {
+	/* border: 1px solid rgba(0,0,0,0.25); */
+	border: none;
+	outline: none;
+	background: #151720;
+	color: #fff;
+	/* border-radius: 4px; */
+	padding: 8px 16px;
+	font-size: 16px;
+	margin-bottom: 12px;
+	width: 320px;
+}
+
+.input[type="password"]::-webkit-input-placeholder {
+	letter-spacing: 0;
+}
+
+.input[type="password"] {
+	letter-spacing: 4px;
+}
+
+.submitButton {
+	background: none;
+	border: none;
+	outline: none;
+	color: #fff;
+	padding: 8px 12px;
+	background: #b475ff;
+	/* border-radius: 50px; */
+	font-family: inherit;
+	text-transform: uppercase;
+
+}

@@ -3,20 +3,23 @@ import makeInspectable from 'mobx-devtools-mst'
 
 import { EditorState } from './Editor'
 import { LessonState } from './Lesson'
+import { AuthState } from './Auth'
+
+const modulePath = (username, id) => {
+	return '$SERVER_ADDRESS$$API_PATH$/module/' + userName + '/' + id
+}
 
 const model = {
 	editor: types.optional(EditorState, {}),
-	lesson: types.optional(LessonState, {})
+	lesson: types.optional(LessonState, {}),
+	auth: types.optional(AuthState, {})
 }
 
 const actions = self => ({
 	fetchModule: flow(function*(userName, id) {
-		const response = yield fetch(
-			'$SERVER_ADDRESS$$API_PATH$/module/' + userName + '/' + id
-		)
+		const response = yield fetch(modulePath(username, id))
 		const data = yield response.json()
 
-		// console.log({ data })
 		self.editor.setContents(data.module.editorContent)
 		self.editor.setInstructions(data.module.lessonContent)
 	})
