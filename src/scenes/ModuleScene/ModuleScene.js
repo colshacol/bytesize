@@ -3,6 +3,7 @@ import PanelGroup from 'react-panelgroup'
 import { inject, observer } from 'mobx-react'
 import MarkdownInput from '@opuscapita/react-markdown'
 
+import { prettier } from '#utilities/api/prettier'
 import { Editor } from '#features/Editor'
 import { InstructionPanel } from './InstructionPanel'
 import { OutputPanel } from './OutputPanel'
@@ -30,8 +31,8 @@ export class ModuleScene extends React.Component {
 	}
 
 	formatCode = async () => {
-		const prettyCode = await gorgeous(this.props.$editor.contents)
-		this.props.$editor.setContents(prettyCode)
+		const { code, error } = await prettier(this.props.$editor.contents)
+		this.props.$editor.setContents(code)
 	}
 
 	render() {

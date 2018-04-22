@@ -1,5 +1,4 @@
 import * as sandbox from '#sandbox'
-import regeneratorRuntime from 'regenerator-runtime'
 
 const handleError = error => {}
 

@@ -10,12 +10,7 @@ console.log(path.resolve(__dirname, '../src/styles/mixins/index.styl'))
 module.exports = {
 	devtool: 'source-map',
 	mode: 'development',
-	entry: [
-		'react-hot-loader/patch',
-		'./src/index.js',
-		'regenerator-runtime',
-		'@babel/polyfill'
-	],
+	entry: ['react-hot-loader/patch', './src/index.js'],
 
 	output: {
 		filename: 'bundle.js',

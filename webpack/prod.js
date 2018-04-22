@@ -4,12 +4,7 @@ const path = require('path')
 
 module.exports = {
 	mode: 'development',
-	entry: [
-		'react-hot-loader/patch',
-		'./src/index.js',
-		'regenerator-runtime',
-		'@babel/polyfill'
-	],
+	entry: ['react-hot-loader/patch', './src/index.js'],
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname, '../dist')
