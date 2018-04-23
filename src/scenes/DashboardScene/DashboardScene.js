@@ -10,7 +10,7 @@ export class DashboardScene extends React.Component {
 		return (
 			<main styleName="DashboardScene">
 				<SideBar>
-					<p>logged in</p>
+					<h3>Dashboard</h3>
 				</SideBar>
 				<ContentSection>
 					<p>hehehehe</p>

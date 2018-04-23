@@ -16,7 +16,7 @@ const stateTreeSelector = tree => {
 @observer
 export class AuthScene extends React.Component {
 	componentDidMount() {
-		this.props.$auth.setAuth(this.props.location.hash)
+		this.props.$auth.handleAuth()
 		this.props.history.push('/dashboard')
 	}
 

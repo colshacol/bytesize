@@ -1,23 +1,50 @@
 import { types } from 'mobx-state-tree'
 import queryString from 'query-string'
 
+import { UserState } from './User'
+import { auth } from './auth0'
+
 const model = {
-	access_token: types.optional(types.string, ''),
-	expires_in: types.optional(types.string, ''),
-	id_token: types.optional(types.string, ''),
+	authenticated: types.optional(types.boolean, false),
+	accessToken: types.optional(types.string, ''),
+	expiresIn: types.optional(types.number, 0),
+	idToken: types.optional(types.string, ''),
 	state: types.optional(types.string, ''),
-	token_type: types.optional(types.string, '')
+	tokenType: types.optional(types.string, ''),
+	user: types.optional(UserState, {})
 }
 
 const actions = self => {
 	return {
-		setAuth(authString: string) {
-			const auth = queryString.parse(authString)
-			self.access_token = auth.access_token
-			self.expires_in = auth.expires_in
-			self.token_type = auth.token_type
-			self.id_token = auth.id_token
-			self.state = auth.state
+		logIn() {
+			auth.logIn()
+		},
+
+		logOut() {
+			auth.logOut()
+		},
+
+		handleAuth() {
+			auth.auth0.parseHash((err, authResult) => {
+				err ? console.log(err) : self.setAuth(authResult)
+			})
+		},
+
+		isAuthenticated() {
+			return self.authenticated
+				? new Date().getTime() < JSON.parse(localStorage.getItem('expires_at'))
+				: false
+		},
+
+		setAuth(authData) {
+			self.authenticated = true
+			self.accessToken = authData.accessToken
+			self.expiresIn = authData.expiresIn
+			self.tokenType = authData.tokenType
+			self.idToken = authData.idToken
+			self.state = authData.state
+
+			auth.setLocalStorageAuth(authData)
 		}
 	}
 }

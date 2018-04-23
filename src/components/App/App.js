@@ -8,14 +8,9 @@ import { HomeScene } from '#scenes/HomeScene'
 import { DashboardScene } from '#scenes/DashboardScene'
 import { TopBar } from '#components/TopBar'
 import { StateTree } from '#state'
-import { auth } from '#utilities/Auth'
 import './App.css'
 
 export class App extends React.Component {
-	isAuthenticated = () => {
-		return auth.isAuthenticated()
-	}
-
 	render() {
 		return (
 			<Provider state={StateTree}>
