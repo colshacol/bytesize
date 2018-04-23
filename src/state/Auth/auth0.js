@@ -30,6 +30,7 @@ class Auth {
 	setLocalStorageAuth = authData => {
 		localStorage.setItem('accessToken', authData.accessToken)
 		localStorage.setItem('idToken', authData.idToken)
+		localStorage.setItem('userData', authData.ipTokenPayload)
 
 		localStorage.setItem(
 			'expires_at',

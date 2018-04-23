@@ -19,7 +19,6 @@ const selector = stateTree => {
 @observer
 export class HomeScene extends React.Component {
 	render() {
-		console.log(this.props)
 		return (
 			<main styleName="HomeScene">
 				<SideBar>

@@ -16,6 +16,8 @@ const model = {
 
 const actions = self => {
 	return {
+		afterCreate() {},
+
 		logIn() {
 			auth.logIn()
 		},
@@ -28,12 +30,6 @@ const actions = self => {
 			auth.auth0.parseHash((err, authResult) => {
 				err ? console.log(err) : self.setAuth(authResult)
 			})
-		},
-
-		isAuthenticated() {
-			return self.authenticated
-				? new Date().getTime() < JSON.parse(localStorage.getItem('expires_at'))
-				: false
 		},
 
 		setAuth(authData) {
@@ -50,7 +46,13 @@ const actions = self => {
 }
 
 const views = self => {
-	return {}
+	return {
+		get isAuthenticated() {
+			return self.authenticated
+				? new Date().getTime() < JSON.parse(localStorage.getItem('expires_at'))
+				: false
+		}
+	}
 }
 
 export default types

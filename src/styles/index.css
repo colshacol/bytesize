@@ -27,3 +27,8 @@ body {
 	flex-direction: column;
 	font-family: 'Raleway', 'Open Sans', sans-serif;
 }
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
