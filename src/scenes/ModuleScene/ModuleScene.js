@@ -22,12 +22,9 @@ const stateTreeSelector = tree => {
 @inject(stateTreeSelector)
 @observer
 export class ModuleScene extends React.Component {
-	componentWillMount() {
-		// console.log(this.props)
-		this.props.$stateTree.fetchModule(
-			this.props.match.params.userName,
-			this.props.match.params.id
-		)
+	componentDidMount() {
+		console.log('--s-s-s-s-s', this.props)
+		this.props.$stateTree.fetchModule(this.props.match.params)
 	}
 
 	formatCode = async () => {

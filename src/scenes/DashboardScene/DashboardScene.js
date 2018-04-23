@@ -2,14 +2,15 @@ import * as React from 'react'
 import { observer, inject } from 'mobx-react'
 import { Route, Link, Switch } from 'react-router-dom'
 import { observable, action } from 'mobx'
-import { select, user, editor } from '#state/selectors'
+import { select, user, editor, auth } from '#state/selectors'
 
 import { SideBar as SideBarWrapper } from '#components/SideBar'
 import { ContentSection } from '#components/ContentSection'
 import { SideBar } from './SideBar'
 import './DashboardScene.css'
+import { ModulesView } from './ModulesView'
 
-@inject(select([user, editor]))
+@inject(select([auth, user, editor]))
 @observer
 export class DashboardScene extends React.Component {
 	@observable view = ''
@@ -29,7 +30,7 @@ export class DashboardScene extends React.Component {
 					<div styleName="sideBar">
 						<Choose>
 							<When condition={this.view.includes('modules')}>
-								<p>modules</p>
+								<ModulesView user={this.props.$user} />
 							</When>
 							<When condition={this.view.includes('community')}>
 								<p>community</p>
@@ -38,7 +39,7 @@ export class DashboardScene extends React.Component {
 								<p>settings</p>
 							</When>
 							<Otherwise>
-								<p>modulessss</p>
+								<ModulesView user={this.props.$user} />
 							</Otherwise>
 						</Choose>
 					</div>

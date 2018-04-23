@@ -16,13 +16,14 @@ const model = {
 }
 
 const actions = self => ({
-	fetchModule: flow(function*(userName, id) {
-		const response = yield fetch(modulePath(username, id))
-		const data = yield response.json()
+	fetchModule: ({ userName, id }) =>
+		flow(function*() {
+			const response = yield fetch(modulePath(userName, id))
+			const data = yield response.json()
 
-		self.editor.setContents(data.module.editorContent)
-		self.editor.setInstructions(data.module.lessonContent)
-	})
+			self.editor.setContents(data.module.editorContent)
+			self.editor.setInstructions(data.module.lessonContent)
+		})
 })
 
 const _model = types.model(model).actions(actions)

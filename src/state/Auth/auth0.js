@@ -7,7 +7,7 @@ class Auth {
 		redirectUri: 'http://localhost:9000/authenticating',
 		audience: 'https://bytesized.auth0.com/userinfo',
 		responseType: 'token id_token',
-		scope: 'openid'
+		scope: 'openid profile'
 	})
 
 	logIn = () => {
@@ -30,7 +30,7 @@ class Auth {
 	setLocalStorageAuth = authData => {
 		localStorage.setItem('accessToken', authData.accessToken)
 		localStorage.setItem('idToken', authData.idToken)
-		localStorage.setItem('userData', authData.ipTokenPayload)
+		localStorage.setItem('userData', authData.idTokenPayload)
 
 		localStorage.setItem(
 			'expires_at',

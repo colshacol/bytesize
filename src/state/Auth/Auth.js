@@ -41,6 +41,7 @@ const actions = self => {
 			self.state = authData.state
 
 			auth.setLocalStorageAuth(authData)
+			self.user.setData(authData.idTokenPayload)
 		}
 	}
 }

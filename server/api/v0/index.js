@@ -6,7 +6,9 @@ import { prettier } from './prettier'
 
 const router = express.Router()
 
-router.get('/user/:userName', (req, res, next) => {
+// TODO: Create user.
+
+router.get('/users/:userName', (req, res, next) => {
 	database.users.find({ userName: req.params.userName }, (err, data) => {
 		res.send(data[0])
 	})
