@@ -1,0 +1,1 @@
+export { getModule } from './getModule'

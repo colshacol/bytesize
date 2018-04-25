@@ -5,7 +5,7 @@ import { observable, action } from 'mobx'
 import { select, user, editor } from '#state/selectors'
 import './ModulesView.css'
 
-const Module = props => {
+const Module = (props) => {
 	return (
 		<div>
 			<Link to={`/modules/${props.userName}/${props.module.uid}`}>
@@ -17,8 +17,14 @@ const Module = props => {
 
 @observer
 export class ModulesView extends React.Component {
+	@observable loading = true
+
 	render() {
-		console.log({ props: this.props.user }, this.props.user.userName)
+		console.log(
+			'RENDERRRR',
+			{ props: this.props.user },
+			this.props.user.userName
+		)
 		return (
 			<div styleName="ModulesView">
 				<h2 styleName="title">Modules</h2>

@@ -1,5 +1,5 @@
 .Selection {
-
+	
 }
 
 .Item {
@@ -7,6 +7,7 @@
 	height: 64px;
 	margin-bottom: 16px;
 	Flex: row flex-start flex-start;
+	cursor: pointer;
 }
 
 .Thing {

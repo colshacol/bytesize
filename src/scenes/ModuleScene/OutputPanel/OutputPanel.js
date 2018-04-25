@@ -12,14 +12,14 @@ import './OutputPanel.css'
 
 import { ObjectRootLabel } from 'react-inspector'
 
-export const OutputError = props => {
+export const OutputError = (props) => {
 	return <ObjectRootLabel name={props.name} data={props.data} />
 }
 
-const stateTreeSelector = tree => {
+const stateTreeSelector = (tree) => {
 	return {
 		$editor: tree.state.editor,
-		$output: tree.state.editor.output
+		$output: tree.state.output
 	}
 }
 

@@ -7,11 +7,10 @@ import { ModuleScene } from '#scenes/ModuleScene'
 import { HomeScene } from '#scenes/HomeScene'
 import { DashboardScene } from '#scenes/DashboardScene'
 import { TopBar } from '#components/TopBar'
-import { StateTree } from '#state'
+import { MainState } from '#state'
 import './App.css'
 
-const selector = stateTree => {
-	console.log({ stateTree })
+const selector = (stateTree) => {
 	return {
 		$auth: stateTree.state.auth
 	}
@@ -20,7 +19,7 @@ const selector = stateTree => {
 export class App extends React.Component {
 	render() {
 		return (
-			<Provider state={StateTree}>
+			<Provider state={MainState}>
 				<div styleName="App">
 					<Routing />
 				</div>
@@ -30,7 +29,7 @@ export class App extends React.Component {
 }
 
 const Routing = inject(selector)(
-	observer(props => {
+	observer((props) => {
 		return (
 			<Router>
 				<>

@@ -9,7 +9,9 @@ const router = express.Router()
 // TODO: Create user.
 
 router.get('/users/:userName', (req, res, next) => {
+	console.log('got a request....')
 	database.users.find({ userName: req.params.userName }, (err, data) => {
+		console.log({ err, data })
 		res.send(data[0])
 	})
 })
@@ -17,7 +19,7 @@ router.get('/users/:userName', (req, res, next) => {
 router.get('/module/:userName/:id', (req, res, next) => {
 	database.users.find({ userName: req.params.userName }, (err, data) => {
 		res.send({
-			module: data[0].modules.find(m => {
+			module: data[0].modules.find((m) => {
 				return m.uid == req.params.id
 			})
 		})
@@ -26,6 +28,6 @@ router.get('/module/:userName/:id', (req, res, next) => {
 
 // router.post('/auth/login', passport.authenticate('local'), auth.login)
 
-router.get('/prettier', prettier)
+router.post('/prettier', prettier)
 
 export { router }

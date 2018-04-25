@@ -1,7 +1,6 @@
-import { types } from 'mobx-state-tree'
+import { types, flow, getParent } from 'mobx-state-tree'
 import queryString from 'query-string'
 
-import { UserState } from './User'
 import { auth } from './auth0'
 
 const model = {
@@ -10,14 +9,11 @@ const model = {
 	expiresIn: types.optional(types.number, 0),
 	idToken: types.optional(types.string, ''),
 	state: types.optional(types.string, ''),
-	tokenType: types.optional(types.string, ''),
-	user: types.optional(UserState, {})
+	tokenType: types.optional(types.string, '')
 }
 
-const actions = self => {
+const actions = (self) => {
 	return {
-		afterCreate() {},
-
 		logIn() {
 			auth.logIn()
 		},
@@ -26,13 +22,7 @@ const actions = self => {
 			auth.logOut()
 		},
 
-		handleAuth() {
-			auth.auth0.parseHash((err, authResult) => {
-				err ? console.log(err) : self.setAuth(authResult)
-			})
-		},
-
-		setAuth(authData) {
+		setAuthData(authData, user) {
 			self.authenticated = true
 			self.accessToken = authData.accessToken
 			self.expiresIn = authData.expiresIn
@@ -41,17 +31,21 @@ const actions = self => {
 			self.state = authData.state
 
 			auth.setLocalStorageAuth(authData)
-			self.user.setData(authData.idTokenPayload)
+			getParent(self, 1).user.setData(user)
 		}
 	}
 }
 
-const views = self => {
+const views = (self) => {
 	return {
 		get isAuthenticated() {
 			return self.authenticated
 				? new Date().getTime() < JSON.parse(localStorage.getItem('expires_at'))
 				: false
+		},
+
+		get auth0() {
+			return auth
 		}
 	}
 }

@@ -1,6 +1,6 @@
 import { types, flow } from 'mobx-state-tree'
 
-import { ModuleState } from './Module'
+import { ModuleState } from '../Module'
 
 const model = {
 	nickname: types.optional(types.string, ''),
@@ -20,28 +20,21 @@ const model = {
 	modules: types.optional(types.array(ModuleState), [])
 }
 
-const actions = self => {
+const actions = (self) => {
 	return {
-		setData: flow(function*(data) {
-			const response = yield fetch(
-				`$SERVER_ADDRESS$$API_PATH$/users/${data.nickname}`
-			)
-
-			const user = yield response.json()
-			console.log({ user })
-
+		setData(user) {
 			self.userName = user.userName
 			self.uid = String(user.uid)
 			self._id = String(user._id)
 
-			user.modules.forEach(module => {
+			user.modules.forEach((module) => {
 				self.modules.push(ModuleState.create(module))
 			})
-		})
+		}
 	}
 }
 
-const views = self => {
+const views = (self) => {
 	return {}
 }
 

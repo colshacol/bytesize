@@ -10,13 +10,17 @@ import { SideBar } from './SideBar'
 import './DashboardScene.css'
 import { ModulesView } from './ModulesView'
 
-@inject(select([auth, user, editor]))
+@inject((tree) => {
+	return {
+		$user: tree.state.user
+	}
+})
 @observer
 export class DashboardScene extends React.Component {
 	@observable view = ''
 
 	@action
-	setView = which => {
+	setView = (which) => {
 		this.view = which
 	}
 

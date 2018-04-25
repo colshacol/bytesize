@@ -12,24 +12,23 @@ import { gorgeous } from '#utilities/gorgeous'
 import { PANEL_SETTINGS, ROW_PANEL_SETTINGS } from './consts'
 import './ModuleScene.css'
 
-const stateTreeSelector = tree => {
+const selector = (tree) => {
 	return {
-		$stateTree: tree.state,
+		$main: tree.state,
 		$editor: tree.state.editor
 	}
 }
 
-@inject(stateTreeSelector)
+@inject(selector)
 @observer
 export class ModuleScene extends React.Component {
 	componentDidMount() {
-		console.log('--s-s-s-s-s', this.props)
-		this.props.$stateTree.fetchModule(this.props.match.params)
+		this.props.$main.getModule(this.props.match.params)
 	}
 
 	formatCode = async () => {
-		const { code, error } = await prettier(this.props.$editor.contents)
-		this.props.$editor.setContents(code)
+		const { code, error } = await prettier(this.props.$editor.content)
+		this.props.$editor.setContent(code)
 	}
 
 	render() {
@@ -46,10 +45,9 @@ export class ModuleScene extends React.Component {
 						panelWidths={PANEL_SETTINGS}
 					>
 						<Editor
-							contents={this.props.$editor.contents}
-							undo={this.props.$editor.undoSetContents}
-							onChange={(editor, data, contents) => {
-								this.props.$editor.setContents(contents)
+							contents={this.props.$editor.content}
+							onChange={(editor, data, content) => {
+								this.props.$editor.setContent(content)
 							}}
 						/>
 						<OutputPanel ref={this.OutputPanel} format={this.formatCode} />

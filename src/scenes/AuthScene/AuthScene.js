@@ -6,7 +6,7 @@ import { ContentSection } from '#components/ContentSection'
 
 import './AuthScene.css'
 
-const stateTreeSelector = tree => {
+const stateTreeSelector = (tree) => {
 	return {
 		$auth: tree.state.auth
 	}
@@ -15,9 +15,23 @@ const stateTreeSelector = tree => {
 @inject(stateTreeSelector)
 @observer
 export class AuthScene extends React.Component {
-	componentDidMount() {
-		this.props.$auth.handleAuth()
-		this.props.history.push('/dashboard')
+	async componentDidMount() {
+		// const done = await this.props.$auth.handleAuth()
+		const auth = this.props.$auth.auth0
+
+		auth.auth0.parseHash(async (err, authResult) => {
+			if (err) reject(err)
+
+			const response = await fetch(
+				`$SERVER_ADDRESS$$API_PATH$/users/${authResult.idTokenPayload.nickname}`
+			)
+
+			const user = await response.json()
+			console.log({ user })
+			this.props.$auth.setAuthData(authResult, user)
+			// this.props.$auth.setUserData(user)
+			this.props.history.push('/dashboard')
+		})
 	}
 
 	render() {

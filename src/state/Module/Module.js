@@ -9,11 +9,11 @@ const model = {
 	_id: types.optional(types.string, '')
 }
 
-const actions = self => {
+const actions = (self) => {
 	return {}
 }
 
-const views = self => {
+const views = (self) => {
 	return {}
 }
 

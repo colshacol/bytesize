@@ -3,21 +3,21 @@ import { autorun } from 'mobx'
 
 import moment from 'moment'
 import { applyPatch } from 'mobx-state-tree'
-import { Log } from './Log'
+import { LogState } from '../Log'
 
 const model = {
-	logs: types.optional(types.array(Log), [])
+	logs: types.optional(types.array(LogState), [])
 }
 
-const actions = self => {
+const actions = (self) => {
 	return {
 		clearLogs() {
-			self.logs.forEach(log => self.logs.pop())
+			self.logs.forEach((log) => self.logs.pop())
 		},
 
 		updateLogs(newLogs) {
-			newLogs.forEach(log => {
-				log.messages.forEach(message => {
+			newLogs.forEach((log) => {
+				log.messages.forEach((message) => {
 					if (self.logs.length > 35) {
 						self.logs.shift()
 					}
@@ -37,7 +37,7 @@ const actions = self => {
 		},
 
 		addLog(log) {
-			log.messages.forEach(message => {
+			log.messages.forEach((message) => {
 				self.logs.push({
 					type: log.type,
 					message: message
@@ -89,7 +89,7 @@ const actions = self => {
 	}
 }
 
-const views = self => ({
+const views = (self) => ({
 	get logCount() {
 		return self.logs.length
 	},
@@ -102,7 +102,7 @@ const views = self => ({
 	}
 })
 
-export default types
+export const OutputState = types
 	.model(model)
 	.actions(actions)
 	.views(views)
