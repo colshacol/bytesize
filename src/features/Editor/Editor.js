@@ -5,15 +5,20 @@ import { observer } from 'mobx-react'
 import { EDITOR_OPTIONS } from './consts'
 import './Editor.css'
 
-export const Editor = props => {
+type PropsT = {
+	content: string,
+	onChange(): void
+}
+
+export const Editor = (props: PropsT) => {
 	return (
 		<div styleName="Editor">
 			<CodeMirror
-				value={props.contents}
-				className="bytesize-CodeMirror"
-				options={EDITOR_OPTIONS}
-				autoCursor
 				autoFocus
+				autoCursor
+				value={props.content}
+				options={EDITOR_OPTIONS}
+				className="bytesize-CodeMirror"
 				onBeforeChange={props.onChange}
 			/>
 		</div>

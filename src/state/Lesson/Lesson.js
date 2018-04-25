@@ -7,11 +7,11 @@ const model = {
 	uid: types.optional(types.string, () => uuid()),
 	editing: types.optional(types.boolean, true),
 	previewing: types.optional(types.boolean, false),
-	editedContents: types.optional(types.string, () => '# hello'),
-	contents: types.optional(types.string, () => '# hello')
+	editedContent: types.optional(types.string, () => '# hello'),
+	content: types.optional(types.string, () => '# hello')
 }
 
-const actions = self => {
+const actions = (self) => {
 	return {
 		toggleEditing() {
 			const editing = !self.editing
@@ -25,28 +25,28 @@ const actions = self => {
 			self.previewing = !self.previewing
 		},
 
-		setContents(contents) {
+		setContent(content) {
 			self.editing
-				? (self.editedContents = contents.markdown)
-				: (self.contents = contents.markdown)
+				? (self.editedContent = content.markdown)
+				: (self.content = content.markdown)
 		},
 
-		saveContents() {
+		saveContent() {
 			self.editing = false
-			self.contents = self.editedContents
+			self.content = self.editedContent
 			// console.log('SAVED')
 		}
 	}
 }
 
-const views = self => {
+const views = (self) => {
 	return {
 		get markdown() {
 			if (self.editing) {
-				return self.editedContents
+				return self.editedContent
 			}
 
-			return self.contents
+			return self.content
 		}
 	}
 }

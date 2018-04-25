@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Markdown from 'react-markdown'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { observable, action, computed } from 'mobx'
 
 import { CodeRenderer } from './CodeRenderer'
@@ -9,38 +9,36 @@ import { StateInjector } from '#utilities/StateInjector'
 
 import './InstructionPanel.css'
 
-const stateSelector = tree => {
+const stateSelector = (tree) => {
 	return {
-		lesson: tree.state.lesson
+		$lesson: tree.state.lesson
 	}
 }
 
+@inject(stateSelector)
 @observer
 export class InstructionPanel extends React.Component {
 	render() {
+		console.log('---', this.props.$lesson.content)
 		return (
 			<div
 				styleName={`InstructionPanel light`}
 				className={`bytesize-light-theme`}
 			>
-				<StateInjector selector={stateSelector}>
-					{state => (
-						<Choose>
-							<When condition={!state.lesson.editing}>
-								<Markdown
-									source={state.lesson.contents}
-									styleName="markdown"
-									renderers={{
-										code: CodeRenderer
-									}}
-								/>
-							</When>
-							<Otherwise>
-								<LessonEditor lesson={state.lesson} />
-							</Otherwise>
-						</Choose>
-					)}
-				</StateInjector>
+				<Choose>
+					<When condition={!this.props.$lesson.editing}>
+						<Markdown
+							source={this.props.$lesson.content}
+							styleName="markdown"
+							renderers={{
+								code: CodeRenderer
+							}}
+						/>
+					</When>
+					<Otherwise>
+						<LessonEditor lesson={this.props.$lesson} />
+					</Otherwise>
+				</Choose>
 			</div>
 		)
 	}

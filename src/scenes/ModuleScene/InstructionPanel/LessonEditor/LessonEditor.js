@@ -9,7 +9,8 @@ import Markdown from 'react-markdown'
 
 import './LessonEditor.css'
 
-export const LessonEditor = createComponent(self => {
+// NOTE: Experimental alternative React API I came up with.
+export const LessonEditor = createComponent((self) => {
 	const { props } = self
 	const { lesson } = props
 
@@ -20,18 +21,22 @@ export const LessonEditor = createComponent(self => {
 
 	self.state = {
 		editorState: {
-			markdown: lesson.editedContents
+			markdown: lesson.editedContent
 		}
 	}
 
-	self.onChange = editorState => {
-		lesson.setContents(editorState)
-		self.setState(state => ({
+	self.onChange = (editorState) => {
+		lesson.setContent(editorState)
+		self.setState((state) => ({
 			editorState
 		}))
 	}
 
-	const styleName = props => {
+	const generator = (markdown) => {
+		return Promise.resolve(converter.makeHtml(markdown))
+	}
+
+	const styleName = (props) => {
 		return lesson.previewing ? 'previewing' : lesson.editing ? 'editing' : ''
 	}
 
@@ -41,15 +46,13 @@ export const LessonEditor = createComponent(self => {
 			<div styleName={`LessonEditor ${styleName(self.props)}`}>
 				<Choose>
 					<When condition={lesson.previewing}>
-						<MD markdown={lesson.editedContents} />
+						<MD markdown={lesson.editedContent} />
 					</When>
 					<Otherwise>
 						<ReactMde
 							onChange={self.onChange}
 							editorState={self.state.editorState}
-							generateMarkdownPreview={markdown => {
-								return Promise.resolve(converter.makeHtml(markdown))
-							}}
+							generateMarkdownPreview={generator}
 						/>
 					</Otherwise>
 				</Choose>
@@ -58,7 +61,7 @@ export const LessonEditor = createComponent(self => {
 					<span onClick={lesson.togglePreviewing}>
 						<i className="fas fa-eye fa-lg" />
 					</span>
-					<span onClick={lesson.saveContents}>
+					<span onClick={lesson.saveContent}>
 						<i className="fas fa-save fa-lg" />
 					</span>
 				</div>

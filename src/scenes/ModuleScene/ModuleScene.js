@@ -3,11 +3,9 @@ import PanelGroup from 'react-panelgroup'
 import { inject, observer } from 'mobx-react'
 import MarkdownInput from '@opuscapita/react-markdown'
 
-import { prettier } from '#utilities/api/prettier'
 import { Editor } from '#features/Editor'
 import { InstructionPanel } from './InstructionPanel'
 import { OutputPanel } from './OutputPanel'
-import { gorgeous } from '#utilities/gorgeous'
 
 import { PANEL_SETTINGS, ROW_PANEL_SETTINGS } from './consts'
 import './ModuleScene.css'
@@ -23,12 +21,7 @@ const selector = (tree) => {
 @observer
 export class ModuleScene extends React.Component {
 	componentDidMount() {
-		this.props.$main.getModule(this.props.match.params)
-	}
-
-	formatCode = async () => {
-		const { code, error } = await prettier(this.props.$editor.content)
-		this.props.$editor.setContent(code)
+		this.props.$main.activateModule(this.props.match.params)
 	}
 
 	render() {
@@ -45,12 +38,15 @@ export class ModuleScene extends React.Component {
 						panelWidths={PANEL_SETTINGS}
 					>
 						<Editor
-							contents={this.props.$editor.content}
+							content={this.props.$editor.content}
 							onChange={(editor, data, content) => {
 								this.props.$editor.setContent(content)
 							}}
 						/>
-						<OutputPanel ref={this.OutputPanel} format={this.formatCode} />
+						<OutputPanel
+							ref={this.OutputPanel}
+							format={this.props.$editor.formatContent}
+						/>
 					</PanelGroup>
 				</div>
 			</div>

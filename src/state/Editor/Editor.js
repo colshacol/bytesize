@@ -1,4 +1,5 @@
-import { types } from 'mobx-state-tree'
+import { types, flow } from 'mobx-state-tree'
+import { prettier } from '#utilities/api/prettier'
 
 import { INFINITE_LOOP_DEFAULT_CONTENT } from './consts'
 
@@ -11,9 +12,13 @@ const actions = (self) => {
 
 	return {
 		setContent(content) {
-			console.log({ content })
 			self.content = content
-		}
+		},
+
+		formatContent: flow(function*() {
+			const { code, error } = yield prettier(self.content)
+			self.setContent(code)
+		})
 	}
 }
 

@@ -20,7 +20,7 @@ const model = {
 }
 
 const actions = (self) => ({
-	getModule: common.getModule(self)
+	activateModule: common.activateModule(self)
 })
 
 export const MainState = makeInspectable(

@@ -1,1 +1,1 @@
-export { getModule } from './getModule'
+export { activateModule } from './activateModule'
