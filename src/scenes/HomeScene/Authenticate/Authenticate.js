@@ -11,17 +11,17 @@ export class Authenticate extends React.Component {
 	@observable password1 = ''
 
 	@action
-	setUserName = event => {
+	setUserName = (event) => {
 		this.userName = event.target.value
 	}
 
 	@action
-	setPassword0 = event => {
+	setPassword0 = (event) => {
 		this.password0 = event.target.value
 	}
 
 	@action
-	setPassword1 = event => {
+	setPassword1 = (event) => {
 		this.password1 = event.target.value
 	}
 
@@ -29,7 +29,7 @@ export class Authenticate extends React.Component {
 		return (
 			<div styleName="Authenticate">
 				<h1>Log In</h1>
-				<input
+				{/* <input
 					styleName="input"
 					placeholder="user name"
 					value={this.userName}
@@ -41,9 +41,9 @@ export class Authenticate extends React.Component {
 					placeholder="password"
 					value={this.password0}
 					onChange={this.setPassword0}
-				/>
+				/> */}
 				<button styleName="submitButton" onClick={this.props.login}>
-					LETS DO IT
+					Log In With Github
 				</button>
 			</div>
 		)
