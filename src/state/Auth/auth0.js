@@ -27,10 +27,10 @@ class Auth {
 		})
 	}
 
-	setLocalStorageAuth = authData => {
+	setLocalStorageAuth = (authData) => {
 		localStorage.setItem('accessToken', authData.accessToken)
 		localStorage.setItem('idToken', authData.idToken)
-		localStorage.setItem('userData', authData.idTokenPayload)
+		localStorage.setItem('userData', JSON.stringify(authData.idTokenPayload))
 
 		localStorage.setItem(
 			'expires_at',

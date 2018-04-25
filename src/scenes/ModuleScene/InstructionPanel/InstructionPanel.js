@@ -6,6 +6,7 @@ import { observable, action, computed } from 'mobx'
 import { CodeRenderer } from './CodeRenderer'
 import { LessonEditor } from './LessonEditor'
 import { StateInjector } from '#utilities/StateInjector'
+import EditIcon from '#assets/svgs/pencil.svg'
 
 import './InstructionPanel.css'
 
@@ -17,9 +18,9 @@ const stateSelector = (tree) => {
 
 @inject(stateSelector)
 @observer
+// TODO: Make not a class, man.
 export class InstructionPanel extends React.Component {
 	render() {
-		console.log('---', this.props.$lesson.content)
 		return (
 			<div
 				styleName={`InstructionPanel light`}
@@ -34,6 +35,14 @@ export class InstructionPanel extends React.Component {
 								code: CodeRenderer
 							}}
 						/>
+						<div styleName="actions">
+							<If condition={this.props.$lesson.isEditableByUser}>
+								<EditIcon
+									styleName="editButton"
+									onClick={this.props.$lesson.toggleEditing}
+								/>
+							</If>
+						</div>
 					</When>
 					<Otherwise>
 						<LessonEditor lesson={this.props.$lesson} />

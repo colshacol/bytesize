@@ -11,7 +11,6 @@ const router = express.Router()
 router.get('/users/:userName', (req, res, next) => {
 	console.log('got a request....')
 	database.users.find({ userName: req.params.userName }, (err, data) => {
-		console.log({ err, data })
 		res.send(data[0])
 	})
 })

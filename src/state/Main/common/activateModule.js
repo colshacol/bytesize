@@ -10,4 +10,5 @@ export const activateModule = (self) =>
 
 		self.editor.setContent(data.module.editorContent)
 		self.lesson.setContent(data.module.lessonContent)
+		self.lesson.setModuleUid(data.module.uid)
 	})

@@ -60,7 +60,7 @@
 	Size: 100% 84px;
 	height: 84px !important;
 	flex-shrink: 0;
-	/* background: #181A25; */
+	background: #f8f8f8;
 	Flex: row space-around center;
 }
 

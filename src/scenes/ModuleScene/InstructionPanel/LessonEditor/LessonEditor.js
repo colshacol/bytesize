@@ -10,6 +10,7 @@ import Markdown from 'react-markdown'
 import './LessonEditor.css'
 
 // NOTE: Experimental alternative React API I came up with.
+// NOTE: I really like this API......
 export const LessonEditor = createComponent((self) => {
 	const { props } = self
 	const { lesson } = props
@@ -25,11 +26,9 @@ export const LessonEditor = createComponent((self) => {
 		}
 	}
 
-	self.onChange = (editorState) => {
+	const onChange = (editorState) => {
 		lesson.setContent(editorState)
-		self.setState((state) => ({
-			editorState
-		}))
+		self.setState((state) => ({ editorState }))
 	}
 
 	const generator = (markdown) => {
@@ -41,7 +40,6 @@ export const LessonEditor = createComponent((self) => {
 	}
 
 	return () => {
-		// console.log({ lesson, self, Markdown })
 		return (
 			<div styleName={`LessonEditor ${styleName(self.props)}`}>
 				<Choose>
@@ -50,7 +48,7 @@ export const LessonEditor = createComponent((self) => {
 					</When>
 					<Otherwise>
 						<ReactMde
-							onChange={self.onChange}
+							onChange={onChange}
 							editorState={self.state.editorState}
 							generateMarkdownPreview={generator}
 						/>
