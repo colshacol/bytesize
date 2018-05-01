@@ -1,4 +1,4 @@
-import { types, getParent } from 'mobx-state-tree'
+import { types, getParent, flow } from 'mobx-state-tree'
 import { autorun } from 'mobx'
 import uuid from 'uuid/v4'
 import { Editor, EditorState } from 'draft-js'
@@ -10,6 +10,28 @@ const model = {
 	previewing: types.optional(types.boolean, false),
 	editedContent: types.optional(types.string, () => '# hello'),
 	content: types.optional(types.string, () => '# hello')
+}
+
+const headers = new Headers({
+	'Content-Type': 'application/json'
+})
+
+export const save = async (module) => {
+	const response = await fetch(
+		// TODO: Fix this static set bullshit.
+		'$SERVER_ADDRESS$$API_PATH$/module/save/colshacol/' + module.moduleUid,
+		{
+			headers,
+			method: 'POST',
+			body: JSON.stringify({
+				module: {
+					lessonContent: module.content
+				}
+			})
+		}
+	)
+
+	return await response.json()
 }
 
 const actions = (self) => {
@@ -35,11 +57,14 @@ const actions = (self) => {
 			self.moduleUid = String(uid)
 		},
 
-		saveContent() {
+		saveContent: flow(function*() {
 			self.editing = false
 			self.content = self.editedContent
+
+			const foo = yield save(self)
+			console.log('fofofofofofofofofofofofof', { foo })
 			// console.log('SAVED')
-		}
+		})
 	}
 }
 

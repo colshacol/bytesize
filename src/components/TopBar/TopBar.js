@@ -2,13 +2,13 @@ import * as React from 'react'
 import { action, computed } from 'mobx'
 import { Link } from 'react-router-dom'
 
-import { createComponent } from '#utilities/createComponent'
+import { component } from '#utilities/createComponent'
 import { lastInArray as last } from '#utilities/lastInArray'
 
 import './TopBar.css'
 
-export const TopBar = createComponent(self => {
-	return () => (
+export const TopBar = component((self) => {
+	return (instance) => (
 		<div styleName="TopBar">
 			<div styleName="inner">
 				<div styleName="left" data-white-theme>

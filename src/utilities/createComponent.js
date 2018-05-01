@@ -2,75 +2,58 @@ import React from 'react'
 import { observable, action, computed } from 'mobx'
 import { observer, inject } from 'mobx-react'
 
-const withObservableData = component => {
-	component.hasOwnProperty('$data') &&
-		(component.$data = observable.box(component.$data))
+const createComponent = (creator, props, context) => {
+	const component = new React.Component(props)
+	component.actions = {}
+	component.data = {}
+	let name = 'SHIT'
+
+	component.deriveData = (fn) => {
+		// If the props proxy is accessed in fn, then we need to derive data from
+		// props on each prop-induced update. Otherwise, we do not!
+
+		let propsAccess = false
+
+		const props = new Proxy(component.props, {
+			get(target, property) {
+				propsAccess = true
+				return Reflect.get(...arguments)
+			}
+		})
+
+		component.data = observable(fn(component, props))
+
+		if (propsAccess) {
+			component.UNSAFE_componentWillReceiveProps = (newProps) => {
+				Object.assign(component.data, fn(component, newProps))
+			}
+		}
+	}
+
+	component.setName = (name) => {
+		name = name
+		Object.defineProperty(component, 'displayName', {
+			value: name
+		})
+	}
+
+	component.addAction = (fn) => {
+		component.actions[fn.name] = (...args) => {
+			return fn(component, ...args)
+		}
+	}
+
+	const comp = creator(component)
+	component.render = () => comp(component)
+
 	return component
 }
 
-export const createComponent = creator => {
-	return inject('state')(props => {
-		const component = new React.Component(props)
-
-		Object.defineProperty(component, 'reactiveData', {
-			enumerable: false,
-			value: data => {
-				component.data = observable(data)
-				return component.data
-			}
-		})
-
-		Object.defineProperty(component, 'action', {
-			enumerable: false,
-			value: func => {
-				return action((...args) => func(...args))
-			}
-		})
-
-		// Object.defineProperty(component, '', {
-		// 	enumerable: false,
-		// 	value: func => {
-		// 		return action((...args) => func(...args))
-		// 	}
-		// })
-
-		// component.setData = data => {
-		// 	component.data = observable(data)
-		// }
-
-		component.render = creator(component)
-		return observer(component)
+export const component = (creator) => {
+	const wrapper = inject('state')((props, context) => {
+		return observer(createComponent(creator, props, context))
 	})
+
+	wrapper.displayName = 'CreatedComponent'
+	return wrapper
 }
-
-// export const createComponent = creator => {
-// 	return props => {
-// 		const component = new React.Component(props)
-// 		// component.selectStores = (selector) => {
-
-// 		// }
-// 		const getComponent = () => {
-// 			return component
-// 		}
-
-// 		const _component = new Proxy(getComponent, {
-// 			set(target, property, value) {
-// 				const _value = property === '$data' ? observable(value) : value
-// 				component[property] = _value
-// 				return true
-// 			},
-// 			get(target, property) {
-// 				return component[property]
-// 			}
-// 			// apply(target, self, args) {
-// 			// 	console.log('args...', args)
-// 			// 	return target
-// 			// }
-// 		})
-
-// 		const foo=  inject('state)(_component |> creator |> withObservableData |> getComponent |> observer
-// 		console.log({ foo })
-// 		console.log('........', _component())
-// 		return foo
-// 	}
-// }

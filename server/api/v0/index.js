@@ -25,6 +25,34 @@ router.get('/module/:userName/:id', (req, res, next) => {
 	})
 })
 
+router.post('/module/save/:userName/:uid', (req, res, next) => {
+	const { userName, uid: moduleUid } = req.params
+	const { lessonContent } = req.body.module
+
+	database.users.findOne({ userName: userName }, (err, data) => {
+		const matchingModule = data.modules.filter((module) => {
+			return module.uid == moduleUid
+		})[0]
+
+		if (matchingModule) {
+			data.modules = data.modules.map((module) => {
+				return !module.uid == moduleUid
+					? module
+					: {
+							...module,
+							lessonContent: req.body.module.lessonContent
+					  }
+			})
+		}
+
+		database.users.save(data, (err) => {
+			if (err) console.log('\n\n', err, '\n')
+		})
+
+		res.send({ done: true })
+	})
+})
+
 // router.post('/auth/login', passport.authenticate('local'), auth.login)
 
 router.post('/prettier', prettier)

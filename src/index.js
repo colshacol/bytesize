@@ -2,14 +2,16 @@ import * as React from 'react'
 import { render } from 'react-dom'
 
 import { AppContainer } from 'react-hot-loader'
-import { App } from '#components/App'
+import { App } from '#scenes/App'
 
-import './styles/normalize.css'
 import './styles/index.css'
 // import './styles/potionsTheme/react-mde.css'
 import 'react-mde/lib/styles/css/react-mde-all.css'
+import { applyGlobalStyles } from './styles/global'
 
-const _render = Component => {
+applyGlobalStyles()
+
+const _render = (Component) => {
 	render(
 		<AppContainer>
 			<Component />
@@ -23,8 +25,8 @@ if (__DEV__) {
 	console.log('!!__DEV__')
 	if (module.hot) {
 		console.log('!!module.hot')
-		module.hot.accept('./components/App/index.js', () => {
-			_render(require('./components/App/index.js').App)
+		module.hot.accept('./scenes/App/index.js', () => {
+			_render(require('./scenes/App/index.js').App)
 		})
 	}
 }

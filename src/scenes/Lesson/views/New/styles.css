@@ -1,0 +1,29 @@
+:global .rte-editor-custom-button {
+	border: none !important;
+	outline: none !important;
+	background: #ffffff !important;
+	border-right: 1px solid #fff !important;
+
+	&[class*="isActive"] {
+		background: #f2f2f2 !important;
+	}
+
+	&:hover {
+		background: #f2f2f2 !important;
+	}
+}
+
+:global .RTE {
+	border: none !important;
+}
+
+:global .DraftEditor-editorContainer {
+	padding: 16px;
+	font-family: 'Gotham HTF', sans-serif;
+	letter-spacing: 0;
+
+	h1, h2, h3 {
+		font-weight: bold;
+	}
+}
+

@@ -1,12 +1,8 @@
 .TopBar {
 	width: 100vw;
-	height: 48px;
-	color: #fff;
+	height: 56px;
+	background: #fff;
 	z-index: 11;
-	/* background: linear-gradient(-45deg, #313358, #1D1F31); */
-	/* background: #1d1f31; */
-	/* background: #202231; */
-	/* border-bottom: 1px solid #32335a; */
 }
 
 .left {
@@ -20,14 +16,6 @@
 	Size: 70% 100%;
 	padding: 0 24px;
 }
-
-/* .editorTopBar {
-	Size: 100% 32px;
-	background: var(--darkBlue1);
-	box-shadow: var(--shadow0);
-	z-index: 4;
-	position: relative;
-} */
 
 .inner {
 	height: 100%;
