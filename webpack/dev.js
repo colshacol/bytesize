@@ -1,5 +1,3 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-	.BundleAnalyzerPlugin
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
@@ -30,6 +28,7 @@ module.exports = {
 		compress: true,
 		port: 9000,
 		hot: true,
+		hotOnly: true,
 		historyApiFallback: true
 		// 	after(app) {
 		// 		app.get('*', function(req, res) {

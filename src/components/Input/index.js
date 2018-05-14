@@ -1,1 +1,1 @@
-export { Input } from './Input.render'
+export { Input } from './Input'

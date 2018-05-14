@@ -1,25 +1,20 @@
 import * as React from 'react'
-import { action, computed } from 'mobx'
+import { purist } from '#utilities/purist'
 import { Link } from 'react-router-dom'
-
-import { createComponent } from '#utilities/createComponent'
-import { lastInArray as last } from '#utilities/lastInArray'
 
 import './TopBar.css'
 
-export const TopBar = createComponent(self => {
-	return () => (
-		<div styleName="TopBar">
-			<div styleName="inner">
-				<div styleName="left" data-white-theme>
+export class TopBar extends React.Component {
+	render() {
+		// console.log(this.props)
+		return (
+			<div data-light-theme styleName="TopBar">
+				<div styleName="container">
 					<Link to="/">
-						<p styleName="logo">bytesized</p>
+						<p styleName="logo">bytesized | {this.props.location.pathname}</p>
 					</Link>
 				</div>
-				<div styleName="right" data-dark-theme>
-					<p>...</p>
-				</div>
 			</div>
-		</div>
-	)
-})
+		)
+	}
+}

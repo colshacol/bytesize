@@ -1,0 +1,96 @@
+.LessonEditor {
+	Size: 100% 100%;
+	Flex: column center flex-start;
+}
+
+.LessonEditor :global .react-mde {
+	width: 100%;
+	height: calc(100% - 84px);
+	border: none;
+}
+
+.LessonEditor :global .mde-preview {
+	display: none;
+}
+
+.LessonEditor :global .mde-text {
+	height: calc(100% - 36px);
+	border: none;
+}
+
+.LessonEditor :global .mde-text .public-DraftEditor-content {
+	max-height: 100% !important;
+	/* NOTE: To get it even with the given height and shit. */
+	height: 100%;
+}
+.LessonEditor :global .vertical-layout {
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 80px);
+}
+
+.editing :global .mde-text {
+	border: none;
+}
+
+.lessonPreview {
+	width: 100%;
+	height: 100%;
+	padding: 24px;
+}
+
+
+.previewing :global .mde-text {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.LessonEditor :global .DraftEditor-editorContainer,
+.LessonEditor :global .DraftEditor-root,
+.LessonEditor :global .vertical-layout {
+	/* NOTE: To get it even with the given height and shit. */
+	height: 100%;
+}
+
+.lessonEditorControls {
+	margin-top: auto;
+	padding: 12px;
+	width: 100%;
+	height: 60px !important;
+	flex-shrink: 0;
+	background: #f8f8f8;
+	Flex: row space-around center;
+}
+
+.lessonEditorControls svg {
+	cursor: pointer;
+}
+
+.topActions {
+	Size: 100% 50%;
+	background: #F1F1F1;
+	color: #181A25;
+	Flex: row center center;
+}
+
+.action {
+	width: 100%;	
+	Flex: row center center;
+	Font: button;	
+	cursor: pointer;
+}
+
+.bottomActions {
+	Size: 100% 50%;
+	background: tomato;
+	Flex: row center center;
+}
+
+.saveAction {
+	color: white;
+	background: tomato;
+	Font: button;	
+	cursor: pointer;
+}

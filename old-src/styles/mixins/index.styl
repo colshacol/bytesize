@@ -1,0 +1,20 @@
+Size(width, height = width) {
+	width: width;
+	height: height;
+}
+
+Flex($dir, $justify, $align) {
+	display: flex;
+	flex-direction: $dir;
+	justify-content: $justify;
+	align-items: $align;
+}
+
+Font(which) {
+	if (which is button) {
+		font-family: 'Open Sans', sans-serif;
+		text-transform: uppercase;
+    letter-spacing: 2px;
+		font-size: 12px;
+	}
+}

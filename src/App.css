@@ -1,0 +1,14 @@
+.App {
+	width: 100vw;
+	height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
