@@ -1,11 +1,17 @@
-import shards from './shards'
+import Shards from './shards'
 
-const editorStore = shards.createStore('editor', {
-	content: '//^^^^^^^66666',
+const editorStore = {
+  content: '//39393939393',
 
-	setContent(store, content) {
-		store.content = content
-	}
+  setContent(store, content) {
+    store.content = content
+  }
+}
+
+const shards = new Shards({
+  editorStore
 })
 
-export { editorStore }
+console.log({ shards })
+
+export default shards

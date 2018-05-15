@@ -2,121 +2,136 @@ import * as React from 'react'
 import shortId from 'shortid'
 
 // Main "store" for holding all stores.
-const shards = {
-  stores: {},
+class Shards {
+  constructor(stores: Object) {
+    Object.entries(stores).forEach(([storeName, init]) => {
+      this.registerStore(storeName, this.createStore(storeName, init))
+    })
+
+    window.chex.blue('howdy fucker', this.stores)
+
+    const { provider, receiver } = this.createComponents()
+    this.provider = provider
+    this.receiver = receiver
+  }
+
+  stores = {}
+  provider = null
+  receiver = null
+
+  getStores(storeNames: string[]) {
+    return storeNames.reduce((final, storeName) => {
+      final[storeName] = this.stores[storeName]
+      return final
+    }, {})
+  }
 
   // Just an easier way to retrieve a store.
-  getStore(name) {
-    return this.stores[name]
-  },
+  getStore(storeName: string | string[]) {
+    return !Array.isArray(storeName)
+      ? { [name]: this.stores[name] }
+      : this.getStores(storeName)
+  }
 
   // Just an easier way to retrieve a store's receivers.
-  getReceivers(name) {
-    return this.getStore(name).receivers
+  receiversOf(name) {
+    return this.stores[name].receivers
   }
-}
 
-// Creates the store that will be held in shards.stores.
-const generateStore = (name, init) => {
-  return {
-    // Initialize data and actions.
-    ...initStore(name, init),
+  registerStore(name, store) {
+    this.stores[name] = store
+  }
 
-    // Initialize with no receivers.
-    receivers: new Map(),
+  createStore(storeName, init) {
+    const store = this.initStore(storeName, init)
 
-    // Adds a receiver to this store.
-    addReceiver(id, receiver) {
-      shards.getStore(name).receivers.set(id, receiver)
-    },
-
-    // Get all receivers of this store and force them to update.
-    updateReceivers() {
-      const store = shards.getStore(name)
-
-      store.receivers.forEach((receiver, id) => {
-        receiver.manualUpdate(store)
-      })
+    // Add hidden properties for internal shards usage.
+    const getThisStore = () => {
+      return this.stores[storeName]
     }
+
+    Object.defineProperty(store, 'receivers', {
+      enumaerable: false,
+      value: new Map()
+    })
+
+    Object.defineProperty(store, 'addReceiver', {
+      enumerable: false,
+      value: (id, receiver) => {
+        getThisStore().receivers.set(id, receiver)
+      }
+    })
+
+    Object.defineProperty(store, 'updateReceivers', {
+      enumaerable: false,
+      value: () => {
+        getThisStore().receivers.forEach((receiver, id) => {
+          receiver.manualUpdate()
+        })
+      }
+    })
+
+    return store
   }
-}
 
-// Generate a store and send it to shards.stores.
-const createStore = (name, init) => {
-  const store = (shards.stores[name] = generateStore(name, init))
-}
+  initStore(storeName, init) {
+    return Object.entries(init).reduce((final, [prop, value]) => {
+      final[prop] =
+        typeof value !== 'function'
+          ? value
+          : (...args) => {
+              const store = this.stores[storeName]
+              value(store, ...args)
+              store.updateReceivers()
+            }
 
-// Takes in the "initialState". For each action in the initialState,
-// it is wrapped in a function that calls updateReceivers() after
-// the action is complete.
-const initStore = (storeName, init) => {
-  return Object.entries(init).reduce((final, [name, value]) => {
-    // If the initialState value is not a function,
-    // just leave it the fuck alone.
-    if (typeof value !== 'function') {
-      final[name] = value
       return final
-    }
-
-    final[name] = (...args) => {
-      const store = shards.getStore(storeName)
-      value(store, ...args)
-      store.updateReceivers()
-    }
-
-    return final
-  }, {})
-}
-
-// Basic shit.
-const { Provider: _Provider, Consumer } = React.createContext()
-
-export const ShardsProvider = (props) => {
-  return <_Provider value={shards.stores}>{props.children}</_Provider>
-}
-
-// "Consumer" for shards stores.
-export const ShardsReceiver = (storeName) => (Comp) => {
-  class Receiver extends React.Component {
-    displayName = `shards_consumer_${shortId.generate()}`
-
-    constructor(props) {
-      super(props)
-      this.store = shards.getStore(storeName)
-      // Register this new component as a receiver (listener) for
-      // changes to the specified store.
-      this.store.addReceiver(this.displayName, this)
-    }
-
-    // Make sure we have the latest version of the store
-    // and forceUpdate. (-- Because I wanted to go with
-    // immutability so the store would be new every time.)
-    manualUpdate = (store) => {
-      this.store = store
-      this.forceUpdate()
-    }
-
-    render() {
-      return (
-        <Consumer>
-          {(stores) => <Comp {...this.props} store={this.store} />}
-        </Consumer>
-      )
-    }
+    }, {})
   }
 
-  return Receiver
+  createComponents() {
+    const shards = this
+    const { Provider, Consumer } = React.createContext()
+
+    class ShardsProvider extends React.PureComponent {
+      render() {
+        return <Provider value={shards.stores}>{this.props.children}</Provider>
+      }
+    }
+
+    const receiver = (storeNames) => (Comp) => {
+      const _storeNames = Array.isArray(storeNames) ? storeNames : [storeNames]
+
+      return class Receiver extends React.PureComponent {
+        displayName = `shards_consumer_${shortId.generate()}`
+
+        constructor(props) {
+          super(props)
+          this.stores = shards.getStores(_storeNames)
+
+          Object.entries(this.stores).forEach(([_storeName, store]) => {
+            store.addReceiver(this.displayName, this)
+          })
+        }
+
+        manualUpdate = () => {
+          // Stash new reference to relevant stores.
+          this.stores = shards.getStores(_storeNames)
+          this.forceUpdate()
+        }
+
+        render() {
+          return (
+            <Consumer>
+              {(stores) => <Comp {...this.props} stores={this.stores} />}
+            </Consumer>
+          )
+        }
+      }
+    }
+
+    return { provider: ShardsProvider, receiver }
+  }
 }
 
-// EXAMPLE: Create a store.
-createStore('editor', {
-  // give the store data
-  content: '// nothing to show',
-
-  // give the store actions
-  setContent(store, content) {
-    store.content = content
-  }
-})
-
-export { shards }
+export default Shards

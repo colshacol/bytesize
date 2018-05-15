@@ -2,13 +2,14 @@
 import shards from '#stores/shards'
 
 const state = {
-	content: '// write DAT CODE man'
+  content: '// write DAT CODE man'
 }
 
 const actions = {
-	setContent(store, value) {
-		store.content = value
-	}
+  setContent(store, value) {
+    console.log('setContent', store, value)
+    store.content = value
+  }
 }
 
 const EditorProvider = shards.create('editor', state, actions)
