@@ -8,8 +8,22 @@ const editorStore = {
   }
 }
 
+const lessonStore = {
+  content: '# Howdy, fucker.',
+  editing: false,
+
+  setContent(store, content) {
+    store.content = content
+  },
+
+  toggleEditing(store) {
+    store.editing = !store.editing
+  }
+}
+
 const shards = new Shards({
-  editorStore
+  editorStore,
+  lessonStore
 })
 
 console.log({ shards })

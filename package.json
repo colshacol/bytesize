@@ -7,7 +7,7 @@
   "author": "Colton Colcleasure <colshacol@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon -r @babel/register -r module-alias/register server",
+    "server": "node -r @babel/register -r module-alias/register server",
     "startClient": "webpack-dev-server --config ./webpack/dev.js",
     "buildProd":
       "webpack --mode production --optimize-minimize true --config ./webpack/dev.js && npm run server",

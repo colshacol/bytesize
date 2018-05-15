@@ -21,6 +21,7 @@
 	position: absolute;
 	display: flex;
 	align-items: center;
+	z-index: 50;
 	box-shadow: 0 2px 16px -1px rgba(0,0,0,0.125);
 }
 
