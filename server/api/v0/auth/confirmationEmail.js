@@ -1,5 +1,8 @@
 import nodemailer from 'nodemailer'
 
+const CONFIRMATION_EMAIL_SENDER = 'colshacol@gmail.com'
+const CONFIRMATION_EMAIL_SUBJECT = 'bytesized module created ✔'
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -10,11 +13,11 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-const generateEmail = (email) => (module) => {
+export const generateEmail = (email) => (module) => {
   return {
-    from: '"colshacol@gmail.com',
+    from: CONFIRMATION_EMAIL_SENDER,
     to: email,
-    subject: 'bytesized module created ✔',
+    subject: CONFIRMATION_EMAIL_SUBJECT,
     text: `Wassap. You created dis module: ${module.sid}`,
     html: `<h3>Wassap. You created dis module: ${module.sid}</h3>`
   }
