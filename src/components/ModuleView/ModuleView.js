@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import './ModuleView.css'
 import { Editor } from '#components/Editor'
 import Markdown from 'react-markdown-renderer'
 import shards from '#stores'
 import SplitPane from 'react-split-pane'
+import './ModuleView.css'
 
 const _Editor = shards.receiver('editorStore')((props) => {
   console.warn('----_Editor', { props })
@@ -20,8 +20,8 @@ const _Editor = shards.receiver('editorStore')((props) => {
 const LessonEditor = shards.receiver('lessonStore')((props) => {
   return (
     <Editor
-      onChange={props.stores.lessonStore.setContent}
-      content={props.stores.lessonStore.content}
+      onChange={props.stores.lessonStore.setEditedContent}
+      content={props.stores.lessonStore.editedContent}
       theme="white"
     />
   )
@@ -35,16 +35,35 @@ class Lesson extends React.Component {
 
     return (
       <div data-light-theme styleName="left">
-        <button onClick={stores.lessonStore.toggleEditing}>
-          toggle editing
-        </button>
         <Choose>
           <When condition={stores.lessonStore.editing}>
             <LessonEditor />
+            <div styleName="buttonBox">
+              <button
+                styleName="actionButton"
+                onClick={stores.lessonStore.saveEditedContent}
+              >
+                save changes
+              </button>
+              <button
+                styleName="actionButton"
+                onClick={stores.lessonStore.cancelEditedContent}
+              >
+                cancel changes
+              </button>
+            </div>
           </When>
           <Otherwise>
-            <div styleName="padded">
+            <div styleName="padded" data-lesson-rendered-md-container>
               <Markdown markdown={stores.lessonStore.content} />
+            </div>
+            <div styleName="buttonBox">
+              <button
+                styleName="actionButton"
+                onClick={stores.lessonStore.toggleEditing}
+              >
+                toggle editing
+              </button>
             </div>
           </Otherwise>
         </Choose>
@@ -58,7 +77,7 @@ export class ModuleView extends React.Component {
   render() {
     return (
       <div styleName="ModuleView">
-        <SplitPane split="vertical" defaultSize={200} primary="second">
+        <SplitPane split="vertical" defaultSize={400}>
           <Lesson />
           <div styleName="right">
             <_Editor />

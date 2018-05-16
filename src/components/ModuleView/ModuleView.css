@@ -10,20 +10,72 @@
 	height: 100%;
 	background: #656a83;
 	cursor: col-resize;
-	
 }
 
 .padded {
 	padding: 0 24px;
+	height: 100%;
+	max-height: 100%;
+	overflow-y: scroll;
+}
+
+:global [data-lesson-rendered-md-container] li {
+	margin: 8px 24px;
+}
+
+:global [data-lesson-rendered-md-container] h1:first-of-type {
+	margin: 16px 0;
+	font-size: 28px;
+	color: var(--darkestPurple);
+}
+
+:global [data-lesson-rendered-md-container] h1:nth-of-type(n+2) {
+	margin: 16px 0;
+	border-bottom: 1px solid transparent;
+	font-size: 20px;
+}
+
+:global [data-lesson-rendered-md-container] p {
+	margin: 16px 0;
+}
+
+:global [data-lesson-rendered-md-container] p + p {
+	margin-top: 0px;
+}
+
+:global [data-lesson-rendered-md-container] ol,
+:global [data-lesson-rendered-md-container] ul {
+	margin: 16px 0;
+}
+
+:global [data-lesson-rendered-md-container] pre {
+	color: var(--purpleText);
+	background: var(--lightPurpleBg);
+	padding: 12px;
 }
 
 .left {
 	/* width: 30%; */
 	padding-top: 24px;
 	height: 100%;
-	max-height: calc(100% - 24px);
+
 	display: flex;
 	flex-direction: column;
+}
+
+.buttonBox {
+	background: var(--purple);
+	padding: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+.actionButton {
+	color: var(--whitePurple);
+	margin-bottom: 8px;
+	background: transparent;
 }
 
 .right {
