@@ -1,7 +1,0 @@
-.SideBar {
-	Size: 30% 100%;
-	z-index: 20;
-	display: flex;
-	flex-direction: column;
-	background: #fff;
-}

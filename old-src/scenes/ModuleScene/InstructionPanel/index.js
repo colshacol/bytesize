@@ -1,1 +1,0 @@
-export { InstructionPanel } from './InstructionPanel'
