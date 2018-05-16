@@ -103,6 +103,7 @@
     "debug": "^3.1.0",
     "dotenv": "^5.0.1",
     "draft-js": "^0.10.5",
+    "emailjs": "^2.0.0",
     "express": "^4.16.3",
     "express-static": "^1.2.5",
     "express-ws": "^3.0.0",
