@@ -14,7 +14,7 @@ export const EDITOR_OPTIONS = (props) => ({
   styleActiveLine: true
 })
 
-export class Editor extends React.Component {
+export class Editor extends React.PureComponent {
   render() {
     console.log('fuck idk', { props: this.props })
     return (

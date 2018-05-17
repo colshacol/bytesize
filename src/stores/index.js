@@ -6,10 +6,16 @@ const LESSON_DEFAULT_CONTENT =
 // NOTE: Global state because it may be re-used
 // in multiple places.
 const editorStore = {
-  content: '//39393939393',
+  editedContent: '// loading code...',
+  content: '// loading code...',
 
   setContent(store, content) {
     store.content = content
+  },
+
+  inheritContent(store, module) {
+    store.content = module.editorContent
+    store.editedContent = module.editorContent
   }
 }
 
@@ -40,6 +46,12 @@ const lessonStore = {
   cancelEditedContent(store) {
     store.editedContent = store.content
     store.toggleEditing()
+  },
+
+  inheritContent(store, module) {
+    store.content = module.lessonContent
+    store.editedContent = module.lessonContent
+    store.editing = false
   }
 }
 

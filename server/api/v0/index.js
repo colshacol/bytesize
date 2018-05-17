@@ -1,12 +1,13 @@
 import express from 'express'
 import { database, dbUtils } from '$database'
 import { createNewModule } from './auth'
-
+import { router as modules } from './modules'
 import { prettier } from './prettier'
 
 const router = express.Router()
 
 router.post('/createNewModule', createNewModule)
+router.use('/modules', modules)
 
 router.get('/users/:userName', (req, res, next) => {
   console.log('got a request....')

@@ -6,6 +6,11 @@ export const setEmailInputValue = (self) => (event) => {
 	}))
 }
 
+const setLocalStorageValues = (user, module) => {
+	locast.lastUser = user
+	locast.lastModule = module
+}
+
 export const submitEmail = (self) => async (event) => {
 	const { data, error } = await goGet.json('<API>/createNewModule', {
 		method: 'POST',
@@ -19,9 +24,7 @@ export const submitEmail = (self) => async (event) => {
 
 	// TODO: Don't break. Just alert user of error.
 	error && throw new Error(error)
-
-	locast.lastUser = data.user
-	locast.lastModule = data.module
+	setLocalStorageValues(data.user, data.module)
 
 	self.props.history.push(`/module/${data.user.email}/${data.module.sid}`)
 }
