@@ -2,111 +2,116 @@ import * as React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Editor } from '#components/Editor'
 import Markdown from 'react-markdown-renderer'
-import shards from '#stores'
 import SplitPane from 'react-split-pane'
 import { getModule } from '#utilities/api/getModule'
+import { observer, inject } from 'mobx-react'
 import './ModuleView.css'
 
-const _Editor = shards.receiver('editorStore')((props) => {
+const CodeEditor = observer((props) => {
   return (
-    <Editor
-      onChange={props.setContent}
-      content={props.content}
-      theme="shit"
-    />
+    <div styleName="right">
+      <Editor
+        onChange={props.setContent}
+        content={props.content}
+        theme="shit"
+      />
+    </div>
   )
 })
 
-const LessonEditor = shards.receiver('lessonStore')((props) => {
+const LessonEditor = observer((props) => {
   return (
-    <Editor
-      onChange={props.setEditedContent}
-      content={props.editedContent}
-      theme="white"
-    />
+    <Editor onChange={props.setContent} content={props.content} theme="white" />
   )
 })
 
-
+@observer
 class Lesson extends React.Component {
   render() {
     const { props, state } = this
-    const { stores } = props
+    console.log({ props })
 
     return (
       <div data-light-theme styleName="left">
-				<Choose>
-					<When condition={props.editing}>
-						<LessonEditor {...props} />
-						<div styleName="buttonBox">
-							<button
-								styleName="actionButton"
-								onClick={props.saveEditedContent}
-							>
-								save changes
-							</button>
-							<button
-								styleName="actionButton"
-								onClick={props.cancelEditedContent}
-							>
-								cancel changes
-							</button>
-						</div>
-					</When>
-					<Otherwise>
-						<div styleName="padded" data-lesson-rendered-md-container>
-							<Markdown markdown={props.content} />
-						</div>
-						<div styleName="buttonBox">
-							<button
-								styleName="actionButton"
-								onClick={props.toggleEditing}
-							>
-								toggle editing
-							</button>
-						</div>
-					</Otherwise>
-				</Choose>
+        <Choose>
+          <When condition={props.moduleStore.isEditingLesson}>
+            <LessonEditor
+              content={props.moduleStore.activeModule.editedLessonContent}
+              setContent={props.moduleStore.setEditedLessonContent}
+            />
+            <LessonEditorActions
+              save={props.moduleStore.saveAndToggleLessonEditor}
+              cancel={props.moduleStore.cancelAndToggleLessonEditor}
+            />
+          </When>
+          <When condition={props.moduleStore.isViewingLesson}>
+            <div styleName="padded" data-lesson-rendered-md-container>
+              <Markdown
+                markdown={props.moduleStore.activeModule.lessonContent}
+              />
+            </div>
+            <LessonViewerActions
+              toggleEditing={props.moduleStore.toggleLessonEditor}
+            />
+          </When>
+        </Choose>
       </div>
     )
   }
 }
 
-@shards.receiver(['lessonStore', 'editorStore'])
+const LessonViewerActions = (props) => {
+  return (
+    <div styleName="buttonBox">
+      <button styleName="actionButton" onClick={props.toggleEditing}>
+        edit
+      </button>
+    </div>
+  )
+}
+
+const LessonEditorActions = (props) => {
+  return (
+    <div styleName="buttonBox">
+      <button styleName="actionButton" onClick={props.save}>
+        save
+      </button>
+      <button styleName="actionButton" onClick={props.cancel}>
+        cancel
+      </button>
+    </div>
+  )
+}
+
+const selector = (tree) => {
+  return {
+    moduleStore: tree.state.moduleStore
+  }
+}
+
 @withRouter
+@inject(selector)
+@observer
 export class ModuleView extends React.Component {
-	isLoading = true
-
-  async componentDidMount() {
-    const module = await getModule(
-      this.props.match.params.moduleId,
-      this.props.match.params.userId
-		)
-		
-		module.error && throw new Error(error)
-
-		this.isLoading = false
-		this.props.stores.lessonStore.inheritContent(module.data)
-		this.props.stores.editorStore.inheritContent(module.data)
-		
-	}
-	
   render() {
+    const { props } = this
+
     return (
       <div styleName="ModuleView">
-				<Choose>
-					<When condition={this.isLoading}>
-						<h3>Loading...</h3>
-					</When>
-					<Otherwise>
-						<SplitPane split="vertical" defaultSize={400}>
-							<Lesson {...this.props.stores.lessonStore} />
-							<div styleName="right">
-								<_Editor {...this.props.stores.editorStore} />
-							</div>
-						</SplitPane>
-					</Otherwise>
-				</Choose>
+        <Choose>
+          <When condition={this.isLoading}>
+            <h3>Loading...</h3>
+          </When>
+          <Otherwise>
+            <SplitPane split="vertical" defaultSize={400}>
+              <Lesson moduleStore={props.moduleStore} />
+              <CodeEditor
+                content={props.moduleStore.activeModule.editedCodeContent}
+                setContent={props.moduleStore.setEditedCodeContent}
+              />
+            </SplitPane>
+          </Otherwise>
+        </Choose>
       </div>
     )
   }

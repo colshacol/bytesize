@@ -3,9 +3,19 @@ import { withRouter } from 'react-router'
 
 import * as methods from './methods'
 import { Input } from '#components/Input'
+import { inject, observer } from 'mobx-react'
 import './Splash.css'
 
+const selector = (tree) => {
+  console.warn({ tree })
+  return {
+    moduleStore: tree.state.moduleStore
+  }
+}
+
 @withRouter
+@inject(selector)
+@observer
 export class Splash extends React.Component {
   setEmailInputValue = methods.setEmailInputValue(this)
   handleEnterKey = methods.handleEnterKey(this)

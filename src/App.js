@@ -11,8 +11,8 @@ import {
 import { TopBar } from '#components/TopBar'
 import { Splash } from '#components/Splash'
 import { ModuleView } from '#components/ModuleView'
-import shortId from 'shortid'
-import shards from '#stores'
+import { Provider } from 'mobx-react'
+import rootStore from '#state'
 // import { EditorProvider } from '#stores/Editor'
 
 import './App.css'
@@ -21,11 +21,11 @@ import './App.css'
 export class App extends React.Component {
   render() {
     return (
-      <shards.provider>
+      <Provider state={rootStore}>
         <div styleName="App" data-dark-theme>
           <Routing />
         </div>
-      </shards.provider>
+      </Provider>
     )
   }
 }

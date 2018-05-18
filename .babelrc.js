@@ -50,7 +50,8 @@ module.exports = (api) => {
             '#styles': './src/styles',
             '#features': './src/features',
             '#stores': './src/stores',
-            '#assets': './src/assets'
+            '#assets': './src/assets',
+            '#state': './src/state'
           }
         }
       ],
