@@ -23,7 +23,8 @@ export class Splash extends React.Component {
 
   state = {
     emailInputValue: locast.lastUserEmail || '',
-    passwordInputValue: ''
+    passwordInputValue: '',
+    usernameInputValue: ''
   }
 
   render() {
@@ -32,7 +33,14 @@ export class Splash extends React.Component {
 
     return (
       <div styleName="Splash">
-        <h1 className="title">Create Micro Code Lessons.</h1>
+        <h1 className="title">place some copy here</h1>
+
+        <Input
+          big
+          value={state.usernameInutValue}
+          onChange={this.setInputValue('username')}
+          onKeyPress={this.handleEnterKey}
+        />
 
         <Input
           big
@@ -48,6 +56,7 @@ export class Splash extends React.Component {
           onKeyPress={this.handleEnterKey}
         />
 
+        {/* TODO: Style buttons and shit... */}
         <button onClick={this.submitRegistration}>submit</button>
 
         <small styleName="emailPrompt">

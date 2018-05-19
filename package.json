@@ -8,6 +8,8 @@
   "license": "MIT",
   "scripts": {
     "server": "node -r @babel/register -r module-alias/register server",
+    "nodemonServer":
+      "nodemon -r @babel/register -r module-alias/register server",
     "startClient": "webpack-dev-server --config ./webpack/dev.js",
     "buildProd":
       "webpack --mode production --optimize-minimize true --config ./webpack/dev.js && npm run server",

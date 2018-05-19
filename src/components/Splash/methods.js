@@ -1,3 +1,5 @@
+// TODO: Separate registration and module creation.
+
 export const setInputValue = (self) => (which) => (event) => {
   event.persist()
 
@@ -11,8 +13,13 @@ const setLocalStorageValues = (user, module) => {
   locast.lastModule = module
 }
 
+const handleRegistrationError = (self) => (registration) => {
+  // TODO: Handle error.
+  console.error(`Got an error. ¯\_(ツ)_/¯`, registration.error)
+}
+
 export const submitRegistration = (self) => async (event) => {
-  const { data, error } = await goGet.json(
+  const registration = await goGet.json(
     `${window.location.origin}/api/v0/users/create`,
     {
       method: 'POST',
@@ -22,15 +29,21 @@ export const submitRegistration = (self) => async (event) => {
       credentials: 'include',
       body: JSON.stringify({
         emailAddress: self.state.emailInputValue,
-        password: self.state.passwordInputValue
+        password: self.state.passwordInputValue,
+        username: self.state.usernameInputValue
       })
     }
   )
 
-  locast.lastUserEmail = self.state.emailInputValue
+  registration.error && handleRegistrationError(self)(registration)
 
-  console.log({ data, error })
+  // NOTE: If successful, set email in localStorage.
+  !registration.error && (locast.lastUserEmail = self.state.emailInputValue)
 
+  console.warn(registration)
+
+  // TODO: Offload module creation to the server.
+  // NOTE: Currently doesn't give a fuck what the server sends.
   const module = self.props.moduleStore.createModule(self.state.emailInputValue)
   self.props.history.push(`/module/${module.ownerEmail}/${module.sid}`)
 }
