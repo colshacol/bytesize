@@ -1,0 +1,29 @@
+
+.Input {
+	margin-top: 16px;
+	border-radius: 3px;
+	border: 1px solid rgba(0,0,0,0.1);
+	height: 38px;
+	overflow: hidden;
+	display: flex;
+	justify-content: stretch;
+	width: 360px;
+}
+
+.big > input {
+	padding: 8px 12px;
+	font-size: 18px;
+	width: 100%;
+}
+
+.withRightButton {
+	/* border-radius: 3px 0 0 3px; */
+}
+
+.createButton {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-left: 1px solid #20ad58;
+}

@@ -1,9 +1,20 @@
-:global [data-dark-theme] {
-	background: #202231;
-	color: #ffffff;
+[data-dark-theme] {
+	background: var(--darkPurple);
+	color: var(--white);
 }
 
-:global [data-white-theme] {
-	background: #ffffff;
-	color: #202231;
+[data-dark-theme] [data-input] {
+
+}
+
+[data-dark-theme] [data-input] [data-button] {
+	background: var(--green);
+	color: var(--white);
+}
+
+
+
+:global [data-light-theme] {
+	background: var(--white);
+	color: var(--darkText);
 }

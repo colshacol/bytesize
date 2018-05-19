@@ -1,1 +1,1 @@
-export { $NAME } from './$NAME.component'
+export { $NAME } from './$NAME'

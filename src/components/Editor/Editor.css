@@ -1,0 +1,14 @@
+.Editor {
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;
+}
+
+:global .Pane.vertical {
+	max-height: calc(100% - 60px);
+}
+
+:global .react-codemirror2 {
+	height: 100%;
+	width: 100%;
+}

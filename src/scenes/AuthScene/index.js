@@ -1,1 +1,0 @@
-export { AuthScene } from './AuthScene'

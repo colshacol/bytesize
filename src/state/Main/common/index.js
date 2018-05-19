@@ -1,1 +1,0 @@
-export { activateModule } from './activateModule'
