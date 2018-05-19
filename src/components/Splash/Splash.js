@@ -17,16 +17,19 @@ const selector = (tree) => {
 @inject(selector)
 @observer
 export class Splash extends React.Component {
-  setEmailInputValue = methods.setEmailInputValue(this)
+  setInputValue = methods.setInputValue(this)
   handleEnterKey = methods.handleEnterKey(this)
-  submitEmail = methods.submitEmail(this)
+  submitRegistration = methods.submitRegistration(this)
 
   state = {
-    emailInputValue: locast.lastUser.email || ''
+    emailInputValue: locast.lastUserEmail || '',
+    passwordInputValue: ''
   }
 
   render() {
     const { props, state } = this
+    console.log('<Splash>', { props, state })
+
     return (
       <div styleName="Splash">
         <h1 className="title">Create Micro Code Lessons.</h1>
@@ -34,13 +37,18 @@ export class Splash extends React.Component {
         <Input
           big
           value={state.emailInputValue}
-          onChange={this.setEmailInputValue}
+          onChange={this.setInputValue('email')}
           onKeyPress={this.handleEnterKey}
-          rightButton={{
-            onClick: this.submitEmail,
-            text: 'create'
-          }}
         />
+
+        <Input
+          big
+          value={state.passwordInputValue}
+          onChange={this.setInputValue('password')}
+          onKeyPress={this.handleEnterKey}
+        />
+
+        <button onClick={this.submitRegistration}>submit</button>
 
         <small styleName="emailPrompt">
           Enter your email to create a new module.
