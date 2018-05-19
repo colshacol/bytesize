@@ -1,8 +1,8 @@
-export const setEmailInputValue = (self) => (event) => {
+export const setInputValue = (self) => (which) => (event) => {
   event.persist()
 
   self.setState((state) => ({
-    emailInputValue: event.target.value
+    [`${which}InputValue`]: event.target.value
   }))
 }
 
@@ -11,20 +11,25 @@ const setLocalStorageValues = (user, module) => {
   locast.lastModule = module
 }
 
-export const submitEmail = (self) => async () => {
-  // const { data, error } = await goGet.json('<API>/createNewModule', {
-  // 	method: 'POST',
-  // 	headers: new Headers({
-  // 		'Content-Type': 'application/json'
-  // 	}),
-  // 	body: JSON.stringify({
-  // 		email: self.state.emailInputValue
-  // 	})
-  // })
+export const submitRegistration = (self) => async (event) => {
+  const { data, error } = await goGet.json(
+    `${window.location.origin}/api/v0/users/create`,
+    {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: 'include',
+      body: JSON.stringify({
+        emailAddress: self.state.emailInputValue,
+        password: self.state.passwordInputValue
+      })
+    }
+  )
 
-  // TODO: Don't break. Just alert user of error.
-  // error && throw new Error(error)
-  // setLocalStorageValues(data.user, data.module)
+  locast.lastUserEmail = self.state.emailInputValue
+
+  console.log({ data, error })
 
   const module = self.props.moduleStore.createModule(self.state.emailInputValue)
   self.props.history.push(`/module/${module.ownerEmail}/${module.sid}`)

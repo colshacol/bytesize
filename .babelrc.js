@@ -5,7 +5,12 @@ module.exports = (api) => {
     presets: ['@babel/preset-react', '@babel/preset-env', '@babel/preset-flow'],
     plugins: [
       'react-hot-loader/babel',
-      '@babel/plugin-proposal-decorators',
+      [
+        '@babel/plugin-proposal-decorators',
+        {
+          legacy: true
+        }
+      ],
       [
         '@babel/plugin-proposal-class-properties',
         {

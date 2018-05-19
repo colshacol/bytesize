@@ -3,8 +3,6 @@ const webpack = require('webpack')
 const path = require('path')
 require('dotenv').config()
 
-console.log(path.resolve(__dirname, '../src/styles/mixins/index.styl'))
-
 module.exports = {
   devtool: 'inline-source-map',
   mode: 'development',
@@ -29,7 +27,14 @@ module.exports = {
     port: 9000,
     hot: true,
     hotOnly: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    disableHostCheck: true,
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:9876',
+        secure: false
+      }
+    }
   },
 
   module: {
