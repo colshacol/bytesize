@@ -34,54 +34,70 @@ export class Splash extends React.Component {
 
     return (
       <div styleName="Splash">
-        <h1 className="title">place some copy here</h1>
+        <h1 styleName="title">
+          sometimes, all you need is a <span styleName="boldWord">module</span>
+        </h1>
 
-        <Input
-          big
-          value={state.usernameInutValue}
-          onChange={this.setInputValue('username')}
-          onKeyPress={this.handleEnterKey}
-        />
+        <p>
+          bytesized allows you to create and share tiny, executable JavaScript
+          lessons
+        </p>
 
-        <Input
-          big
-          value={state.emailInputValue}
-          onChange={this.setInputValue('email')}
-          onKeyPress={this.handleEnterKey}
-        />
+        <div styleName="loginAndFeatures">
+          <div styleName="login">
+            <Input
+              big
+              value={state.usernameInutValue}
+              placeholder="username"
+              onChange={this.setInputValue('username')}
+              onKeyPress={this.handleEnterKey}
+            />
 
-        <Input
-          big
-          value={state.passwordInputValue}
-          onChange={this.setInputValue('password')}
-          onKeyPress={this.handleEnterKey}
-        />
+            <Input
+              big
+              value={state.emailInputValue}
+              placeholder="email address"
+              onChange={this.setInputValue('email')}
+              onKeyPress={this.handleEnterKey}
+            />
 
-        {/* TODO: Style buttons and shit... */}
-        <button onClick={this.submitRegistration}>submit</button>
+            <Input
+              big
+              value={state.passwordInputValue}
+              placeholder="password"
+              onChange={this.setInputValue('password')}
+              onKeyPress={this.handleEnterKey}
+              type="password"
+            />
 
-        <h1>LOGIN FORM</h1>
+            {/* TODO: Style buttons and shit... */}
+            <button onClick={this.submitRegistration}>Sign Up</button>
+          </div>
+          {/* <div styleName="features">cool features</div> */}
+        </div>
 
-        <Input
+        {/* <h1>LOGIN FORM</h1> */}
+
+        {/* <Input
           big
           value={state.usernameInputValue}
           onChange={this.setInputValue('username')}
           onKeyPress={this.handleLoginEnterKey}
-        />
+        /> */}
 
-        <Input
+        {/* <Input
           big
           value={state.passwordInputValue}
           onChange={this.setInputValue('password')}
           onKeyPress={this.handleLoginEnterKey}
-        />
+        /> */}
 
         {/* TODO: Style buttons and shit... */}
-        <button onClick={this.attemptLogin}>submit</button>
+        {/* <button onClick={this.attemptLogin}>submit</button> */}
 
-        <small styleName="emailPrompt">
+        {/* <small styleName="emailPrompt">
           Enter your email to create a new module.
-        </small>
+        </small> */}
       </div>
     )
   }

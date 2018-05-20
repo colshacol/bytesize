@@ -1,16 +1,10 @@
-@import '~codemirror/lib/codemirror.css';
-@import '~codemirror/theme/material.css';
-
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
-html,
-body,
-#root {
-}
+html, body, #root {}
 
 #root {
 	font-feature-settings: 'liga' 1;
@@ -111,7 +105,9 @@ body,
 	max-height: 100%;
 	/* overflow-y: scroll; */
 }
+
 /* delimiter tokens */
+
 .cm-s-shit {
 	color: #ffffff;
 	height: 100%;
@@ -119,19 +115,21 @@ body,
 }
 
 /* let, const, if, else, this, new, function ... */
+
 .cm-s-shit .cm-keyword {
 	color: #b475ff;
 	/* font-style: oblique; */
-
 	/* color: #465d83; */
 }
 
 /* e.g. #id */
+
 .cm-s-shit .cm-atom {
 	color: #00f3f3;
 }
 
 /* e.g. 20 */
+
 .cm-s-shit .cm-number {
 	color: #f7f616;
 }
@@ -149,6 +147,7 @@ body,
 }
 
 /* e.g. px, em */
+
 .cm-s-shit .cm-unit {
 	color: #ff0000;
 }
@@ -158,28 +157,33 @@ body,
 }
 
 /* identifiers */
+
 .cm-s-shit .cm-def {
 	color: #fff;
 	font-weight: 500;
 }
 
 /* e.g. $, i */
+
 .cm-s-shit .cm-variable {
 	color: #ff68c4;
 }
 
 /* e.g. for key in [this], Markdown li */
+
 .cm-s-shit .cm-variable-2 {
 	color: #ff9d14;
 }
 
 /* e.g. getElementbyId, CSS properties */
+
 .cm-s-shit .cm-property {
 	color: #709eff;
 	/* color: #ff506d; */
 }
 
 /* e.g. CoffeeScript ->, CSS colons */
+
 .cm-s-shit .cm-operator {
 	color: #729cf3;
 	font-weight: 700;
@@ -192,56 +196,67 @@ body,
 }
 
 /* e.g. // comments */
+
 .cm-s-shit .cm-comment {
 	color: #5b4e8b;
 }
 
 /* "strings" and 'strings' */
+
 .cm-s-shit .cm-string {
 	color: #76f0dd;
 }
 
 /* `template strings */
+
 .cm-s-shit .cm-string-2 {
 	color: #84d8ff;
 }
 
 /* e.g. @font-face */
+
 .cm-s-shit .cm-meta {
 	color: #79ffa5;
 }
 
 /*  */
+
 .cm-s-shit .cm-header {
 	color: #49d320;
 }
 
 /* e.g. HTML elements */
+
 .cm-s-shit .cm-tag {
 	color: #b475ff;
 }
 
 /* e.g. class="" id="" */
+
 .cm-s-shit .cm-attribute {
 	color: #b475ff;
 }
 
 /* not sure if used */
+
 .cm-s-shit .cm-strong {
 	color: #345038;
 }
 
 /* not sure if used */
+
 .cm-s-shit .cm-em {
 	color: #2aee24;
 }
 
 /* e.g. .box */
+
 .cm-s-shit .cm-qualifier {
 	color: #51e624;
 }
 
 /* not sure if used */
+
 .cm-s-shit .cm-builtin {
 	color: #16f016;
 }

@@ -16,7 +16,6 @@ export const EDITOR_OPTIONS = (props) => ({
 
 export class Editor extends React.PureComponent {
   render() {
-    console.log('fuck idk', { props: this.props })
     return (
       <div styleName="Editor">
         <CodeMirror
@@ -24,9 +23,6 @@ export class Editor extends React.PureComponent {
           options={EDITOR_OPTIONS(this.props)}
           onBeforeChange={(editor, data, value) => {
             this.props.onChange(value)
-          }}
-          onChange={(editor, data, value) => {
-            // this.setState({ value })
           }}
         />
       </div>

@@ -1,18 +1,14 @@
 [data-dark-theme] {
-	background: var(--darkPurple);
+	background: var(--dark);
 	color: var(--white);
 }
 
-[data-dark-theme] [data-input] {
-
-}
+[data-dark-theme] [data-input] {}
 
 [data-dark-theme] [data-input] [data-button] {
 	background: var(--green);
 	color: var(--white);
 }
-
-
 
 :global [data-light-theme] {
 	background: var(--white);

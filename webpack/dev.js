@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         test: /\.(css|styl)$/,
-        include: /(potionsTheme|node_modules)/,
+        include: /(editorThemes|potionsTheme|node_modules)/,
         use: [
           {
             loader: 'style-loader',
@@ -104,7 +104,7 @@ module.exports = {
       },
       {
         test: /\.(css|styl)$/,
-        exclude: /(potionsTheme|node_modules)/,
+        exclude: /(editorTheme|codemirror|potionsTheme|node_modules)/,
         use: [
           {
             loader: 'style-loader',

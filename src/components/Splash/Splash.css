@@ -5,7 +5,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 64px;
+	padding-bottom: 200px;
 }
 
 .emailPrompt {
@@ -14,4 +14,41 @@
 	color: var(--whitePurple);
 	margin-top: 8px;
 	font-weight: 300;
+}
+
+.title {
+	font-weight: 300;
+}
+
+.boldWord {
+	font-weight: 700;
+}
+
+.loginAndFeatures {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 0 24px;
+	max-width: 900px;
+	width: 100%;
+}
+
+.login>button {
+	margin-top: 16px;
+	width: 100%;
+}
+
+.login>div[data-input] {
+	width: 100%;
+}
+
+.login, .features {
+	padding: 24px;
+	width: 100%;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 450;
 }

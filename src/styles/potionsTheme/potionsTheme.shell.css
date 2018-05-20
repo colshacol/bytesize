@@ -1,22 +1,17 @@
-@import '~codemirror/lib/codemirror.css';
-@import '~codemirror/theme/material.css';
-
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
-html,
-body,
-#root {
-}
+html, body, #root {}
 
 #root {
 	font-feature-settings: 'liga' 1;
 }
 
 /* TODO: Make specific to terminal */
+
 .CodeMirror-vscrollbar::-webkit-scrollbar {
 	background-color: rgba(0, 0, 0, 0.1);
 }
@@ -89,6 +84,7 @@ body,
 }
 
 /* delimiter tokens */
+
 .cm-s-shellShit {
 	color: #ffffff;
 	background: transparent;
@@ -99,19 +95,21 @@ body,
 }
 
 /* let, const, if, else, this, new, function ... */
+
 .cm-s-shellShit .cm-keyword {
 	color: #5e5eb9;
 	font-style: oblique;
-
 	/* color: #465d83; */
 }
 
 /* e.g. #id */
+
 .cm-s-shellShit .cm-atom {
 	color: #00f3f3;
 }
 
 /* e.g. 20 */
+
 .cm-s-shellShit .cm-number {
 	color: #fc41ae;
 }
@@ -127,6 +125,7 @@ body,
 }
 
 /* e.g. px, em */
+
 .cm-s-shellShit .cm-unit {
 	color: #ff0000;
 }
@@ -136,82 +135,98 @@ body,
 }
 
 /* identifiers */
+
 .cm-s-shellShit .cm-def {
 	color: #cf6e9c;
 }
 
 /* e.g. $, i */
+
 .cm-s-shellShit .cm-variable {
 	color: #b173eb;
 }
 
 /* e.g. for key in [this], Markdown li */
+
 .cm-s-shellShit .cm-variable-2 {
 	color: #fd8738;
 }
 
 /* e.g. getElementbyId, CSS properties */
+
 .cm-s-shellShit .cm-property {
 	color: #ff506d;
 }
 
 /* e.g. CoffeeScript ->, CSS colons */
+
 .cm-s-shellShit .cm-operator {
 	color: #5e5eb9;
 	/* text-shadow: 0px 1px 16px rgba(38, 247, 230, 0.25); */
 }
 
 /* e.g. // comments */
+
 .cm-s-shellShit .cm-comment {
 	color: #5b4e8b;
 }
 
 /* "strings" and 'strings' */
+
 .cm-s-shellShit .cm-string {
 	color: #55ece0;
 }
 
 /* `template strings */
+
 .cm-s-shellShit .cm-string-2 {
 	color: #84d8ff;
 }
 
 /* e.g. @font-face */
+
 .cm-s-shellShit .cm-meta {
 	color: #79ffa5;
 }
 
 /*  */
+
 .cm-s-shellShit .cm-header {
 	color: #49d320;
 }
 
 /* e.g. HTML elements */
+
 .cm-s-shellShit .cm-tag {
 	color: #60ee02;
 }
 
 /* e.g. class="" id="" */
+
 .cm-s-shellShit .cm-attribute {
 	color: #17eb04;
 }
 
 /* not sure if used */
+
 .cm-s-shellShit .cm-strong {
 	color: #345038;
 }
 
 /* not sure if used */
+
 .cm-s-shellShit .cm-em {
 	color: #2aee24;
 }
 
 /* e.g. .box */
+
 .cm-s-shellShit .cm-qualifier {
 	color: #51e624;
 }
 
 /* not sure if used */
+
 .cm-s-shellShit .cm-builtin {
 	color: #16f016;
 }

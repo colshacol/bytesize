@@ -1,6 +1,5 @@
 @import './variables.css';
 @import './themes.css';
-
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -11,6 +10,7 @@ body {
 	font-family: 'Raleway', 'Open Sans', sans-serif;
 	line-height: 1.4;
 	letter-spacing: 0.5px;
+	font-size: 18px;
 }
 
 a {
@@ -26,13 +26,12 @@ button {
 	font-weight: 400;
 	letter-spacing: 2px;
 	line-height: 1.6;
-	padding: 0 16px;
+	padding: 8px 16px;
 	border: 0;
 	outline: 0;
 }
 
-input,
-input:focus {
+input, input:focus {
 	border: none;
 	outline: none;
 }
@@ -60,9 +59,29 @@ input {
 }
 
 :global h1.title {
-	font-size: 42px;
+	font-size: 56px;
 }
 
 :global .italic {
 	font-style: italic;
+}
+
+:global .CodeMirror {
+	height: 100%;
+}
+
+/* HACK: No .cm-tag provided with oceanic theme. */
+
+:global .cm-tag {
+	color: #ff95be;
+}
+
+/* HACK: No .cm-bracket provided with oceanic theme. */
+
+:global .cm-bracket {
+	color: #98a0a9;
+}
+
+:global .Pane2 {
+	overflow-x: scroll;
 }

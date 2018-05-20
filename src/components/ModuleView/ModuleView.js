@@ -13,7 +13,7 @@ const CodeEditor = observer((props) => {
       <Editor
         onChange={props.setContent}
         content={props.content}
-        theme="shit"
+        theme="oceanic"
       />
     </div>
   )

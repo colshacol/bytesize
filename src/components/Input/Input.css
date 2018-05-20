@@ -1,8 +1,7 @@
-
 .Input {
 	margin-top: 16px;
 	border-radius: 3px;
-	border: 1px solid rgba(0,0,0,0.1);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	height: 38px;
 	overflow: hidden;
 	display: flex;
@@ -10,7 +9,24 @@
 	width: 360px;
 }
 
-.big > input {
+.input {
+	background: rgba(0, 0, 0, 0.2);
+	color: var(--white);
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+
+.input::-webkit-input-placeholder {
+	color: rgba(199, 199, 199, 0.3);
+	font-weight: 300;
+	letter-spacing: 2px;
+}
+
+.input[type="password"] {
+	letter-spacing: 5px;
+}
+
+.big>input {
 	padding: 8px 12px;
 	font-size: 18px;
 	width: 100%;

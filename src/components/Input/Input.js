@@ -21,6 +21,7 @@ export const Input = (props) => {
       className={props.className}
     >
       <input
+        styleName="input"
         onChange={props.onChange}
         value={props.value}
         placeholder={props.placeholder}
@@ -35,6 +36,7 @@ export const Input = (props) => {
         onKeyDown={props.onKeyDown}
         onKeyPress={props.onKeyPress}
         onKeyUp={props.onKeyUp}
+        type={props.type}
       />
       <If condition={props.rightButton}>
         <button
