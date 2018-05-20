@@ -49,5 +49,26 @@ export const submitRegistration = (self) => async (event) => {
 }
 
 export const handleEnterKey = (self) => (event) => {
-  if (event.key === 'Enter') self.submitEmail()
+  event.key === 'Enter' && self.submitEmail()
+}
+
+export const handleLoginEnterKey = (self) => (event) => {
+  event.key === 'Enter' && self.attemptLogin()
+}
+
+export const attemptLogin = (self) => async (event) => {
+  const login = await goGet.json(
+    `${window.location.origin}/api/v0/users/login`,
+    {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      credentials: 'include',
+      body: JSON.stringify({
+        password: self.state.passwordInputValue,
+        username: self.state.usernameInputValue
+      })
+    }
+  )
 }

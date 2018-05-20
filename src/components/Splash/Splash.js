@@ -20,7 +20,8 @@ export class Splash extends React.Component {
   setInputValue = methods.setInputValue(this)
   handleEnterKey = methods.handleEnterKey(this)
   submitRegistration = methods.submitRegistration(this)
-
+  attemptLogin = methods.attemptLogin(this)
+  handleLoginEnterKey = methods.handleLoginEnterKey(this)
   state = {
     emailInputValue: locast.lastUserEmail || '',
     passwordInputValue: '',
@@ -58,6 +59,25 @@ export class Splash extends React.Component {
 
         {/* TODO: Style buttons and shit... */}
         <button onClick={this.submitRegistration}>submit</button>
+
+        <h1>LOGIN FORM</h1>
+
+        <Input
+          big
+          value={state.usernameInputValue}
+          onChange={this.setInputValue('username')}
+          onKeyPress={this.handleLoginEnterKey}
+        />
+
+        <Input
+          big
+          value={state.passwordInputValue}
+          onChange={this.setInputValue('password')}
+          onKeyPress={this.handleLoginEnterKey}
+        />
+
+        {/* TODO: Style buttons and shit... */}
+        <button onClick={this.attemptLogin}>submit</button>
 
         <small styleName="emailPrompt">
           Enter your email to create a new module.
