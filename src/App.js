@@ -13,12 +13,16 @@ import { Splash } from '#components/Splash'
 import { ModuleView } from '#components/ModuleView'
 import { Provider } from 'mobx-react'
 import rootStore from '#state'
-// import { EditorProvider } from '#stores/Editor'
+import { hot } from 'react-hot-loader'
 
 import './App.css'
-// import { ShardsProvider } from './utilities/Shards/index';
 
 export class App extends React.Component {
+  componentDidCatch(error, info) {
+    console.warn(info)
+    console.warn(error)
+  }
+
   render() {
     return (
       <Provider state={rootStore}>
@@ -30,17 +34,19 @@ export class App extends React.Component {
   }
 }
 
+export default hot(module)(App)
+
 const Logger = (window.Logger = (props) => {
   console.log(props._name || 'Logger', ' ---> ', props)
   return null
 })
 
 const Routing = (props) => {
+  console.log({ Splash })
   return (
     <BrowserRouter>
       <>
         <Route path="*" component={TopBar} />
-        {/* <Logger _name="RouterLogger" /> */}
         <Switch>
           <Route exact path="/" component={Splash} />
           <Route

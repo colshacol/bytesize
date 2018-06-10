@@ -22,10 +22,16 @@ export class Splash extends React.Component {
   submitRegistration = methods.submitRegistration(this)
   attemptLogin = methods.attemptLogin(this)
   handleLoginEnterKey = methods.handleLoginEnterKey(this)
+
   state = {
     emailInputValue: locast.lastUserEmail || '',
     passwordInputValue: '',
     usernameInputValue: ''
+  }
+
+  componentDidCatch(error, info) {
+    console.warn(info)
+    console.warn(error)
   }
 
   render() {

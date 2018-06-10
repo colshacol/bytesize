@@ -6,7 +6,7 @@ require('dotenv').config()
 module.exports = {
   devtool: 'inline-source-map',
   mode: 'development',
-  entry: ['react-hot-loader/patch', './src/index.js'],
+  entry: ['./src/index.js'],
 
   output: {
     filename: 'bundle.js',
@@ -159,5 +159,10 @@ module.exports = {
     ]
   },
 
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"development"'
+    })
+  ]
 }

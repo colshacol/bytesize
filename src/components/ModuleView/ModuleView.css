@@ -39,12 +39,11 @@
 	margin: 16px 0;
 }
 
-:global [data-lesson-rendered-md-container] p + p {
+:global [data-lesson-rendered-md-container] p+p {
 	margin-top: 0px;
 }
 
-:global [data-lesson-rendered-md-container] ol,
-:global [data-lesson-rendered-md-container] ul {
+:global [data-lesson-rendered-md-container] ol, :global [data-lesson-rendered-md-container] ul {
 	margin: 16px 0;
 }
 
@@ -56,6 +55,7 @@
 
 .left {
 	/* width: 30%; */
+	background: #f1f2f8;
 	padding-top: 12px;
 	height: 100%;
 	display: flex;
@@ -63,12 +63,14 @@
 }
 
 .buttonBox {
-	background: var(--purple);
-	padding: 16px;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	position: absolute;
+	right: -21px;
+	bottom: 24px;
+	z-index: 55;
 }
 
 .actionButton {
@@ -79,4 +81,20 @@
 .right {
 	/* width: 70%; */
 	height: 100%;
+}
+
+.actionIcon {
+	box-shadow: 2px 1px 16px -1px rgba(0, 0, 0, 0.45);
+	margin-top: 24px;
+	border-radius: 50px;
+	background: var(--purple);
+	height: 40px;
+	max-height: 40px;
+	width: 40px;
+	max-width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 1px;
+	border-bottom: 1px solid #643bd3;
 }
