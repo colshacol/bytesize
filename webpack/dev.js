@@ -4,9 +4,10 @@ const path = require('path')
 require('dotenv').config()
 
 module.exports = {
+  context: path.resolve(process.cwd(), 'src'),
   devtool: 'inline-source-map',
   mode: 'development',
-  entry: ['./src/index.js'],
+  entry: ['./index.js'],
 
   output: {
     filename: 'bundle.js',
@@ -115,7 +116,7 @@ module.exports = {
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: '_[name]-[local]'
+              localIdentName: '[path]-[name]-[local]'
             }
           },
           {

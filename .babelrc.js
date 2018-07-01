@@ -4,6 +4,14 @@ module.exports = (api) => {
   return {
     presets: ['@babel/preset-react', '@babel/preset-env', '@babel/preset-flow'],
     plugins: [
+      [
+        'babel-plugin-react-css-modules',
+        {
+          generateScopedName: '[path]-[name]-[local]',
+          handleMissingStyleName: 'warn',
+          context: './src'
+        }
+      ],
       'react-hot-loader/babel',
       [
         '@babel/plugin-proposal-decorators',
@@ -58,14 +66,6 @@ module.exports = (api) => {
             '#assets': './src/assets',
             '#state': './src/state'
           }
-        }
-      ],
-      [
-        'babel-plugin-react-css-modules',
-        {
-          generateScopedName: '_[name]-[local]',
-          handleMissingStyleName: 'warn',
-          context: '.${PWD}/src'
         }
       ],
       'babel-plugin-dev-expression',
