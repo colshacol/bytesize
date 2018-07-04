@@ -24,9 +24,14 @@ export class Splash extends React.Component {
   handleLoginEnterKey = methods.handleLoginEnterKey(this)
 
   state = {
-    emailInputValue: locast.lastUserEmail || '',
+    emailInputValue: localStorage.getItem('user.email') || '',
     passwordInputValue: '',
-    usernameInputValue: ''
+    usernameInputValue: localStorage.getItem('user.userName') || ''
+  }
+
+  componentWillMount() {
+    localStorage.getItem('user.authenticated') &&
+      this.props.history.push(localStorage.getItem('history.lastModulePath'))
   }
 
   componentDidCatch(error, info) {
@@ -36,7 +41,6 @@ export class Splash extends React.Component {
 
   render() {
     const { props, state } = this
-    console.log('<Splash>', { props, state })
 
     return (
       <div styleName="Splash">

@@ -1,5 +1,6 @@
 @import './variables.css';
 @import './themes.css';
+@import '../../node_modules/@ibm/plex/css/ibm-plex.css';
 * {
 	box-sizing: border-box;
 	padding: 0;
@@ -7,7 +8,7 @@
 }
 
 body {
-	font-family: 'Raleway', 'Open Sans', sans-serif;
+	font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
 	line-height: 1.4;
 	letter-spacing: 0.5px;
 	font-size: 18px;

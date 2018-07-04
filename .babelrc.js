@@ -2,7 +2,11 @@ module.exports = (api) => {
   api.cache(true)
 
   return {
-    presets: ['@babel/preset-react', '@babel/preset-env', '@babel/preset-flow'],
+    presets: [
+      '@babel/preset-react',
+      ['@babel/preset-env', { modules: false }],
+      '@babel/preset-flow'
+    ],
     plugins: [
       [
         'babel-plugin-react-css-modules',

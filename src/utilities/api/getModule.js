@@ -7,6 +7,5 @@ export const getModule = async (moduleId, email) => {
     method: 'GET'
   })
 
-  console.log({ response })
   return response
 }

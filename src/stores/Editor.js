@@ -7,11 +7,9 @@ const state = {
 
 const actions = {
   setContent(store, value) {
-    console.log('setContent', store, value)
     store.content = value
   }
 }
 
 const EditorProvider = shards.create('editor', state, actions)
-console.log(EditorProvider)
 export { EditorProvider }

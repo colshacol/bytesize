@@ -6,13 +6,12 @@ import './TopBar.css'
 
 export class TopBar extends React.Component {
   render() {
-    // console.log(this.props)
     return (
       <div data-light-theme styleName="TopBar">
         <div styleName="container">
-          <Link to="/">
+          <a href="/">
             <p styleName="logo">bytesized</p>
-          </Link>
+          </a>
         </div>
       </div>
     )

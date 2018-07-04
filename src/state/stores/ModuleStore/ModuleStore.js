@@ -5,5 +5,5 @@ import * as t from '#state/utilities/typeUtils'
 import Module from '#state/stores/Module'
 
 export const ModuleStore = t.model('ModuleStore', {
-  activeModule: t.optional.maybe(Module)
+  activeModule: t.optional.type(Module, {})
 })

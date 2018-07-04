@@ -83,9 +83,12 @@
 	height: 100%;
 }
 
+.ModuleView .actionIcon {
+	margin-top: 24px;
+}
+
 .actionIcon {
 	box-shadow: 2px 1px 16px -1px rgba(0, 0, 0, 0.45);
-	margin-top: 24px;
 	border-radius: 50px;
 	background: var(--purple);
 	height: 40px;
@@ -97,4 +100,59 @@
 	justify-content: center;
 	padding-left: 1px;
 	border-bottom: 1px solid #643bd3;
+	transition: all 0.3s;
+	cursor: pointer;
+}
+
+.icon {
+	max-height: 16px;
+	position: relative;
+	top: 1px;
+}
+
+.actionIcon:first-of-type .icon {
+	left: 1px;
+}
+
+.visible {
+	width: 40px;
+	height: 40px;
+	margin-top: 24px;
+}
+
+.ModuleView .actionIcon.invisible {
+	width: 0;
+	height: 0;
+	margin-top: 0;
+}
+
+.Terminal {
+	background: #11181f;
+	height: 100%;
+}
+
+.Terminal div[class] div[class] * {
+	font-family: inconsolata, monospace !important;
+	font-size: 16px;
+	line-height: 1.4;
+}
+
+.Terminal div[class] div[data-method] {
+	padding-top: 1px;
+	padding-bottom: 3px;
+}
+
+.Terminal div[class] div[data-method="error"] {
+	background: #311019;
+	border: 1px solid #37111b;
+}
+
+.Terminal div[class] div[data-method="error"] * {
+	background: #311019;
+}
+
+:global .Resizer.horizontal {
+	height: 3px;
+	background: #656A82;
+	cursor: row-resize;
 }

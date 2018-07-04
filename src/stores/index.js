@@ -60,6 +60,4 @@ const shards = new Shards({
   lessonStore
 })
 
-console.log({ shards })
-
 export default shards

@@ -42,7 +42,6 @@ const Logger = (window.Logger = (props) => {
 })
 
 const Routing = (props) => {
-  console.log({ Splash })
   return (
     <BrowserRouter>
       <>

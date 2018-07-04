@@ -5,4 +5,6 @@ import { views } from './views'
 Root.actions(actions)
 Root.views(views)
 
-export default Root.create()
+const root = Root.create()
+window.rootStore = root
+export default root

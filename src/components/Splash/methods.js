@@ -35,21 +35,26 @@ export const submitRegistration = (self) => async (event) => {
     }
   )
 
-  registration.error && handleRegistrationError(self)(registration)
+  console.warn({ registration })
+  registration.data.error && handleRegistrationError(self)(registration)
 
   // NOTE: If successful, set email in localStorage.
-  !registration.error && (locast.lastUserEmail = self.state.emailInputValue)
-
-  console.warn(registration)
+  if (!registration.data.error) {
+    localStorage.setItem('user.email', self.state.emailInputValue)
+    localStorage.setItem('user.userName', self.state.usernameInputValue)
+    localStorage.setItem('user.authenticated', true)
+  }
 
   // TODO: Offload module creation to the server.
   // NOTE: Currently doesn't give a fuck what the server sends.
   const module = self.props.moduleStore.createModule(self.state.emailInputValue)
-  self.props.history.push(`/module/${module.ownerEmail}/${module.sid}`)
+  self.props.history.push(
+    `/module/${self.state.usernameInputValue}/${module.sid}`
+  )
 }
 
 export const handleEnterKey = (self) => (event) => {
-  event.key === 'Enter' && self.submitEmail()
+  event.key === 'Enter' && self.attemptLogin()
 }
 
 export const handleLoginEnterKey = (self) => (event) => {

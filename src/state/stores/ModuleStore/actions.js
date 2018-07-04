@@ -12,6 +12,15 @@ export const actions = (self) => {
     return module
   }
 
+  const runCode = (code) => {
+    const response = fetch('http://localhost:9876/run', {
+      method: 'POST',
+      body: JSON.stringify({
+        code
+      })
+    })
+  }
+
   const toggleLessonEditor = () => {
     self.activeModule.lessonDisplayState =
       self.activeModule.lessonDisplayState === 'viewing' ? 'editing' : 'viewing'

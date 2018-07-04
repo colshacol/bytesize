@@ -4,123 +4,131 @@ import { Editor } from '#components/Editor'
 import Markdown from 'react-markdown-renderer'
 import SplitPane from 'react-split-pane'
 import { getModule } from '#utilities/api/getModule'
-import { observer, inject } from 'mobx-react'
-import Ionicon from 'react-ionicons'
+import { Observer, inject, observer } from 'mobx-react'
+import { Icon } from 'carbon-components-react'
+import { Console, Hook, Decode } from 'console-feed'
+import { LessonStore, CodeStore } from './store'
+
 import './ModuleView.css'
 
-const CodeEditor = observer((props) => {
+const ICON_STYLE = {}
+
+const saveIconClassName = (props) => {
+  return props.isEditingLesson || props.isPreviewingLesson
+    ? 'visible'
+    : 'invisible'
+}
+
+const Logger = (props) => {
+  console.log({ loggerLogs: props })
+  return null
+}
+
+export class ModuleView extends React.Component {
+  lessonStore = new LessonStore()
+  codeStore = new CodeStore()
+
+  componentWillMount() {
+    localStorage.setItem('history.lastModulePath', window.location.pathname)
+  }
+
+  render() {
+    console.log('code', this.codeStore)
+    return (
+      <Observer>
+        {() => (
+          <div styleName="ModuleView">
+            <Logger stores={{ ...this.lessonStore, ...this.codeStore }} />
+            <SplitPane split="vertical" defaultSize={400}>
+              <div styleName="left" data-light-theme>
+                <Choose>
+                  <When condition={this.lessonStore.isEditingLesson}>
+                    <Editor
+                      onChange={this.lessonStore.setEditedLessonContent}
+                      content={this.lessonStore.editedLessonContent}
+                      theme="white"
+                    />
+                  </When>
+                  <When condition={this.lessonStore.isPreviewingLesson}>
+                    <div styleName="padded" data-lesson-rendered-md-container>
+                      <Markdown
+                        markdown={this.lessonStore.editedLessonContent}
+                      />
+                    </div>
+                  </When>
+                  <Otherwise>
+                    <div styleName="padded" data-lesson-rendered-md-container>
+                      <Markdown
+                        markdown={this.lessonStore.originalLessonContent}
+                      />
+                    </div>
+                  </Otherwise>
+                </Choose>
+                <div styleName="buttonBox">
+                  <span
+                    styleName="actionIcon"
+                    onClick={this.codeStore.executeCodeInEditor}
+                  >
+                    <Icon name="icon--play" fill="white" styleName="icon" />
+                  </span>
+                  <span
+                    styleName="actionIcon"
+                    onClick={this.lessonStore.toggleEditingLesson}
+                  >
+                    <Icon name="icon--edit" fill="white" styleName="icon" />
+                  </span>
+                  <span
+                    styleName={`actionIcon ${saveIconClassName(
+                      this.lessonStore
+                    )}`}
+                    onClick={this.lessonStore.saveEditedLessonContent}
+                  >
+                    <Icon name="icon--save" fill="white" styleName="icon" />
+                  </span>
+                  <span
+                    styleName={`actionIcon ${saveIconClassName(
+                      this.lessonStore
+                    )}`}
+                    onClick={this.lessonStore.togglePreviewingLesson}
+                  >
+                    <Icon
+                      name="icon--visibility-on"
+                      fill="white"
+                      styleName="icon"
+                    />
+                  </span>
+                </div>
+              </div>
+              <div styleName="right">
+                <SplitPane split="horizontal" defaultSize="60%">
+                  <Editor
+                    onChange={this.codeStore.setEditedCodeContent}
+                    content={this.codeStore.editedCodeContent}
+                    theme="oceanic"
+                  />
+                  <Terminal logs={this.codeStore.logs} />
+                </SplitPane>
+              </div>
+            </SplitPane>
+          </div>
+        )}
+      </Observer>
+    )
+  }
+}
+
+const Terminal = observer((props) => {
   return (
-    <div styleName="right">
-      <Editor
-        onChange={props.setContent}
-        content={props.content}
-        theme="oceanic"
+    <div styleName="Terminal">
+      <Console
+        logs={props.logs}
+        variant="dark"
+        style={{
+          fontFamily: 'monospace',
+          fontSize: '16px',
+          lineHeight: '1.4'
+        }}
       />
     </div>
   )
 })
-
-const LessonEditor = observer((props) => {
-  return (
-    <Editor onChange={props.setContent} content={props.content} theme="white" />
-  )
-})
-
-@observer
-class Lesson extends React.Component {
-  render() {
-    const { props, state } = this
-    console.log({ props })
-
-    return (
-      <div styleName="left">
-        <Choose>
-          <When condition={props.moduleStore.isEditingLesson}>
-            <LessonEditor
-              content={props.moduleStore.activeModule.editedLessonContent}
-              setContent={props.moduleStore.setEditedLessonContent}
-            />
-            <LessonEditorActions
-              save={props.moduleStore.saveAndToggleLessonEditor}
-              cancel={props.moduleStore.cancelAndToggleLessonEditor}
-            />
-          </When>
-          <When condition={props.moduleStore.isViewingLesson}>
-            <div styleName="padded" data-lesson-rendered-md-container>
-              <Markdown
-                markdown={props.moduleStore.activeModule.lessonContent}
-              />
-            </div>
-            <LessonViewerActions
-              toggleEditing={props.moduleStore.toggleLessonEditor}
-            />
-          </When>
-        </Choose>
-      </div>
-    )
-  }
-}
-
-const LessonViewerActions = (props) => {
-  return (
-    <div styleName="buttonBox">
-      <span styleName="actionIcon" onClick={props.toggleEditing}>
-        <Ionicon icon="md-play" font-size="32px" color="#fff" />
-      </span>
-      <span styleName="actionIcon">
-        <Ionicon icon="md-create" font-size="32px" color="#fff" />
-      </span>
-      <span styleName="actionIcon">
-        <Ionicon icon="md-information-circle" font-size="32px" color="#fff" />
-      </span>
-    </div>
-  )
-}
-
-const LessonEditorActions = (props) => {
-  return (
-    <div styleName="buttonBox">
-      <Ionicon icon="md-play" font-size="32px" color="#fff" />
-      <button styleName="actionButton" onClick={props.save}>
-        save
-      </button>
-      <button styleName="actionButton" onClick={props.cancel}>
-        cancel
-      </button>
-    </div>
-  )
-}
-
-const selector = (tree) => {
-  return {
-    moduleStore: tree.state.moduleStore
-  }
-}
-
-@withRouter
-@inject(selector)
-@observer
-export class ModuleView extends React.Component {
-  render() {
-    const { props } = this
-
-    return (
-      <div styleName="ModuleView">
-        <Choose>
-          <When condition={this.isLoading}>
-            <h3>Loading...</h3>
-          </When>
-          <Otherwise>
-            <SplitPane split="vertical" defaultSize={400}>
-              <Lesson moduleStore={props.moduleStore} />
-              <CodeEditor
-                content={props.moduleStore.activeModule.editedCodeContent}
-                setContent={props.moduleStore.setEditedCodeContent}
-              />
-            </SplitPane>
-          </Otherwise>
-        </Choose>
-      </div>
-    )
-  }
-}
